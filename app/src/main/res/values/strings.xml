@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">Izhevsk Online</string>
+    <string name="title_activity_maps">Карта</string>
+    <string name="normal_map">Нормальная Карта</string>
+    <string name="hybrid_map">Гибридная Карта</string>
+    <string name="satellite_map">Спутниковая Карта</string>
+    <string name="terrain_map">Карта Местности</string>
+    <string name="lat_long_snippet">Lat: %1$.5f, Long: %2$.5f</string>
+    <string name="dropped_pin">Dropped Pin</string>
+    <string name="poi">poi</string>
+
+</resources>
