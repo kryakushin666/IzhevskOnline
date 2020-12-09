@@ -11,5 +11,17 @@
         android:label="activity_maps"
         tools:layout="@layout/activity_maps" />
 
+    <fragment
+        android:id="@+id/mapsFragment"
+        android:name="com.example.myapplication.MapsFragment"
+        android:label="fragment_maps"
+        tools:layout="@layout/fragment_maps" />
+
+    <fragment
+        android:id="@+id/searchFragment"
+        android:name="com.example.myapplication.SearchFragment"
+        android:label="fragment_search"
+        tools:layout="@layout/fragment_search" />
+
 
 </navigation>
