@@ -5,14 +5,15 @@
     app:startDestination="@+id/navigation_home">
 
     <fragment
+        android:id="@+id/navigation_notifications"
+        android:name="com.example.myapplication.MapsFragment"
+        android:label="@string/title_notifications"
+        tools:layout="@layout/fragment_maps" />
+
+    <fragment
         android:id="@+id/navigation_home"
         android:name="com.example.myapplication.BlankFragment"
         android:label="@string/title_home"
         tools:layout="@layout/fragment_blank" />
 
-    <fragment
-        android:id="@+id/navigation_notifications"
-        android:name="com.example.myapplication.MapsFragment"
-        android:label="@string/title_notifications"
-        tools:layout="@layout/fragment_maps" />
 </navigation>
