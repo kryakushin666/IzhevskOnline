@@ -26,7 +26,7 @@ class MapsFragment : Fragment() {
 
     private lateinit var map: GoogleMap
 
-    private val REQUEST_LOCATION_PERMISSION = 1
+    private val request_location_permission = 1
 
     private val callback = OnMapReadyCallback { googleMap ->
 
@@ -114,20 +114,20 @@ class MapsFragment : Fragment() {
     }
 
     private fun isPermissionGranted() : Boolean {
-        val ContextCompats = requireContext().applicationContext
+        val contextCompats = requireContext().applicationContext
         return ContextCompat.checkSelfPermission(
-            ContextCompats,
+            contextCompats,
             Manifest.permission.ACCESS_FINE_LOCATION
         ) == PackageManager.PERMISSION_GRANTED
     }
     private fun enableMyLocation() {
         if (isPermissionGranted()) {
-            val ContextCompats = requireContext().applicationContext
+            val contextCompats = requireContext().applicationContext
             if (ActivityCompat.checkSelfPermission(
-                    ContextCompats,
+                    contextCompats,
                     Manifest.permission.ACCESS_FINE_LOCATION
                 ) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(
-                    ContextCompats,
+                    contextCompats,
                     Manifest.permission.ACCESS_COARSE_LOCATION
                 ) != PackageManager.PERMISSION_GRANTED) {
                 return
@@ -137,7 +137,7 @@ class MapsFragment : Fragment() {
         else {
             requestPermissions(
                 arrayOf(Manifest.permission.ACCESS_FINE_LOCATION),
-                REQUEST_LOCATION_PERMISSION
+                request_location_permission
             )
         }
     }
@@ -146,7 +146,7 @@ class MapsFragment : Fragment() {
         permissions: Array<String>,
         grantResults: IntArray
     ) {
-        if (requestCode == REQUEST_LOCATION_PERMISSION) {
+        if (requestCode == request_location_permission) {
             if (grantResults.contains(PackageManager.PERMISSION_GRANTED)) {
                 enableMyLocation()
             }
@@ -154,13 +154,13 @@ class MapsFragment : Fragment() {
     }
 
     fun onMyLocationClick(location: Location) {
-        val ContextCompats = requireContext().applicationContext
-        Toast.makeText(ContextCompats, "Current location:\n$location", Toast.LENGTH_LONG).show()
+        val contextCompats = requireContext().applicationContext
+        Toast.makeText(contextCompats, "Current location:\n$location", Toast.LENGTH_LONG).show()
     }
     private fun getBitmapDescriptor(id: Int): BitmapDescriptor? {
         return if (Build.VERSION.SDK_INT >= 23) {
-            val ContextCompats = requireContext().applicationContext
-            val vectorDrawable = getDrawable(ContextCompats,id) as VectorDrawable
+            val contextCompats = requireContext().applicationContext
+            val vectorDrawable = getDrawable(contextCompats,id) as VectorDrawable
             val h = vectorDrawable.intrinsicHeight
             val w = vectorDrawable.intrinsicWidth
             vectorDrawable.setBounds(0, 0, w, h)
