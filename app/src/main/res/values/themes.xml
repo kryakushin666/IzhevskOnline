@@ -15,10 +15,4 @@
         <!-- Status bar color. -->
         <!-- Customize your theme here. -->
     </style>
-    <style name="Theme.MyApplication.Fullscreen" parent="Theme.MyApplication">
-        <item name="android:actionBarStyle">@style/Widget.Theme.MyApplication.ActionBar.Fullscreen
-        </item>
-        <item name="android:windowActionBarOverlay">true</item>
-        <item name="android:windowBackground">@null</item>
-    </style>
 </resources>

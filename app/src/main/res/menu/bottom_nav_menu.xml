@@ -4,17 +4,17 @@
 
     <item
         android:id="@+id/navigation_notifications"
-        android:icon="@drawable/ic_pin"
+        android:icon="@drawable/icon_map"
         android:title="" />
 
     <item
         android:id="@+id/navigation_home"
-        android:icon="@drawable/ic_pin2"
+        android:icon="@drawable/icon_home"
         android:title="" />
 
     <item
         android:id="@+id/navigation_profile"
-        android:icon="@drawable/ic_pin2"
+        android:icon="@drawable/icon_home"
         android:title=""
     />
 
