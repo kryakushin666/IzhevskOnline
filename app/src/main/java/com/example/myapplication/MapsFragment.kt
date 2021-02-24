@@ -1,6 +1,7 @@
 package com.example.myapplication
 
 import android.Manifest
+import android.annotation.SuppressLint
 import android.content.pm.PackageManager
 import android.graphics.Bitmap
 import android.graphics.Canvas
@@ -20,11 +21,15 @@ import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
 import android.location.Location
 import android.widget.Toast
+import com.google.android.gms.location.FusedLocationProviderClient
+import com.google.android.gms.location.LocationServices
 import com.google.android.gms.maps.model.*
 
 class MapsFragment : Fragment() {
 
     private lateinit var map: GoogleMap
+
+    private lateinit var fusedLocationClient: FusedLocationProviderClient
 
     private val request_location_permission = 1
 
@@ -32,7 +37,7 @@ class MapsFragment : Fragment() {
 
         map = googleMap
 
-        //val ContextCompats = requireContext().applicationContext
+        val contextCompats = requireContext().applicationContext
 
         //These coordinates represent the latitude and longitude of the Googleplex.
         val latitude = 56.85970797942636
@@ -97,6 +102,8 @@ class MapsFragment : Fragment() {
         )
         enableMyLocation()
         map.setMinZoomPreference(11.5f)
+        givemelocation()
+        //Toast.makeText(contextCompats, "Current location:\n$location", Toast.LENGTH_LONG).show()
     }
 
     override fun onCreateView(
@@ -104,6 +111,8 @@ class MapsFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        val contextCompats = requireContext().applicationContext
+        fusedLocationClient = LocationServices.getFusedLocationProviderClient(contextCompats)
         return inflater.inflate(R.layout.fragment_maps, container, false)
     }
 
@@ -171,5 +180,15 @@ class MapsFragment : Fragment() {
         } else {
             BitmapDescriptorFactory.fromResource(id)
         }
+    }
+    @SuppressLint("MissingPermission")
+    private fun givemelocation(){
+        val contextCompats = requireContext().applicationContext
+        fusedLocationClient.lastLocation
+                .addOnSuccessListener { location: Location? ->
+                    var latitude = location?.latitude
+                    var longitude = location?.longitude
+                    Toast.makeText(contextCompats, "$latitude,$longitude,", Toast.LENGTH_LONG).show()
+                }
     }
 }
