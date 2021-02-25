@@ -21,16 +21,19 @@ import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
 import android.location.Location
 import android.widget.Toast
-import com.google.android.gms.location.FusedLocationProviderClient
-import com.google.android.gms.location.LocationServices
+
+import com.google.android.gms.location.*
 import com.google.android.gms.maps.model.*
+
+
+var coordinate = ""
 
 class MapsFragment : Fragment() {
 
     private lateinit var map: GoogleMap
 
+    // Разрешения для использования и получения геолокации
     private lateinit var fusedLocationClient: FusedLocationProviderClient
-
     private val request_location_permission = 1
 
     private val callback = OnMapReadyCallback { googleMap ->
@@ -39,13 +42,15 @@ class MapsFragment : Fragment() {
 
         val contextCompats = requireContext().applicationContext
 
-        //These coordinates represent the latitude and longitude of the Googleplex.
+        //Наводят камеру на Ижевск и устанавливают уровень приближения
         val latitude = 56.85970797942636
         val longitude = 53.196807013800594
         val zoomLevel = 11.5f
 
         val homeLatLng = LatLng(latitude, longitude)
+        // Перемещает камеру к этим координатам
         map.moveCamera(CameraUpdateFactory.newLatLngZoom(homeLatLng, zoomLevel))
+        // Создание меток на карте
         map.addMarker(
             MarkerOptions()
                 .position(LatLng(56.84383886160861, 53.191198130527944))
@@ -100,10 +105,14 @@ class MapsFragment : Fragment() {
                 .title("Арсенал")
                 .icon(getBitmapDescriptor(R.drawable.icon_on_map))
         )
+        // Включение геолокации и запрос разрешения
         enableMyLocation()
+        // Устанавливаем максимальное приближение
         map.setMinZoomPreference(11.5f)
-        givemelocation()
-        //Toast.makeText(contextCompats, "Current location:\n$location", Toast.LENGTH_LONG).show()
+        // Получаем координаты и выводим как уведомление
+        giveMeLocation()
+        Toast.makeText(contextCompats, "$coordinate", Toast.LENGTH_LONG).show()
+
     }
 
     override fun onCreateView(
@@ -121,7 +130,7 @@ class MapsFragment : Fragment() {
         val mapFragment = childFragmentManager.findFragmentById(R.id.map) as SupportMapFragment?
         mapFragment?.getMapAsync(callback)
     }
-
+    // Функция проверки есть ли разрешение
     private fun isPermissionGranted() : Boolean {
         val contextCompats = requireContext().applicationContext
         return ContextCompat.checkSelfPermission(
@@ -129,6 +138,8 @@ class MapsFragment : Fragment() {
             Manifest.permission.ACCESS_FINE_LOCATION
         ) == PackageManager.PERMISSION_GRANTED
     }
+
+    // Функция включения геолокации
     private fun enableMyLocation() {
         if (isPermissionGranted()) {
             val contextCompats = requireContext().applicationContext
@@ -150,6 +161,7 @@ class MapsFragment : Fragment() {
             )
         }
     }
+    // Функция получает значение разрешения и вызывает функцию включения геолокации
     override fun onRequestPermissionsResult(
         requestCode: Int,
         permissions: Array<String>,
@@ -161,11 +173,7 @@ class MapsFragment : Fragment() {
             }
         }
     }
-
-    fun onMyLocationClick(location: Location) {
-        val contextCompats = requireContext().applicationContext
-        Toast.makeText(contextCompats, "Current location:\n$location", Toast.LENGTH_LONG).show()
-    }
+    // Функция переводит xml картинку в Bit для отображения на карте
     private fun getBitmapDescriptor(id: Int): BitmapDescriptor? {
         return if (Build.VERSION.SDK_INT >= 23) {
             val contextCompats = requireContext().applicationContext
@@ -181,14 +189,20 @@ class MapsFragment : Fragment() {
             BitmapDescriptorFactory.fromResource(id)
         }
     }
+    // Функция получения координат человека
     @SuppressLint("MissingPermission")
-    private fun givemelocation(){
+    private fun giveMeLocation() {
         val contextCompats = requireContext().applicationContext
         fusedLocationClient.lastLocation
                 .addOnSuccessListener { location: Location? ->
                     var latitude = location?.latitude
                     var longitude = location?.longitude
-                    Toast.makeText(contextCompats, "$latitude,$longitude,", Toast.LENGTH_LONG).show()
+                    coordinate = "$latitude,$longitude"
+                    //Toast.makeText(contextCompats, "$coordinate", Toast.LENGTH_LONG).show()
                 }
     }
 }
+
+
+
+
