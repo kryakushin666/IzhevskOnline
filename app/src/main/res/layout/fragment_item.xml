@@ -1,25 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    tools:context=".BlankFragment">
+    tools:context=".ItemFragment">
 
     <RelativeLayout
         android:id="@+id/home"
         android:layout_width="410dp"
         android:layout_height="733dp"
-        android:background="@drawable/home_screen">
-
+        android:background="@drawable/museum_screen">
 
         <ImageView
-            android:id="@+id/button"
-            android:layout_width="133dp"
-            android:layout_height="135dp"
+            android:id="@+id/buttons"
+            android:layout_width="41dp"
+            android:layout_height="39dp"
             android:layout_alignParentStart="true"
             android:layout_alignParentTop="true"
-            android:layout_marginStart="63dp"
-            android:layout_marginTop="172dp"
-            android:src="@drawable/ic_museum" />
+            android:layout_marginStart="11dp"
+            android:layout_marginTop="34dp"
+            app:srcCompat="@drawable/ic_backbutton" />
     </RelativeLayout>
 </FrameLayout>

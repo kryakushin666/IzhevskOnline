@@ -16,4 +16,10 @@
         android:label="@string/title_home"
         tools:layout="@layout/fragment_blank" />
 
+    <fragment
+        android:id="@+id/itemFragment"
+        android:name="com.example.myapplication.ItemFragment"
+        android:label="fragment_item_list"
+        tools:layout="@layout/fragment_item" />
+
 </navigation>
