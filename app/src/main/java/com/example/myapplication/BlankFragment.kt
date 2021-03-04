@@ -30,6 +30,9 @@ class BlankFragment : Fragment() {
 
         // слушатели кнопок, которые передают адрес навигационному контроллеру
         fragmentLayout.button.setOnClickListener { navController.navigate(R.id.itemFragment) }
+        fragmentLayout.button1.setOnClickListener { navController.navigate(R.id.itemFragment) }
+        fragmentLayout.button2.setOnClickListener { navController.navigate(R.id.itemFragment) }
+        fragmentLayout.button3.setOnClickListener { navController.navigate(R.id.itemFragment) }
 
         // возвращаем макет фрагмента
         return fragmentLayout

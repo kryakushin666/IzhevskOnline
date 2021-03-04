@@ -19,7 +19,13 @@
     <fragment
         android:id="@+id/itemFragment"
         android:name="com.example.myapplication.ItemFragment"
-        android:label="fragment_item_list"
+        android:label="@string/title_profile"
         tools:layout="@layout/fragment_item" />
+
+    <fragment
+        android:id="@+id/navigation_profile"
+        android:name="com.example.myapplication.ProfileFragment"
+        android:label="@string/title_profile"
+        tools:layout="@layout/fragment_profile" />
 
 </navigation>
