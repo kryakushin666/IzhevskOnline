@@ -4,13 +4,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ItemFragment">
+    tools:context=".CafeFragment">
 
     <RelativeLayout
         android:id="@+id/home"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@drawable/museum_screen">
+        android:background="@drawable/cafe_screen">
 
         <ImageView
             android:id="@+id/buttons"
@@ -23,34 +23,33 @@
             app:srcCompat="@drawable/ic_backbutton" />
 
         <ImageView
-            android:id="@+id/imageView9"
+            android:id="@+id/imageView6"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentStart="true"
             android:layout_alignParentTop="true"
-            android:layout_marginStart="43dp"
-            android:layout_marginTop="146dp"
-            android:src="@drawable/kalash" />
+            android:layout_marginStart="40.66dp"
+            android:layout_marginTop="150dp"
+            app:srcCompat="@drawable/mamapizza" />
 
         <ImageView
-            android:id="@+id/imageView10"
+            android:id="@+id/imageView7"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentStart="true"
             android:layout_alignParentTop="true"
-            android:layout_marginStart="43dp"
-            android:layout_marginTop="403dp"
-            android:src="@drawable/izhmash" />
+            android:layout_marginStart="40.66dp"
+            android:layout_marginTop="485dp"
+            app:srcCompat="@drawable/kare" />
 
         <ImageView
-            android:id="@+id/imageView11"
+            android:id="@+id/imageView8"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentStart="true"
             android:layout_alignParentTop="true"
-            android:layout_marginStart="41dp"
-            android:layout_marginTop="576dp"
-            android:src="@drawable/kotletabar" />
-
+            android:layout_marginStart="40dp"
+            android:layout_marginTop="659dp"
+            app:srcCompat="@drawable/kotleta" />
     </RelativeLayout>
 </FrameLayout>

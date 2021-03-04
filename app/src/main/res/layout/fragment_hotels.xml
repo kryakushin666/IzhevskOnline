@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".HotelsFragment">
+
+    <RelativeLayout
+        android:id="@+id/home"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/hotels_screen">
+
+        <ImageView
+            android:id="@+id/buttons"
+            android:layout_width="41dp"
+            android:layout_height="39dp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginStart="11dp"
+            android:layout_marginTop="34dp"
+            app:srcCompat="@drawable/ic_backbutton" />
+
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="143dp"
+            android:layout_height="101dp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginStart="22dp"
+            android:layout_marginTop="83dp"
+            app:srcCompat="@drawable/park_inn" />
+
+        <ImageView
+            android:id="@+id/imageView2"
+            android:layout_width="143dp"
+            android:layout_height="101dp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginStart="22dp"
+            android:layout_marginTop="215dp"
+            app:srcCompat="@drawable/amaks" />
+
+        <ImageView
+            android:id="@+id/imageView3"
+            android:layout_width="143dp"
+            android:layout_height="101dp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginStart="22dp"
+            android:layout_marginTop="345dp"
+            app:srcCompat="@drawable/izhotel" />
+
+        <ImageView
+            android:id="@+id/imageView4"
+            android:layout_width="143dp"
+            android:layout_height="101dp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginStart="22dp"
+            android:layout_marginTop="475dp"
+            app:srcCompat="@drawable/bobrdol" />
+
+        <ImageView
+            android:id="@+id/imageView5"
+            android:layout_width="143dp"
+            android:layout_height="101dp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginStart="22dp"
+            android:layout_marginTop="605dp"
+            app:srcCompat="@drawable/parkhotel" />
+    </RelativeLayout>
+</FrameLayout>

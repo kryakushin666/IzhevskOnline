@@ -23,6 +23,24 @@
         tools:layout="@layout/fragment_item" />
 
     <fragment
+        android:id="@+id/parksFragment"
+        android:name="com.example.myapplication.ParksFragment"
+        android:label="@string/title_profile"
+        tools:layout="@layout/fragment_parks" />
+
+    <fragment
+        android:id="@+id/hotelsFragment"
+        android:name="com.example.myapplication.HotelsFragment"
+        android:label="@string/title_profile"
+        tools:layout="@layout/fragment_hotels" />
+
+    <fragment
+        android:id="@+id/cafeFragment"
+        android:name="com.example.myapplication.CafeFragment"
+        android:label="@string/title_profile"
+        tools:layout="@layout/fragment_cafe" />
+
+    <fragment
         android:id="@+id/navigation_profile"
         android:name="com.example.myapplication.ProfileFragment"
         android:label="@string/title_profile"
