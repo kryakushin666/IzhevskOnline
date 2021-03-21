@@ -1,7 +1,8 @@
+@file:Suppress("DEPRECATION")
+
 package com.example.myapplication
 
 import android.Manifest
-import android.annotation.SuppressLint
 import android.content.Context
 import android.content.pm.PackageManager
 import android.graphics.Bitmap
@@ -17,7 +18,6 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.LinearLayout
 import android.widget.Toast
 import androidx.appcompat.content.res.AppCompatResources.getDrawable
 import androidx.core.app.ActivityCompat
@@ -29,8 +29,6 @@ import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.*
-import com.google.android.material.bottomsheet.BottomSheetBehavior
-import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.gson.Gson
 import com.maxkeppeler.sheets.info.InfoSheet
 import okhttp3.OkHttpClient
@@ -147,7 +145,7 @@ class MapsFragment : Fragment(), GoogleMap.OnMarkerClickListener {
     override fun onCreateView(
             inflater: LayoutInflater,
             container: ViewGroup?,
-            savedInstanceState: Bundle?
+            savedInstanceState: Bundle?,
     ): View? {
         val contextCompats = requireContext().applicationContext
         fusedLocationClient = LocationServices.getFusedLocationProviderClient(contextCompats)
@@ -195,7 +193,7 @@ class MapsFragment : Fragment(), GoogleMap.OnMarkerClickListener {
     override fun onRequestPermissionsResult(
             requestCode: Int,
             permissions: Array<String>,
-            grantResults: IntArray
+            grantResults: IntArray,
     ) {
         if (requestCode == request_location_permission) {
             if (grantResults.contains(PackageManager.PERMISSION_GRANTED)) {
@@ -240,9 +238,9 @@ class MapsFragment : Fragment(), GoogleMap.OnMarkerClickListener {
         if (location != null) {
             gps[0] = location.getLatitude()
             gps[1] = location.getLongitude()
-            coordinate = "${gps[0]},${gps[1]}"
-            Log.e("gpsLat",gps[0].toString())
-            Log.e("gpsLong",gps[1].toString())
+            coordinate = "${gps[0]}, ${gps[1]}"
+            Log.e("gpsLat", gps[0].toString())
+            Log.e("gpsLong", gps[1].toString())
         }
         return coordinate
 
@@ -254,7 +252,6 @@ class MapsFragment : Fragment(), GoogleMap.OnMarkerClickListener {
         GetDirection(URLtwo).execute()
         return
     }
-
     fun getTwoDirection(origin: String, dest: String) {
         val URL = getDirectionURL(origin, dest)
         GetDirection(URL).execute()
@@ -269,16 +266,17 @@ class MapsFragment : Fragment(), GoogleMap.OnMarkerClickListener {
     private inner class GetDirection(val url: String) : AsyncTask<Void, Void, List<List<LatLng>>>() {
         override fun doInBackground(vararg params: Void?): List<List<LatLng>> {
             val client = OkHttpClient()
-            //val contextCompats = requireContext().applicationContext
+            val contextCompats = requireContext().applicationContext
             val request = Request.Builder().url(url).build()
             val response = client.newCall(request).execute()
             val data = response.body()!!.string()
             Log.d("GoogleMap", " data : $data")
             val result = ArrayList<List<LatLng>>()
+            val respObj = Gson().fromJson(data, GoogleMapDTO::class.java)
+            val path = ArrayList<LatLng>()
+            val duration = respObj.routes[0].legs[0].duration.value
+            Toast.makeText(contextCompats, "$duration", Toast.LENGTH_LONG).show() // ТУТ МОЖЕТ БЫТЬ КРАШ CRASH CHECK!! TODO
             try {
-                val respObj = Gson().fromJson(data, GoogleMapDTO::class.java)
-                val path = ArrayList<LatLng>()
-
                 for (i in 0..(respObj.routes[0].legs[0].steps.size - 1)) {
                     path.addAll(decodePolyline(respObj.routes[0].legs[0].steps[i].polyline.points))
                 }
@@ -338,25 +336,156 @@ class MapsFragment : Fragment(), GoogleMap.OnMarkerClickListener {
 
         return poly
     }
-
+    private fun converterLatLng(coordinate: LatLng): String {
+        val lat = coordinate.latitude
+        val lng = coordinate.longitude
+        var coordinates = "$lat, $lng"
+        return coordinates
+    }
     override fun onMarkerClick(p0: Marker?): Boolean {
         val contextCompats = requireContext().applicationContext
-        context?.let {
-            InfoSheet().show(it) {
-                title("Test Тест")
-                content("Тест русского в контенте")
-                onNegative("He's good") {
-                    val location3 = "56.85285289473385, 53.215664171778975"
-                    getTwoDirection(getLastKnownLocation(contextCompats), location3)
+        if (p0 != null) {
+            var marker = p0.id
+            if(marker == "m0") {
+                context?.let {
+                    InfoSheet().show(it) {
+                        title("${p0.title}")
+                        var coordinate = converterLatLng(p0.position)
+                        content("$coordinate")
+                        onNegative("He's good") {
+                            getTwoDirection(getLastKnownLocation(contextCompats), coordinate)
+                        }
+                        onPositive("Тест") {
+                            Toast.makeText(contextCompats, "${p0.id}", Toast.LENGTH_LONG).show()
+                        }
+                    }
                 }
-                onPositive("Тест") {
-                    Toast.makeText(contextCompats, "$p0", Toast.LENGTH_LONG).show()
+            }
+            if(marker == "m1") {
+                context?.let {
+                    InfoSheet().show(it) {
+                        title("${p0.title}")
+                        var coordinate = converterLatLng(p0.position)
+                        content("$coordinate")
+                        onNegative("He's good") {
+                            getTwoDirection(getLastKnownLocation(contextCompats), coordinate)
+                        }
+                        onPositive("Тест") {
+                            Toast.makeText(contextCompats, "${p0.id}", Toast.LENGTH_LONG).show()
+                        }
+                    }
+                }
+            }
+            if(marker == "m2") {
+                context?.let {
+                    InfoSheet().show(it) {
+                        title("${p0.title}")
+                        var coordinate = converterLatLng(p0.position)
+                        content("$coordinate")
+                        onNegative("He's good") {
+                            getTwoDirection(getLastKnownLocation(contextCompats), coordinate)
+                        }
+                        onPositive("Тест") {
+                            Toast.makeText(contextCompats, "${p0.id}", Toast.LENGTH_LONG).show()
+                        }
+                    }
+                }
+            }
+            if(marker == "m3") {
+                context?.let {
+                    InfoSheet().show(it) {
+                        title("${p0.title}")
+                        var coordinate = converterLatLng(p0.position)
+                        content("$coordinate")
+                        onNegative("He's good") {
+                            getTwoDirection(getLastKnownLocation(contextCompats), coordinate)
+                        }
+                        onPositive("Тест") {
+                            Toast.makeText(contextCompats, "${p0.id}", Toast.LENGTH_LONG).show()
+                        }
+                    }
+                }
+            }
+            if(marker == "m4") {
+                context?.let {
+                    InfoSheet().show(it) {
+                        title("${p0.title}")
+                        var coordinate = converterLatLng(p0.position)
+                        content("$coordinate")
+                        onNegative("He's good") {
+                            getTwoDirection(getLastKnownLocation(contextCompats), coordinate)
+                        }
+                        onPositive("Тест") {
+                            Toast.makeText(contextCompats, "${p0.id}", Toast.LENGTH_LONG).show()
+                        }
+                    }
+                }
+            }
+            if(marker == "m5") {
+                context?.let {
+                    InfoSheet().show(it) {
+                        title("${p0.title}")
+                        var coordinate = converterLatLng(p0.position)
+                        content("$coordinate")
+                        onNegative("He's good") {
+                            getTwoDirection(getLastKnownLocation(contextCompats), coordinate)
+                        }
+                        onPositive("Тест") {
+                            Toast.makeText(contextCompats, "${p0.id}", Toast.LENGTH_LONG).show()
+                        }
+                    }
+                }
+            }
+            if(marker == "m6") {
+                context?.let {
+                    InfoSheet().show(it) {
+                        title("${p0.title}")
+                        var coordinate = converterLatLng(p0.position)
+                        content("$coordinate")
+                        onNegative("He's good") {
+                            getTwoDirection(getLastKnownLocation(contextCompats), coordinate)
+                        }
+                        onPositive("Тест") {
+                            Toast.makeText(contextCompats, "${p0.id}", Toast.LENGTH_LONG).show()
+                        }
+                    }
+                }
+            }
+            if(marker == "m7") {
+                context?.let {
+                    InfoSheet().show(it) {
+                        title("${p0.title}")
+                        var coordinate = converterLatLng(p0.position)
+                        content("$coordinate")
+                        onNegative("He's good") {
+                            getTwoDirection(getLastKnownLocation(contextCompats), coordinate)
+                        }
+                        onPositive("Тест") {
+                            Toast.makeText(contextCompats, "${p0.id}", Toast.LENGTH_LONG).show()
+                        }
+                    }
+                }
+            }
+            if(marker == "m8") {
+                context?.let {
+                    InfoSheet().show(it) {
+                        title("${p0.title}")
+                        var coordinate = converterLatLng(p0.position)
+                        content("$coordinate")
+                        onNegative("He's good") {
+                            getTwoDirection(getLastKnownLocation(contextCompats), coordinate)
+                        }
+                        onPositive("Тест") {
+                            Toast.makeText(contextCompats, "${p0.id}", Toast.LENGTH_LONG).show()
+                        }
+                    }
                 }
             }
         }
         return true
     }
 }
+
 
 
 

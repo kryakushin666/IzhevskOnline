@@ -5,7 +5,10 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
+import android.widget.ImageView
 import androidx.navigation.fragment.NavHostFragment
+import androidx.navigation.fragment.findNavController
 import kotlinx.android.synthetic.main.fragment_blank.view.*
 import kotlinx.android.synthetic.main.fragment_item.view.*
 
@@ -25,11 +28,9 @@ class ParksFragment : Fragment() {
                               savedInstanceState: Bundle?): View? {
         val fragmentLayout = inflater.inflate(R.layout.fragment_parks, container, false)
 
-        // получаем ссылку на NavController (навигационный контроллер)
-        val navController = NavHostFragment.findNavController(this)
-
-        // слушатели кнопок, которые передают адрес навигационному контроллеру
-        fragmentLayout.buttons.setOnClickListener { navController.navigate(R.id.navigation_home) }
+        fragmentLayout.findViewById<ImageView>(R.id.buttons).setOnClickListener {
+            findNavController().navigate(R.id.navigation_home)
+        }
 
         // возвращаем макет фрагмента
         return fragmentLayout

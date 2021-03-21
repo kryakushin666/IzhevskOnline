@@ -1,20 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/mobile_navigation"
-    app:startDestination="@+id/navigation_home">
-
+    android:id="@+id/navigation_home"
+    app:startDestination="@id/blank_screen">
     <fragment
-        android:id="@+id/navigation_notifications"
-        android:name="com.example.myapplication.MapsFragment"
-        android:label="@string/title_notifications"
-        tools:layout="@layout/fragment_maps" />
-
-    <fragment
-        android:id="@+id/navigation_home"
+        android:id="@+id/blank_screen"
         android:name="com.example.myapplication.BlankFragment"
         android:label="@string/title_home"
-        tools:layout="@layout/fragment_blank" />
+        tools:layout="@layout/fragment_blank" >
+        <action
+            android:id="@+id/action_navigation_home_to_parksFragment"
+            app:destination="@id/parksFragment" />
+        <action
+            android:id="@+id/action_navigation_home_to_cafeFragment"
+            app:destination="@id/cafeFragment" />
+        <action
+            android:id="@+id/action_navigation_home_to_gunFragment"
+            app:destination="@id/gunFragment" />
+        <action
+            android:id="@+id/action_navigation_home_to_hotelsFragment"
+            app:destination="@id/hotelsFragment" />
+        <action
+            android:id="@+id/action_navigation_home_to_itemFragment"
+            app:destination="@id/itemFragment" />
+    </fragment>
 
     <fragment
         android:id="@+id/itemFragment"
@@ -40,10 +50,11 @@
         android:label="@string/title_profile"
         tools:layout="@layout/fragment_cafe" />
 
+
     <fragment
-        android:id="@+id/navigation_profile"
-        android:name="com.example.myapplication.ProfileFragment"
+        android:id="@+id/gunFragment"
+        android:name="com.example.myapplication.GunFragment"
         android:label="@string/title_profile"
-        tools:layout="@layout/fragment_profile" />
+        tools:layout="@layout/fragment_gun" />
 
 </navigation>

@@ -1,13 +1,16 @@
 package com.example.myapplication
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.navigation.fragment.NavHostFragment
-import kotlinx.android.synthetic.main.fragment_blank.view.*
-import kotlinx.android.synthetic.main.fragment_item.view.*
+import android.widget.Button
+import android.widget.ImageButton
+import android.widget.ImageView
+import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
+
+
 
 class BlankFragment : Fragment() {
 
@@ -25,17 +28,22 @@ class BlankFragment : Fragment() {
     ): View? {
         val fragmentLayout = inflater.inflate(R.layout.fragment_blank, container, false)
 
-        // получаем ссылку на NavController (навигационный контроллер)
-        val navController = NavHostFragment.findNavController(this)
-
-        // слушатели кнопок, которые передают адрес навигационному контроллеру
-        fragmentLayout.button.setOnClickListener { navController.navigate(R.id.itemFragment) }
-        fragmentLayout.button1.setOnClickListener { navController.navigate(R.id.parksFragment) }
-        fragmentLayout.button2.setOnClickListener { navController.navigate(R.id.hotelsFragment) }
-        fragmentLayout.button3.setOnClickListener { navController.navigate(R.id.cafeFragment) }
-
+        fragmentLayout.findViewById<ImageView>(R.id.Button).setOnClickListener {
+            findNavController().navigate(R.id.action_navigation_home_to_itemFragment)
+        }
+        fragmentLayout.findViewById<ImageView>(R.id.button1).setOnClickListener {
+            findNavController().navigate(R.id.action_navigation_home_to_parksFragment)
+        }
+        fragmentLayout.findViewById<ImageView>(R.id.button2).setOnClickListener {
+            findNavController().navigate(R.id.action_navigation_home_to_hotelsFragment)
+        }
+        fragmentLayout.findViewById<ImageView>(R.id.button3).setOnClickListener {
+            findNavController().navigate(R.id.action_navigation_home_to_cafeFragment)
+        }
+        fragmentLayout.findViewById<Button>(R.id.button4).setOnClickListener {
+            findNavController().navigate(R.id.action_navigation_home_to_gunFragment)
+        }
         // возвращаем макет фрагмента
         return fragmentLayout
     }
-
 }

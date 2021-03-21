@@ -14,8 +14,4 @@
         <item name="android:windowBackground">@null</item>
         <!-- Customize your theme here. -->
     </style>
-    <style name="Theme.MyApplication.Fullscreen" parent="Theme.MyApplication">
-        <item name="android:windowActionBarOverlay">true</item>
-        <item name="android:windowBackground">@null</item>
-    </style>
 </resources>
