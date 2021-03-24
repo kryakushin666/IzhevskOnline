@@ -12,6 +12,9 @@
     <string name="title_home">Дом</string>
     <string name="title_notifications">Карта</string>
     <string name="title_profile">Профиль</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="maininf">Монумент, посвящённый
+        400-летию вхождения Удмуртии в
+        состав России, открытый 26 июня
+        1972 года.</string>
+    <string name="titleinf">Также употребляется название «Навеки с Россией», в народе называют — «Лыжи Кулаковой»</string>
 </resources>

@@ -4,4 +4,5 @@
     <dimen name="app_bar_height">180dp</dimen>
     <dimen name="fab_margin">16dp</dimen>
     <dimen name="activity_margin">16dp</dimen>
+    <dimen name="demo_sheet_rounded_corner">16dp</dimen>
 </resources>

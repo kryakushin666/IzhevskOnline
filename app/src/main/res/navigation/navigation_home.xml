@@ -42,7 +42,11 @@
         android:id="@+id/hotelsFragment"
         android:name="com.example.myapplication.HotelsFragment"
         android:label="@string/title_profile"
-        tools:layout="@layout/fragment_hotels" />
+        tools:layout="@layout/fragment_hotels" >
+        <action
+            android:id="@+id/action_hotelsFragment_to_hotelsuser"
+            app:destination="@id/hotelsuser" />
+    </fragment>
 
     <fragment
         android:id="@+id/cafeFragment"
@@ -57,4 +61,9 @@
         android:label="@string/title_profile"
         tools:layout="@layout/fragment_gun" />
 
+    <fragment
+        android:id="@+id/hotelsuser"
+        android:name="com.example.myapplication.UserProfile"
+        android:label="@string/title_profile"
+        tools:layout="@layout/fragment_user_profile" />
 </navigation>

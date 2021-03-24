@@ -18,11 +18,14 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
+import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.content.res.AppCompatResources.getDrawable
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import com.google.android.gms.location.*
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
@@ -33,9 +36,14 @@ import com.google.gson.Gson
 import com.maxkeppeler.sheets.info.InfoSheet
 import okhttp3.OkHttpClient
 import okhttp3.Request
+import com.andrefrsousa.superbottomsheet.SuperBottomSheetFragment
+import kotlinx.android.synthetic.main.activity_maps.*
+import kotlinx.android.synthetic.main.fragment_demo_sheet.*
+import kotlinx.android.synthetic.main.fragment_demo_sheet.view.*
+import org.w3c.dom.Text
 
-
-//var coordinate = ""
+var maintext = "This my work shit bitch"
+var polyl = 0
 private lateinit var map: GoogleMap
 private lateinit var fusedLocationClient: FusedLocationProviderClient
 
@@ -62,58 +70,58 @@ class MapsFragment : Fragment(), GoogleMap.OnMarkerClickListener {
         map.moveCamera(CameraUpdateFactory.newLatLngZoom(homeLatLng, zoomLevel))
         // Создание меток на карте
         map.addMarker(
-                MarkerOptions()
-                        .position(LatLng(56.84383886160861, 53.191198130527944))
-                        .title("Главный корпус оружейного завода")
-                        .icon(getBitmapDescriptor(R.drawable.icon_on_map))
+            MarkerOptions()
+                .position(LatLng(56.84383886160861, 53.191198130527944))
+                .title("Главный корпус\n оружейного завода")
+                .icon(getBitmapDescriptor(R.drawable.icon_on_map))
         )
         map.addMarker(
-                MarkerOptions()
-                        .position(LatLng(56.844568122459364, 53.191131214863674))
-                        .title("Памятник Дерябину")
-                        .icon(getBitmapDescriptor(R.drawable.icon_on_map))
+            MarkerOptions()
+                .position(LatLng(56.844568122459364, 53.191131214863674))
+                .title("Памятник Дерябину")
+                .icon(getBitmapDescriptor(R.drawable.icon_on_map))
         )
         map.addMarker(
-                MarkerOptions()
-                        .position(LatLng(56.848892795955905, 53.19585937814813))
-                        .title("Ижевский индустриальный техникум")
-                        .icon(getBitmapDescriptor(R.drawable.icon_on_map))
+            MarkerOptions()
+                .position(LatLng(56.848892795955905, 53.19585937814813))
+                .title("Ижевский\n индустриальный техникум")
+                .icon(getBitmapDescriptor(R.drawable.icon_on_map))
         )
         map.addMarker(
-                MarkerOptions()
-                        .position(LatLng(56.84408400157632, 53.19771856787305))
-                        .title("Памятник ижевским оружейникам")
-                        .icon(getBitmapDescriptor(R.drawable.icon_on_map))
+            MarkerOptions()
+                .position(LatLng(56.84408400157632, 53.19771856787305))
+                .title("Памятник ижевским\n оружейникам")
+                .icon(getBitmapDescriptor(R.drawable.icon_on_map))
         )
         map.addMarker(
-                MarkerOptions()
-                        .position(LatLng(56.84398424917061, 53.198120889542295))
-                        .title("Музей ИЖМАШ")
-                        .icon(getBitmapDescriptor(R.drawable.icon_on_map))
+            MarkerOptions()
+                .position(LatLng(56.84398424917061, 53.198120889542295))
+                .title("Музей ИЖМАШ")
+                .icon(getBitmapDescriptor(R.drawable.icon_on_map))
         )
         map.addMarker(
-                MarkerOptions()
-                        .position(LatLng(56.83996208388173, 53.19589266822729))
-                        .title("Долгий мост и завод «Ижсталь")
-                        .icon(getBitmapDescriptor(R.drawable.icon_on_map))
+            MarkerOptions()
+                .position(LatLng(56.83996208388173, 53.19589266822729))
+                .title("Долгий мост\n и завод «Ижсталь")
+                .icon(getBitmapDescriptor(R.drawable.icon_on_map))
         )
         map.addMarker(
-                MarkerOptions()
-                        .position(LatLng(56.85177628926549, 53.2002482478798))
-                        .title("Здание из красного кирпич")
-                        .icon(getBitmapDescriptor(R.drawable.icon_on_map))
+            MarkerOptions()
+                .position(LatLng(56.85177628926549, 53.2002482478798))
+                .title("Здание из красного\n кирпича")
+                .icon(getBitmapDescriptor(R.drawable.icon_on_map))
         )
         map.addMarker(
-                MarkerOptions()
-                        .position(LatLng(56.85073186241447, 53.20672264326064))
-                        .title("Музейно-выставочный комплекс стрелкового оружия имени Михаила Тимофеевича Калашникова")
-                        .icon(getBitmapDescriptor(R.drawable.icon_on_map))
+            MarkerOptions()
+                .position(LatLng(56.85073186241447, 53.20672264326064))
+                .title("Музейно-выставочный\n комплекс стрелкового\n оружия имени Михаила\n Тимофеевича Калашникова")
+                .icon(getBitmapDescriptor(R.drawable.icon_on_map))
         )
         map.addMarker(
-                MarkerOptions()
-                        .position(LatLng(56.85285289473385, 53.215664171778975))
-                        .title("Арсенал")
-                        .icon(getBitmapDescriptor(R.drawable.icon_on_map))
+            MarkerOptions()
+                .position(LatLng(56.85285289473385, 53.215664171778975))
+                .title("Арсенал")
+                .icon(getBitmapDescriptor(R.drawable.icon_on_map))
         )
         map.setOnMarkerClickListener(this)
 
@@ -143,9 +151,9 @@ class MapsFragment : Fragment(), GoogleMap.OnMarkerClickListener {
 
 
     override fun onCreateView(
-            inflater: LayoutInflater,
-            container: ViewGroup?,
-            savedInstanceState: Bundle?,
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?,
     ): View? {
         val contextCompats = requireContext().applicationContext
         fusedLocationClient = LocationServices.getFusedLocationProviderClient(contextCompats)
@@ -162,8 +170,8 @@ class MapsFragment : Fragment(), GoogleMap.OnMarkerClickListener {
     private fun isPermissionGranted(): Boolean {
         val contextCompats = requireContext().applicationContext
         return ContextCompat.checkSelfPermission(
-                contextCompats,
-                Manifest.permission.ACCESS_FINE_LOCATION
+            contextCompats,
+            Manifest.permission.ACCESS_FINE_LOCATION
         ) == PackageManager.PERMISSION_GRANTED
     }
 
@@ -172,28 +180,28 @@ class MapsFragment : Fragment(), GoogleMap.OnMarkerClickListener {
         if (isPermissionGranted()) {
             val contextCompats = requireContext().applicationContext
             if (ActivityCompat.checkSelfPermission(
-                            contextCompats,
-                            Manifest.permission.ACCESS_FINE_LOCATION
-                    ) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(
-                            contextCompats,
-                            Manifest.permission.ACCESS_COARSE_LOCATION
-                    ) != PackageManager.PERMISSION_GRANTED) {
+                    contextCompats,
+                    Manifest.permission.ACCESS_FINE_LOCATION
+                ) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(
+                    contextCompats,
+                    Manifest.permission.ACCESS_COARSE_LOCATION
+                ) != PackageManager.PERMISSION_GRANTED) {
                 return
             }
             map.isMyLocationEnabled = true
         } else {
             requestPermissions(
-                    arrayOf(Manifest.permission.ACCESS_FINE_LOCATION),
-                    request_location_permission
+                arrayOf(Manifest.permission.ACCESS_FINE_LOCATION),
+                request_location_permission
             )
         }
     }
 
     // Функция получает значение разрешения и вызывает функцию включения геолокации
     override fun onRequestPermissionsResult(
-            requestCode: Int,
-            permissions: Array<String>,
-            grantResults: IntArray,
+        requestCode: Int,
+        permissions: Array<String>,
+        grantResults: IntArray,
     ) {
         if (requestCode == request_location_permission) {
             if (grantResults.contains(PackageManager.PERMISSION_GRANTED)) {
@@ -226,7 +234,13 @@ class MapsFragment : Fragment(), GoogleMap.OnMarkerClickListener {
         var location: Location? = null
         val contextCompats = requireContext().applicationContext
         for (i in providers.size - 1 downTo 0) {
-            if (ActivityCompat.checkSelfPermission(contextCompats, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(contextCompats, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+            if (ActivityCompat.checkSelfPermission(
+                    contextCompats,
+                    Manifest.permission.ACCESS_FINE_LOCATION
+                ) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(
+                    contextCompats,
+                    Manifest.permission.ACCESS_COARSE_LOCATION
+                ) != PackageManager.PERMISSION_GRANTED) {
 
             }
             location= locationManager.getLastKnownLocation(providers[i])
@@ -266,7 +280,6 @@ class MapsFragment : Fragment(), GoogleMap.OnMarkerClickListener {
     private inner class GetDirection(val url: String) : AsyncTask<Void, Void, List<List<LatLng>>>() {
         override fun doInBackground(vararg params: Void?): List<List<LatLng>> {
             val client = OkHttpClient()
-            val contextCompats = requireContext().applicationContext
             val request = Request.Builder().url(url).build()
             val response = client.newCall(request).execute()
             val data = response.body()!!.string()
@@ -274,8 +287,7 @@ class MapsFragment : Fragment(), GoogleMap.OnMarkerClickListener {
             val result = ArrayList<List<LatLng>>()
             val respObj = Gson().fromJson(data, GoogleMapDTO::class.java)
             val path = ArrayList<LatLng>()
-            val duration = respObj.routes[0].legs[0].duration.value
-            Toast.makeText(contextCompats, "$duration", Toast.LENGTH_LONG).show() // ТУТ МОЖЕТ БЫТЬ КРАШ CRASH CHECK!! TODO
+            //val duration = respObj.routes[0].legs[0].duration.value
             try {
                 for (i in 0..(respObj.routes[0].legs[0].steps.size - 1)) {
                     path.addAll(decodePolyline(respObj.routes[0].legs[0].steps[i].polyline.points))
@@ -296,10 +308,8 @@ class MapsFragment : Fragment(), GoogleMap.OnMarkerClickListener {
                 lineoption.color(Color.BLUE)
                 lineoption.geodesic(true)
             }
-            map.addPolyline(lineoption)
         }
     }
-
     fun decodePolyline(encoded: String): List<LatLng> {
 
         val poly = ArrayList<LatLng>()
@@ -342,133 +352,70 @@ class MapsFragment : Fragment(), GoogleMap.OnMarkerClickListener {
         var coordinates = "$lat, $lng"
         return coordinates
     }
+
     override fun onMarkerClick(p0: Marker?): Boolean {
         val contextCompats = requireContext().applicationContext
         if (p0 != null) {
             var marker = p0.id
             if(marker == "m0") {
                 context?.let {
-                    InfoSheet().show(it) {
-                        title("${p0.title}")
-                        var coordinate = converterLatLng(p0.position)
-                        content("$coordinate")
-                        onNegative("He's good") {
-                            getTwoDirection(getLastKnownLocation(contextCompats), coordinate)
-                        }
-                        onPositive("Тест") {
-                            Toast.makeText(contextCompats, "${p0.id}", Toast.LENGTH_LONG).show()
-                        }
-                    }
+                    val sheet = DemoBottomSheetFragment()
+                    maintext = "${p0.title}"
+                    fragmentManager?.let { it1 -> sheet.show(it1, "DemoBottomSheetFragment") }
                 }
             }
             if(marker == "m1") {
                 context?.let {
-                    InfoSheet().show(it) {
-                        title("${p0.title}")
-                        var coordinate = converterLatLng(p0.position)
-                        content("$coordinate")
-                        onNegative("He's good") {
-                            getTwoDirection(getLastKnownLocation(contextCompats), coordinate)
-                        }
-                        onPositive("Тест") {
-                            Toast.makeText(contextCompats, "${p0.id}", Toast.LENGTH_LONG).show()
-                        }
-                    }
+                    val sheet = DemoBottomSheetFragment()
+                    maintext = "${p0.title}"
+                    fragmentManager?.let { it1 -> sheet.show(it1, "DemoBottomSheetFragment") }
                 }
             }
             if(marker == "m2") {
                 context?.let {
-                    InfoSheet().show(it) {
-                        title("${p0.title}")
-                        var coordinate = converterLatLng(p0.position)
-                        content("$coordinate")
-                        onNegative("He's good") {
-                            getTwoDirection(getLastKnownLocation(contextCompats), coordinate)
-                        }
-                        onPositive("Тест") {
-                            Toast.makeText(contextCompats, "${p0.id}", Toast.LENGTH_LONG).show()
-                        }
-                    }
+                    val sheet = DemoBottomSheetFragment()
+                    maintext = "${p0.title}"
+                    fragmentManager?.let { it1 -> sheet.show(it1, "DemoBottomSheetFragment") }
                 }
             }
             if(marker == "m3") {
                 context?.let {
-                    InfoSheet().show(it) {
-                        title("${p0.title}")
-                        var coordinate = converterLatLng(p0.position)
-                        content("$coordinate")
-                        onNegative("He's good") {
-                            getTwoDirection(getLastKnownLocation(contextCompats), coordinate)
-                        }
-                        onPositive("Тест") {
-                            Toast.makeText(contextCompats, "${p0.id}", Toast.LENGTH_LONG).show()
-                        }
-                    }
+                    val sheet = DemoBottomSheetFragment()
+                    maintext = "${p0.title}"
+                    fragmentManager?.let { it1 -> sheet.show(it1, "DemoBottomSheetFragment") }
                 }
             }
             if(marker == "m4") {
                 context?.let {
-                    InfoSheet().show(it) {
-                        title("${p0.title}")
-                        var coordinate = converterLatLng(p0.position)
-                        content("$coordinate")
-                        onNegative("He's good") {
-                            getTwoDirection(getLastKnownLocation(contextCompats), coordinate)
-                        }
-                        onPositive("Тест") {
-                            Toast.makeText(contextCompats, "${p0.id}", Toast.LENGTH_LONG).show()
-                        }
-                    }
+                    val sheet = DemoBottomSheetFragment()
+                    maintext = "${p0.title}"
+                    fragmentManager?.let { it1 -> sheet.show(it1, "DemoBottomSheetFragment") }
                 }
             }
             if(marker == "m5") {
                 context?.let {
-                    InfoSheet().show(it) {
-                        title("${p0.title}")
-                        var coordinate = converterLatLng(p0.position)
-                        content("$coordinate")
-                        onNegative("He's good") {
-                            getTwoDirection(getLastKnownLocation(contextCompats), coordinate)
-                        }
-                        onPositive("Тест") {
-                            Toast.makeText(contextCompats, "${p0.id}", Toast.LENGTH_LONG).show()
-                        }
-                    }
+                    val sheet = DemoBottomSheetFragment()
+                    maintext = "${p0.title}"
+                    fragmentManager?.let { it1 -> sheet.show(it1, "DemoBottomSheetFragment") }
                 }
             }
             if(marker == "m6") {
                 context?.let {
-                    InfoSheet().show(it) {
-                        title("${p0.title}")
-                        var coordinate = converterLatLng(p0.position)
-                        content("$coordinate")
-                        onNegative("He's good") {
-                            getTwoDirection(getLastKnownLocation(contextCompats), coordinate)
-                        }
-                        onPositive("Тест") {
-                            Toast.makeText(contextCompats, "${p0.id}", Toast.LENGTH_LONG).show()
-                        }
-                    }
+                    val sheet = DemoBottomSheetFragment()
+                    maintext = "${p0.title}"
+                    fragmentManager?.let { it1 -> sheet.show(it1, "DemoBottomSheetFragment") }
                 }
             }
             if(marker == "m7") {
                 context?.let {
-                    InfoSheet().show(it) {
-                        title("${p0.title}")
-                        var coordinate = converterLatLng(p0.position)
-                        content("$coordinate")
-                        onNegative("He's good") {
-                            getTwoDirection(getLastKnownLocation(contextCompats), coordinate)
-                        }
-                        onPositive("Тест") {
-                            Toast.makeText(contextCompats, "${p0.id}", Toast.LENGTH_LONG).show()
-                        }
-                    }
+                    val sheet = DemoBottomSheetFragment()
+                    maintext = "${p0.title}"
+                    fragmentManager?.let { it1 -> sheet.show(it1, "DemoBottomSheetFragment") }
                 }
             }
             if(marker == "m8") {
                 context?.let {
-                    InfoSheet().show(it) {
+                    /*InfoSheet().show(it) {
                         title("${p0.title}")
                         var coordinate = converterLatLng(p0.position)
                         content("$coordinate")
@@ -478,7 +425,10 @@ class MapsFragment : Fragment(), GoogleMap.OnMarkerClickListener {
                         onPositive("Тест") {
                             Toast.makeText(contextCompats, "${p0.id}", Toast.LENGTH_LONG).show()
                         }
-                    }
+                    }*/
+                    val sheet = DemoBottomSheetFragment()
+                    maintext = "${p0.title}"
+                    fragmentManager?.let { it1 -> sheet.show(it1, "DemoBottomSheetFragment") }
                 }
             }
         }
@@ -486,6 +436,21 @@ class MapsFragment : Fragment(), GoogleMap.OnMarkerClickListener {
     }
 }
 
+class DemoBottomSheetFragment : SuperBottomSheetFragment() {
+
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+        super.onCreateView(inflater, container, savedInstanceState)
+        val fragmentLayout = inflater.inflate(R.layout.fragment_demo_sheet, container, false)
+
+        fragmentLayout.findViewById<TextView>(R.id.some_id).text = maintext
+
+        return fragmentLayout
+    }
+
+    override fun getCornerRadius() = requireContext().resources.getDimension(R.dimen.demo_sheet_rounded_corner)
+
+    override fun getStatusBarColor() = Color.RED
+}
 
 
 
