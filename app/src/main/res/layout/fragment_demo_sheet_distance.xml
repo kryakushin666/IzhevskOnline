@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout
+xmlns:android="http://schemas.android.com/apk/res/android"
+xmlns:app="http://schemas.android.com/apk/res-auto"
+android:layout_width="match_parent"
+android:layout_height="match_parent">
+
+<RelativeLayout
+    android:id="@+id/home"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/ic_botomsheet">
+
+    <TextView
+        android:id="@+id/some_id"
+        android:layout_width="250dp"
+        android:layout_height="104dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginLeft="80dp"
+        android:layout_marginTop="238dp"
+        android:gravity="center_horizontal|top"
+        android:text="HELLO WORLD"
+        android:fontFamily="@font/mainfont"
+        android:textAppearance="@style/some_id" />
+
+    <TextView
+        android:id="@+id/some_idss"
+        android:layout_width="250dp"
+        android:layout_height="104dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginLeft="77dp"
+        android:layout_marginTop="348dp"
+        android:fontFamily="@font/mainfont"
+        android:gravity="center_horizontal|top"
+        android:text="HELLO WORLD"
+        android:textAppearance="@style/some_id" />
+</RelativeLayout>
+
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

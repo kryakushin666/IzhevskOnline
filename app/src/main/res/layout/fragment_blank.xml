@@ -52,15 +52,16 @@
             android:layout_marginTop="329dp"
             android:src="@drawable/ic_hotels" />
 
-        <Button
+        <ImageView
             android:id="@+id/button4"
+            android:layout_alignParentStart="true"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentEnd="true"
-            android:layout_alignParentBottom="true"
-            android:layout_marginEnd="158dp"
-            android:layout_marginBottom="174dp"
-            android:text="Button" />
+            android:layout_alignParentLeft="true"
+            android:layout_marginLeft="55dp"
+            android:layout_alignParentTop="true"
+            android:layout_marginTop="549dp"
+            android:src="@drawable/ic_excursion" />
 
     </RelativeLayout>
 </FrameLayout>

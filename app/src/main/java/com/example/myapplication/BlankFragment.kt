@@ -40,7 +40,7 @@ class BlankFragment : Fragment() {
         fragmentLayout.findViewById<ImageView>(R.id.button3).setOnClickListener {
             findNavController().navigate(R.id.action_navigation_home_to_cafeFragment)
         }
-        fragmentLayout.findViewById<Button>(R.id.button4).setOnClickListener {
+        fragmentLayout.findViewById<ImageView>(R.id.button4).setOnClickListener {
             findNavController().navigate(R.id.action_navigation_home_to_gunFragment)
         }
         // возвращаем макет фрагмента
