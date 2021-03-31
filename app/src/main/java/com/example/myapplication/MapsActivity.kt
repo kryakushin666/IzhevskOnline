@@ -7,6 +7,7 @@ import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.Observer
 import androidx.navigation.NavController
+import com.splunk.mint.Mint
 
 
 class MapsActivity : AppCompatActivity() {
@@ -17,6 +18,8 @@ class MapsActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_maps)
         supportActionBar?.hide()
+        Mint.initAndStartSession(this.application, "e35d8a22")
+        Mint.enableLogging(true)
         if (savedInstanceState == null) {
             setupBottomNavigationBar()
         } // Else, need to wait for onRestoreInstanceState

@@ -4,6 +4,7 @@ package com.example.myapplication
 
 import android.Manifest
 import android.content.Context
+import android.content.Intent
 import android.content.pm.PackageManager
 import android.graphics.Bitmap
 import android.graphics.Canvas
@@ -18,13 +19,16 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.content.res.AppCompatResources.getDrawable
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
+import androidx.core.os.bundleOf
 import androidx.core.view.isInvisible
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.LiveData
 import com.airbnb.lottie.LottieAnimationView
 import com.andrefrsousa.superbottomsheet.SuperBottomSheetFragment
 import com.example.myapplication.UserProfileMuseum.Companion.USERNAME_COORDINATES
@@ -36,22 +40,26 @@ import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.*
 import com.google.gson.Gson
-import com.maxkeppeler.sheets.info.InfoSheet
 import okhttp3.OkHttpClient
 import okhttp3.Request
+import androidx.navigation.fragment.findNavController
+
+
 
 
 var maintext = "This my work"
 var dirtext = "This my work"
 var disttext = "This my work"
-var IsCheckedDone: Boolean = false
+var coordtext = "This my work"
+//var IsCheckedDone: Boolean = false
 var polylineFinal: Polyline? = null
 
 
 private lateinit var map: GoogleMap
 private lateinit var fusedLocationClient: FusedLocationProviderClient
 
-class MapsFragment : Fragment(), GoogleMap.OnMarkerClickListener {
+@Suppress("CAST_NEVER_SUCCEEDS")
+public class MapsFragment : Fragment(), GoogleMap.OnMarkerClickListener {
 
 
     // Разрешения для использования и получения геолокации
@@ -59,7 +67,7 @@ class MapsFragment : Fragment(), GoogleMap.OnMarkerClickListener {
     private val request_location_permission = 1
     private lateinit var buttonss: TextView
     private lateinit var buttons: TextView
-    private lateinit var lotties: LottieAnimationView
+    //private lateinit var lotties: LottieAnimationView
 
     private val callback = OnMapReadyCallback { googleMap ->
 
@@ -167,7 +175,7 @@ class MapsFragment : Fragment(), GoogleMap.OnMarkerClickListener {
         fusedLocationClient = LocationServices.getFusedLocationProviderClient(contextCompats)
         buttonss = fragmentLayout.findViewById(R.id.buttonss)
         buttons = fragmentLayout.findViewById(R.id.buttons)
-        lotties = fragmentLayout.findViewById(R.id.lotties) as LottieAnimationView
+        //lotties = fragmentLayout.findViewById(R.id.lotties) as LottieAnimationView
         buttonss.setOnClickListener {
             val coordinate = "56.85285289473385, 53.215664171778975"
             getTwoDirection(getLastKnownLocation(contextCompats), coordinate)
@@ -178,17 +186,37 @@ class MapsFragment : Fragment(), GoogleMap.OnMarkerClickListener {
                 fragmentManager?.let { it1 -> sheet.show(it1, "DemoBottomSheetFragments") }
             }
         }
-        val animidet = lotties.isAnimating
+        /*val animidet = lotties.isAnimating
         if(IsCheckedDone) {
             if (animidet == true) {
                 lotties.visibility
                 Log.d("dd", "invis done!")
                 IsCheckedDone = false
             }
-        }
+        }*/
         val coord = arguments?.getString(USERNAME_COORDINATES) ?: "HELLO S"
+        //val coordinate = converterLatLng(coord)
+        Log.d("coord", "oord: $coord")
+
         if(coord != "HELLO S")
         {
+            /*val bottomNavigationView = fragmentLayout.findViewById<BottomNavigationView>(R.id.bottom_nav)
+            val navGraphIds = listOf(R.navigation.navigation_home, R.navigation.navigation_notifications, R.navigation.navigation_profile)
+            intent = requireActivity().intent!!
+            val controller = fragmentManager?.let {
+                bottomNavigationView.setupWithNavController(
+                        navGraphIds = navGraphIds,
+                        fragmentManager = it,
+                        containerId = R.id.nav_host_container,
+                        intent = intent
+                )
+            }*/
+
+            // Whenever the selected controller changes, setup the action bar.
+            /*controller?.observe(contextCompats, Observer { navController ->
+                setupActionBarWithNavController(navController)
+            })*/
+            //currentNavController = controller
             getTwoDirection(getLastKnownLocation(contextCompats), coord)
         }
         return fragmentLayout
@@ -299,7 +327,7 @@ class MapsFragment : Fragment(), GoogleMap.OnMarkerClickListener {
         GetDirection(URLtwo).execute()
         return
     }
-    fun getTwoDirection(origin: String, dest: String) {
+    public fun getTwoDirection(origin: String, dest: String) {
         val URL = getDirectionURL(origin, dest)
         GetDirection(URL).execute()
         return
@@ -311,7 +339,7 @@ class MapsFragment : Fragment(), GoogleMap.OnMarkerClickListener {
     }
 
     // Функция дешифровки URL
-    private inner class GetDirection(val url: String) : AsyncTask<Void, Void, List<List<LatLng>>>() {
+    inner class GetDirection(val url: String) : AsyncTask<Void, Void, List<List<LatLng>>>() {
         override fun doInBackground(vararg params: Void?): List<List<LatLng>> {
             val client = OkHttpClient()
             //val contextCompats = requireContext().applicationContext
@@ -351,10 +379,10 @@ class MapsFragment : Fragment(), GoogleMap.OnMarkerClickListener {
                 lineoption.geodesic(true)
             }
             polylineFinal = map.addPolyline(lineoption)
-            lotties.playAnimation()
+            /*lotties.playAnimation()
             val invis = lotties.isInvisible
             Log.d("dd", "invi: $invis")
-            IsCheckedDone = true
+            IsCheckedDone = true*/
         }
     }
 
@@ -402,68 +430,17 @@ class MapsFragment : Fragment(), GoogleMap.OnMarkerClickListener {
         var coordinates = "$lat, $lng"
         return coordinates
     }
-
+    private fun showBottom(p0: Marker?) {
+        val sheet = DemoBottomSheetFragment()
+        maintext = "${p0?.title}"
+        val coord: LatLng = p0?.position!!
+        coordtext = converterLatLng(coord)
+        fragmentManager?.let { it1 -> sheet.show(it1, "DemoBottomSheetFragment") }
+    }
     override fun onMarkerClick(p0: Marker?): Boolean {
-        val contextCompats = requireContext().applicationContext
         if (p0 != null) {
-            var marker = p0.id
-            if(marker == "m0") {
-                context?.let {
-                    val sheet = DemoBottomSheetFragment()
-                    maintext = "${p0.title}"
-                    fragmentManager?.let { it1 -> sheet.show(it1, "DemoBottomSheetFragment") }
-                }
-            }
-            if(marker == "m1") {
-                context?.let {
-                    val sheet = DemoBottomSheetFragment()
-                    maintext = "${p0.title}"
-                    fragmentManager?.let { it1 -> sheet.show(it1, "DemoBottomSheetFragment") }
-                }
-            }
-            if(marker == "m2") {
-                context?.let {
-                    val sheet = DemoBottomSheetFragment()
-                    maintext = "${p0.title}"
-                    fragmentManager?.let { it1 -> sheet.show(it1, "DemoBottomSheetFragment") }
-                }
-            }
-            if(marker == "m3") {
-                context?.let {
-                    val sheet = DemoBottomSheetFragment()
-                    maintext = "${p0.title}"
-                    fragmentManager?.let { it1 -> sheet.show(it1, "DemoBottomSheetFragment") }
-                }
-            }
-            if(marker == "m4") {
-                context?.let {
-                    val sheet = DemoBottomSheetFragment()
-                    maintext = "${p0.title}"
-                    fragmentManager?.let { it1 -> sheet.show(it1, "DemoBottomSheetFragment") }
-                }
-            }
-            if(marker == "m5") {
-                context?.let {
-                    val sheet = DemoBottomSheetFragment()
-                    maintext = "${p0.title}"
-                    fragmentManager?.let { it1 -> sheet.show(it1, "DemoBottomSheetFragment") }
-                }
-            }
-            if(marker == "m6") {
-                context?.let {
-                    val sheet = DemoBottomSheetFragment()
-                    maintext = "${p0.title}"
-                    fragmentManager?.let { it1 -> sheet.show(it1, "DemoBottomSheetFragment") }
-                }
-            }
-            if(marker == "m7") {
-                context?.let {
-                    val sheet = DemoBottomSheetFragment()
-                    maintext = "${p0.title}"
-                    fragmentManager?.let { it1 -> sheet.show(it1, "DemoBottomSheetFragment") }
-                }
-            }
-            if(marker == "m8") {
+            showBottom(p0)
+            /*if(marker == "m8") {
                 context?.let {
                     InfoSheet().show(it) {
                         title("${p0.title}")
@@ -480,7 +457,7 @@ class MapsFragment : Fragment(), GoogleMap.OnMarkerClickListener {
                     maintext = "${p0.title}"
                     fragmentManager?.let { it1 -> sheet.show(it1, "DemoBottomSheetFragment") }*/
                 }
-            }
+            }*/
         }
         return true
     }
@@ -488,16 +465,161 @@ class MapsFragment : Fragment(), GoogleMap.OnMarkerClickListener {
 
         override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
             super.onCreateView(inflater, container, savedInstanceState)
+            lateinit var rectangle_3: ImageView
+            val contextCompats = requireContext().applicationContext
             val fragmentLayout = inflater.inflate(R.layout.fragment_demo_sheet, container, false)
-
+            rectangle_3 = fragmentLayout.findViewById(R.id.rectangle_3)
+            rectangle_3.setOnClickListener {
+                getTwoDirection(getLastKnownLocation(contextCompats), coordtext)
+            }
+            fragmentLayout.findViewById<TextView>(R.id.some_idsss).setOnClickListener {
+                val bundle = bundleOf(OBJECT_NAME to maintext)
+                findNavController().navigate(R.id.allinfos_screen, bundle)
+            }
             fragmentLayout.findViewById<TextView>(R.id.some_id).text = maintext
 
             return fragmentLayout
         }
+        private fun converterLatLng(coordinate: LatLng): String {
+            val lat = coordinate.latitude
+            val lng = coordinate.longitude
+            val coordinates = "$lat, $lng"
+            return coordinates
+        }
+        fun getLastKnownLocation(context: Context): String {
+            val locationManager: LocationManager = context.getSystemService(Context.LOCATION_SERVICE) as LocationManager
+            val providers: List<String> = locationManager.getProviders(true)
+            var location: Location? = null
+            val contextCompats = requireContext().applicationContext
+            for (i in providers.size - 1 downTo 0) {
+                if (ActivityCompat.checkSelfPermission(
+                                contextCompats,
+                                Manifest.permission.ACCESS_FINE_LOCATION
+                        ) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(
+                                contextCompats,
+                                Manifest.permission.ACCESS_COARSE_LOCATION
+                        ) != PackageManager.PERMISSION_GRANTED) {
 
+                }
+                location= locationManager.getLastKnownLocation(providers[i])
+                if (location != null)
+                    break
+            }
+            val gps = DoubleArray(2)
+            var coordinate = ""
+            if (location != null) {
+                gps[0] = location.getLatitude()
+                gps[1] = location.getLongitude()
+                coordinate = "${gps[0]}, ${gps[1]}"
+                Log.e("gpsLat", gps[0].toString())
+                Log.e("gpsLong", gps[1].toString())
+            }
+            return coordinate
+
+        }
+        fun getTwoDirection(origin: String, dest: String) {
+            val URL = getDirectionURL(origin, dest)
+            GetDirection(URL).execute()
+            return
+        }
+
+        // Функция получения запроса на пострение маршрута
+        fun getDirectionURL(origin: String, dest: String): String {
+            return "https://maps.googleapis.com/maps/api/directions/json?origin=${origin}&destination=${dest}&key=AIzaSyDVGH9AfUwk5CLr76_QGmoLhDNWwuj6yps"
+        }
+
+        // Функция дешифровки URL
+        inner class GetDirection(val url: String) : AsyncTask<Void, Void, List<List<LatLng>>>() {
+            override fun doInBackground(vararg params: Void?): List<List<LatLng>> {
+                val client = OkHttpClient()
+                //val contextCompats = requireContext().applicationContext
+                val request = Request.Builder().url(url).build()
+                val response = client.newCall(request).execute()
+                val data = response.body()!!.string()
+                Log.d("GoogleMap", " data : $data")
+                val result = ArrayList<List<LatLng>>()
+                try {
+                    val respObj = Gson().fromJson(data, GoogleMapDTO::class.java)
+                    val path = ArrayList<LatLng>()
+                    var duration = respObj.routes[0].legs[0].duration.text
+                    var distance = respObj.routes[0].legs[0].distance.text
+                    val sheet = DemoBottomSheetFragments()
+                    dirtext = "$duration"
+                    disttext = "$distance"
+                    fragmentManager?.let { it1 -> sheet.show(it1, "DemoBottomSheetFragments") }
+
+                    for (i in 0..(respObj.routes[0].legs[0].steps.size - 1)) {
+                        path.addAll(decodePolyline(respObj.routes[0].legs[0].steps[i].polyline.points))
+                    }
+                    result.add(path)
+                } catch (e: Exception) {
+                    e.printStackTrace()
+                }
+                return result
+            }
+
+            // Отрисовка линий маршрута на карте
+            override fun onPostExecute(result: List<List<LatLng>>) {
+                polylineFinal?.remove()
+                val lineoption = PolylineOptions()
+                for (i in result.indices) {
+                    lineoption.addAll(result[i])
+                    lineoption.width(10f)
+                    lineoption.color(Color.BLUE)
+                    lineoption.geodesic(true)
+                }
+                polylineFinal = map.addPolyline(lineoption)
+                //lotties.playAnimation()
+                //val invis = lotties.isInvisible
+                //Log.d("dd", "invi: $invis")
+                //IsCheckedDone = true
+            }
+        }
+
+        fun decodePolyline(encoded: String): List<LatLng> {
+
+
+            val poly = ArrayList<LatLng>()
+            var index = 0
+            val len = encoded.length
+            var lat = 0
+            var lng = 0
+
+            while (index < len) {
+                var b: Int
+                var shift = 0
+                var result = 0
+                do {
+                    b = encoded[index++].toInt() - 63
+                    result = result or (b and 0x1f shl shift)
+                    shift += 5
+                } while (b >= 0x20)
+                val dlat = if (result and 1 != 0) (result shr 1).inv() else result shr 1
+                lat += dlat
+
+                shift = 0
+                result = 0
+                do {
+                    b = encoded[index++].toInt() - 63
+                    result = result or (b and 0x1f shl shift)
+                    shift += 5
+                } while (b >= 0x20)
+                val dlng = if (result and 1 != 0) (result shr 1).inv() else result shr 1
+                lng += dlng
+
+                val latLng = LatLng((lat.toDouble() / 1E5), (lng.toDouble() / 1E5))
+                poly.add(latLng)
+            }
+
+            return poly
+        }
         override fun getCornerRadius() = requireContext().resources.getDimension(R.dimen.demo_sheet_rounded_corner)
 
         override fun getStatusBarColor() = Color.RED
+
+        companion object {
+            const val OBJECT_NAME = "objectName"
+        }
     }
 
     class DemoBottomSheetFragments : SuperBottomSheetFragment() {
@@ -508,6 +630,7 @@ class MapsFragment : Fragment(), GoogleMap.OnMarkerClickListener {
 
             fragmentLayout.findViewById<TextView>(R.id.some_id).text = dirtext
             fragmentLayout.findViewById<TextView>(R.id.some_idss).text = disttext
+
             return fragmentLayout
         }
 

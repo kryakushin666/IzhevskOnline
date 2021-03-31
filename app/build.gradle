@@ -32,7 +32,11 @@ android {
         jvmTarget = '1.8'
     }
 }
-
+repositories {
+    maven {
+        url uri('mint-plugin-repo-5.2.5')
+    }
+}
 dependencies {
 
     implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
@@ -60,4 +64,5 @@ dependencies {
     //noinspection GradleCompatible
     implementation 'com.android.support:recyclerview-v7:21.0.3'
     implementation "com.airbnb.android:lottie:3.4.0"
+    implementation 'com.splunk:mint-android-sdk:5.2.5'
 }

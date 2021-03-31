@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".AllInfoFragment">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        >
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            >
+
+            <FrameLayout
+                android:id="@+id/homes"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <ImageView
+                    android:id="@+id/buttons"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="11dp"
+                    android:layout_marginTop="34dp"
+                    app:srcCompat="@drawable/ic_backbutton" />
+
+                <ImageView
+                    android:id="@+id/some_id"
+                    android:layout_width="175dp"
+                    android:layout_height="50.48dp"
+                    android:layout_marginStart="117dp"
+                    android:layout_marginTop="158dp"
+                    android:background="@drawable/ic_buttonlisten" />
+
+                <TextView
+                    android:id="@+id/maintexts"
+                    android:layout_width="263dp"
+                    android:layout_height="97dp"
+                    android:layout_marginStart="73dp"
+                    android:layout_marginTop="60dp"
+                    android:fontFamily="@font/mainfont"
+                    android:gravity="center_horizontal|top"
+                    android:text="HELLO WORLD"
+                    android:textColor="#2B2C2D"
+                    android:textSize="25sp" />
+
+                <TextView
+                    android:id="@+id/opisanie"
+                    android:layout_width="117dp"
+                    android:layout_height="25dp"
+                    android:layout_marginStart="160dp"
+                    android:layout_marginTop="258dp"
+                    android:fontFamily="@font/mainfont"
+                    android:gravity="center_horizontal|top"
+                    android:text="Описание"
+                    android:textColor="#2B2C2D"
+                    android:textSize="18sp" />
+
+                <TextView
+                    android:id="@+id/opisanieinfo"
+                    android:layout_width="362dp"
+                    android:layout_height="810dp"
+                    android:layout_marginStart="27dp"
+                    android:layout_marginTop="299dp"
+                    android:fontFamily="@font/mainfont"
+                    android:gravity="top"
+                    android:text="@string/opisanieinfo"
+                    android:textColor="#2B2C2D"
+                    android:textSize="13sp" />
+
+                <TextView
+                    android:id="@+id/raspolozhenie"
+                    android:layout_width="134dp"
+                    android:layout_height="25dp"
+                    android:layout_marginStart="138dp"
+                    android:layout_marginTop="1144dp"
+                    android:fontFamily="@font/mainfont"
+                    android:gravity="center_horizontal|top"
+                    android:text="Расположение"
+                    android:textColor="#2B2C2D"
+                    android:textSize="18sp" />
+
+                <TextView
+                    android:id="@+id/raspolozhenieinfo"
+                    android:layout_width="362dp"
+                    android:layout_height="126dp"
+                    android:layout_marginStart="27dp"
+                    android:layout_marginTop="1183dp"
+                    android:fontFamily="@font/mainfont"
+                    android:gravity="top"
+                    android:text="@string/raspolozhenieinfo"
+                    android:textColor="#2B2C2D"
+                    android:textSize="13sp" />
+
+                <TextView
+                    android:id="@+id/istoriasozdania"
+                    android:layout_width="198dp"
+                    android:layout_height="38dp"
+                    android:layout_marginStart="114dp"
+                    android:layout_marginTop="1344dp"
+                    android:fontFamily="@font/mainfont"
+                    android:gravity="center_horizontal|top"
+                    android:text="История создания"
+                    android:textColor="#2B2C2D"
+                    android:textSize="18sp" />
+
+                <TextView
+                    android:id="@+id/istoriasozdaniainfo"
+                    android:layout_width="366dp"
+                    android:layout_height="688dp"
+                    android:layout_marginStart="27dp"
+                    android:layout_marginTop="1529dp"
+                    android:fontFamily="@font/mainfont"
+                    android:gravity="top"
+                    android:text="@string/istoriasozdaniainfo"
+                    android:textColor="#2B2C2D"
+                    android:textSize="13sp" />
+
+                <TextView
+                    android:id="@+id/interesniefacts"
+                    android:layout_width="219dp"
+                    android:layout_height="26dp"
+                    android:layout_marginStart="117dp"
+                    android:layout_marginTop="2230dp"
+                    android:fontFamily="@font/mainfont"
+                    android:gravity="center_horizontal|top"
+                    android:text="Интересные факты"
+                    android:textColor="#2B2C2D"
+                    android:textSize="18sp" />
+
+                <TextView
+                    android:id="@+id/interesniefactsinfo"
+                    android:layout_width="347dp"
+                    android:layout_height="450dp"
+                    android:layout_marginStart="42dp"
+                    android:layout_marginTop="2269dp"
+                    android:fontFamily="@font/mainfont"
+                    android:gravity="top"
+                    android:text="@string/interesniefacts"
+                    android:textColor="#2B2C2D"
+                    android:textSize="13sp" />
+
+            </FrameLayout>
+        </FrameLayout>
+    </ScrollView>
+</RelativeLayout>

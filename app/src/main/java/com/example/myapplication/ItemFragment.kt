@@ -1,6 +1,7 @@
 package com.example.myapplication
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -79,8 +80,7 @@ class ItemFragment : Fragment() {
                 .setImageResource(listOfAvatars[position % listOfAvatars.size])
 
             holder.item.setOnClickListener {
-                val bundle = bundleOf(USERNAME_KEY to myDataset[position], USERNAME_COORDINATE to listOfCoordinate[position % listOfCoordinate.size])
-
+                val bundle = bundleOf(USERNAME_KEY to myDataset[position], USERNAME_COORDINATE to listOfCoordinate[position % listOfCoordinate.size], USERNAME_IMAGE to listOfAvatarsIt[position % listOfAvatarsIt.size])
                 holder.item.findNavController().navigate(
                     R.id.action_itemFragment_to_Museumuser,
                     bundle)
@@ -93,6 +93,7 @@ class ItemFragment : Fragment() {
         companion object {
             const val USERNAME_KEY = "userName"
             const val USERNAME_COORDINATE = "userCoord"
+            const val USERNAME_IMAGE = "R.drawable.museum_ak"
         }
     }
 }
@@ -100,6 +101,11 @@ private val listOfAvatars = listOf(
     R.drawable.museum_ak,
     R.drawable.museum_izmash,
     R.drawable.museum_kotleta
+)
+private val listOfAvatarsIt = listOf(
+        "R.drawable.museum_ak",
+        "R.drawable.museum_izmash",
+        "R.drawable.museum_kotleta"
 )
 private var listOfTitle = listOf(
     "Музей стрелкового оружия им. М.Т. Калашникова",
