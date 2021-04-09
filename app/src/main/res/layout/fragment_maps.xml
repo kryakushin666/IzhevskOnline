@@ -3,16 +3,18 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    tools:ignore="RelativeOverlap"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <fragment xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:map="http://schemas.android.com/apk/res-auto"
-        xmlns:tools="http://schemas.android.com/tools"
+    <fragment
         android:id="@+id/maps"
         android:name="com.google.android.gms.maps.SupportMapFragment"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".MapsActivity"/>
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        tools:context=".MapsActivity"
+        tools:ignore="FragmentTagUsage" />
 
     <Button
         android:id="@+id/buttonss"
@@ -20,10 +22,10 @@
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
         android:layout_alignParentBottom="true"
-        android:layout_marginStart="14dp"
+        android:layout_marginStart="30dp"
         android:layout_marginTop="15dp"
         android:layout_marginEnd="15dp"
-        android:layout_marginBottom="99dp"
+        android:layout_marginBottom="646dp"
         tools:text="Button one" />
 
     <Button
@@ -32,24 +34,11 @@
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
-        android:layout_marginStart="14dp"
+        android:layout_marginStart="15dp"
         android:layout_marginTop="15dp"
-        android:layout_marginEnd="15dp"
-        android:layout_marginBottom="99dp"
+        android:layout_marginEnd="30dp"
+        android:layout_marginBottom="647dp"
         tools:text="Button two" />
-
-    <com.airbnb.lottie.LottieAnimationView
-        android:id="@+id/lotties"
-        android:layout_width="40dp"
-        android:layout_height="50dp"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentEnd="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginStart="-2dp"
-        android:layout_marginTop="56dp"
-        android:layout_marginEnd="-2dp"
-        app:lottie_rawRes="@raw/animation" />
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottom_nav"
@@ -65,4 +54,14 @@
         app:menu="@menu/bottom_nav_menu"
         app:labelVisibilityMode="unlabeled"/>
 
+    <ImageView
+        android:id="@+id/fablocation"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_marginStart="330dp"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="653dp"
+        android:background="@drawable/ic_buttonmylocation"
+        tools:ignore="ContentDescription" />
 </RelativeLayout>

@@ -9,16 +9,16 @@
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        tools:ignore="HardcodedText,UselessParent"
         >
 
         <FrameLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:orientation="vertical"
             >
 
             <FrameLayout
-                android:id="@+id/homes"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
 
@@ -28,7 +28,8 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="11dp"
                     android:layout_marginTop="34dp"
-                    app:srcCompat="@drawable/ic_backbutton" />
+                    app:srcCompat="@drawable/ic_backbutton"
+                    tools:ignore="ContentDescription" />
 
                 <ImageView
                     android:id="@+id/some_id"
@@ -36,7 +37,8 @@
                     android:layout_height="50.48dp"
                     android:layout_marginStart="117dp"
                     android:layout_marginTop="158dp"
-                    android:background="@drawable/ic_buttonlisten" />
+                    android:background="@drawable/ic_buttonlisten"
+                    tools:ignore="ContentDescription" />
 
                 <TextView
                     android:id="@+id/maintexts"
@@ -51,7 +53,6 @@
                     android:textSize="25sp" />
 
                 <TextView
-                    android:id="@+id/opisanie"
                     android:layout_width="117dp"
                     android:layout_height="25dp"
                     android:layout_marginStart="160dp"
@@ -63,7 +64,6 @@
                     android:textSize="18sp" />
 
                 <TextView
-                    android:id="@+id/opisanieinfo"
                     android:layout_width="362dp"
                     android:layout_height="810dp"
                     android:layout_marginStart="27dp"
@@ -75,7 +75,6 @@
                     android:textSize="13sp" />
 
                 <TextView
-                    android:id="@+id/raspolozhenie"
                     android:layout_width="134dp"
                     android:layout_height="25dp"
                     android:layout_marginStart="138dp"
@@ -87,7 +86,6 @@
                     android:textSize="18sp" />
 
                 <TextView
-                    android:id="@+id/raspolozhenieinfo"
                     android:layout_width="362dp"
                     android:layout_height="126dp"
                     android:layout_marginStart="27dp"
@@ -99,7 +97,6 @@
                     android:textSize="13sp" />
 
                 <TextView
-                    android:id="@+id/istoriasozdania"
                     android:layout_width="198dp"
                     android:layout_height="38dp"
                     android:layout_marginStart="114dp"
@@ -111,7 +108,6 @@
                     android:textSize="18sp" />
 
                 <TextView
-                    android:id="@+id/istoriasozdaniainfo"
                     android:layout_width="366dp"
                     android:layout_height="688dp"
                     android:layout_marginStart="27dp"
@@ -123,7 +119,6 @@
                     android:textSize="13sp" />
 
                 <TextView
-                    android:id="@+id/interesniefacts"
                     android:layout_width="219dp"
                     android:layout_height="26dp"
                     android:layout_marginStart="117dp"
@@ -135,7 +130,6 @@
                     android:textSize="18sp" />
 
                 <TextView
-                    android:id="@+id/interesniefactsinfo"
                     android:layout_width="347dp"
                     android:layout_height="450dp"
                     android:layout_marginStart="42dp"

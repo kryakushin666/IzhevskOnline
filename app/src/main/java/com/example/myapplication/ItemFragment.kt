@@ -1,15 +1,13 @@
 package com.example.myapplication
 
 import android.os.Bundle
-import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.core.os.bundleOf
+import androidx.fragment.app.Fragment
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.RecyclerView
@@ -80,7 +78,7 @@ class ItemFragment : Fragment() {
                 .setImageResource(listOfAvatars[position % listOfAvatars.size])
 
             holder.item.setOnClickListener {
-                val bundle = bundleOf(USERNAME_KEY to myDataset[position], USERNAME_COORDINATE to listOfCoordinate[position % listOfCoordinate.size], USERNAME_IMAGE to listOfAvatarsIt[position % listOfAvatarsIt.size])
+                val bundle = bundleOf(USERNAME_KEY to myDataset[position], USERNAME_COORDINATE to listOfCoordinate[position % listOfCoordinate.size], USERNAME_IMAGE to listOfAvatars[position % listOfAvatars.size])
                 holder.item.findNavController().navigate(
                     R.id.action_itemFragment_to_Museumuser,
                     bundle)
@@ -101,11 +99,6 @@ private val listOfAvatars = listOf(
     R.drawable.museum_ak,
     R.drawable.museum_izmash,
     R.drawable.museum_kotleta
-)
-private val listOfAvatarsIt = listOf(
-        "R.drawable.museum_ak",
-        "R.drawable.museum_izmash",
-        "R.drawable.museum_kotleta"
 )
 private var listOfTitle = listOf(
     "Музей стрелкового оружия им. М.Т. Калашникова",

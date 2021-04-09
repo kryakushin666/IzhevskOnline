@@ -7,27 +7,7 @@
             #1D1D1D
         </item>
     </style>
-        <style name="some_ids">
 
-        <item name="android:textSize">
-            16sp
-        </item>
-
-        <item name="android:textColor">
-            #282828
-        </item>
-    </style>
-    <style name="some_idss">
-
-        <item name="android:textSize">
-            13sp
-        </item>
-
-        <item name="android:textColor">
-            #565656
-        </item>
-
-    </style>
     <style name="park_inn">
 
         <item name="android:textSize">

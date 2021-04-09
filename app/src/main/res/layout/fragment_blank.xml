@@ -1,16 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/home_screen"
     tools:context=".BlankFragment">
 
     <RelativeLayout
-        android:id="@+id/home"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@drawable/home_screen">
+        tools:ignore="UselessParent,HardcodedText">
 
         <ImageView
             android:id="@+id/Button"
@@ -18,9 +17,10 @@
             android:layout_height="wrap_content"
             android:layout_alignParentStart="true"
             android:layout_alignParentTop="true"
-            android:layout_marginLeft="69.13dp"
-            android:layout_marginTop="168dp"
-            android:src="@drawable/ic_museum" />
+            android:layout_marginStart="69dp"
+            android:layout_marginTop="157dp"
+            android:src="@drawable/ic_museum"
+            tools:ignore="ContentDescription" />
 
         <ImageView
             android:id="@+id/button1"
@@ -28,9 +28,10 @@
             android:layout_height="wrap_content"
             android:layout_alignParentStart="true"
             android:layout_alignParentTop="true"
-            android:layout_marginLeft="222.13dp"
-            android:layout_marginTop="168dp"
-            android:src="@drawable/ic_parks" />
+            android:layout_marginStart="222dp"
+            android:layout_marginTop="157dp"
+            android:src="@drawable/ic_parks"
+            tools:ignore="ContentDescription" />
 
         <ImageView
             android:id="@+id/button3"
@@ -38,9 +39,10 @@
             android:layout_height="wrap_content"
             android:layout_alignParentStart="true"
             android:layout_alignParentTop="true"
-            android:layout_marginLeft="69dp"
-            android:layout_marginTop="329dp"
-            android:src="@drawable/ic_cafe" />
+            android:layout_marginStart="69dp"
+            android:layout_marginTop="314dp"
+            android:src="@drawable/ic_cafe"
+            tools:ignore="ContentDescription" />
 
         <ImageView
             android:id="@+id/button2"
@@ -48,20 +50,35 @@
             android:layout_height="wrap_content"
             android:layout_alignParentStart="true"
             android:layout_alignParentTop="true"
-            android:layout_marginLeft="222.13dp"
-            android:layout_marginTop="329dp"
-            android:src="@drawable/ic_hotels" />
+            android:layout_marginStart="222dp"
+            android:layout_marginTop="314dp"
+            android:src="@drawable/ic_hotels"
+            tools:ignore="ContentDescription" />
 
         <ImageView
             android:id="@+id/button4"
-            android:layout_alignParentStart="true"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"
-            android:layout_marginLeft="55dp"
+            android:layout_alignParentStart="true"
             android:layout_alignParentTop="true"
+            android:layout_marginStart="55dp"
             android:layout_marginTop="549dp"
-            android:src="@drawable/ic_excursion" />
+            android:src="@drawable/ic_excursion"
+            tools:ignore="ContentDescription" />
+
+        <TextView
+            android:id="@+id/some_id"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginStart="70dp"
+            android:layout_marginTop="491dp"
+            android:fontFamily="@font/mainfont"
+            android:gravity="top"
+            android:text="Экскурсии"
+            android:textColor="#525252"
+            android:textSize="16sp" />
 
     </RelativeLayout>
 </FrameLayout>

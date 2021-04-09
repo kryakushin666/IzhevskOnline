@@ -25,7 +25,6 @@ import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.example.myapplication.HotelsFragment.MyAdapter.Companion.USERNAME_KEY
-import com.example.myapplication.ItemFragment.MyAdapter.Companion.USERNAME_COORDINATE
 
 
 /**
