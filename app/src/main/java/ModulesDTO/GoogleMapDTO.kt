@@ -1,6 +1,6 @@
 @file:Suppress("PropertyName")
 
-package com.example.myapplication
+package ModulesDTO
 
 class GoogleMapDTO {
     var routes = ArrayList<Routes>()

@@ -22,15 +22,13 @@
         android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerVertical="true"
-        android:layout_marginStart="136dp"
-        android:layout_marginBottom="212dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="335dp"
+        android:layout_marginEnd="7dp"
         android:text="I am a Toast with image"
         android:textColor="@color/black"
         android:textSize="24sp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        />
+        android:textStyle="bold" />
 
 </RelativeLayout>

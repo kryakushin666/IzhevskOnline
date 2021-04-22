@@ -80,8 +80,9 @@ class ItemFragment : Fragment() {
             holder.item.setOnClickListener {
                 val bundle = bundleOf(USERNAME_KEY to myDataset[position], USERNAME_COORDINATE to listOfCoordinate[position % listOfCoordinate.size], USERNAME_IMAGE to listOfAvatars[position % listOfAvatars.size])
                 holder.item.findNavController().navigate(
-                    R.id.action_itemFragment_to_Museumuser,
-                    bundle)
+                        R.id.action_itemFragment_to_Museumuser,
+                        bundle)
+
             }
         }
 

@@ -8,7 +8,15 @@
         android:id="@+id/maps_screen"
         android:name="com.example.myapplication.MapsFragment"
         android:label="@string/title_notifications"
-        tools:layout="@layout/fragment_maps" />
+        tools:layout="@layout/fragment_maps" >
+        <action
+            android:id="@+id/action_maps_screen_to_guided_screen"
+            app:destination="@id/guided_screen"
+            app:enterAnim="@anim/fade_in"
+            app:exitAnim="@anim/fade_out"
+            app:popEnterAnim="@anim/fade_in"
+            app:popExitAnim="@anim/fade_out" />
+    </fragment>
     <fragment
         android:id="@+id/bottom_screen"
         android:name="com.example.myapplication.MapsFragment$DemoBottomSheetFragment"
@@ -23,5 +31,34 @@
         android:name="com.example.myapplication.AllInfoFragment"
         android:label="@string/title_notifications"
         tools:layout="@layout/fragment_allinfo" >
+    </fragment>
+    <fragment
+        android:id="@+id/guided_screen"
+        android:name="com.example.myapplication.GuidedFragment"
+        android:label="@string/title_notifications"
+        tools:layout="@layout/fragment_guided" >
+        <action
+            android:id="@+id/action_guided_screen_to_gunFragment"
+            app:destination="@id/gunFragment"
+            app:enterAnim="@anim/fade_in"
+            app:exitAnim="@anim/fade_out"
+            app:popEnterAnim="@anim/fade_in"
+            app:popExitAnim="@anim/fade_out" />
+        <action
+            android:id="@+id/action_guided_screen_to_maps_screen"
+            app:destination="@id/maps_screen"
+            app:enterAnim="@anim/fade_in"
+            app:exitAnim="@anim/fade_out"
+            app:popEnterAnim="@anim/fade_in"
+            app:popExitAnim="@anim/fade_out" />
+    </fragment>
+    <fragment
+        android:id="@+id/gunFragment"
+        android:name="com.example.myapplication.GunFragment"
+        android:label="@string/title_profile"
+        tools:layout="@layout/fragment_gun" >
+        <action
+            android:id="@+id/action_gunFragment_to_maps_screen"
+            app:destination="@id/maps_screen" />
     </fragment>
 </navigation>

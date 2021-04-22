@@ -1,8 +1,5 @@
 package com.example.myapplication
 
-import android.graphics.BitmapFactory
-import android.graphics.drawable.BitmapDrawable
-import android.graphics.drawable.Drawable
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -17,7 +14,6 @@ import androidx.navigation.fragment.findNavController
 import com.example.myapplication.ItemFragment.MyAdapter.Companion.USERNAME_COORDINATE
 import com.example.myapplication.ItemFragment.MyAdapter.Companion.USERNAME_IMAGE
 import com.example.myapplication.ItemFragment.MyAdapter.Companion.USERNAME_KEY
-import java.net.URL
 
 
 var coord = "my work"
@@ -27,14 +23,6 @@ var coord = "my work"
  */
 class UserProfileMuseum : Fragment() {
 
-    fun getDrawable(bitmapUrl: String?): Drawable? {
-        return try {
-            val url = URL(bitmapUrl)
-            BitmapDrawable(BitmapFactory.decodeStream(url.openConnection().getInputStream()))
-        } catch (ex: Exception) {
-            null
-        }
-    }
 
     override fun onCreateView(
             inflater: LayoutInflater, container: ViewGroup?,

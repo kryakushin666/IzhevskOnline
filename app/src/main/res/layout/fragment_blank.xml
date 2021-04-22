@@ -3,82 +3,99 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/home_screen"
+    android:background="@color/colorBackground"
     tools:context=".BlankFragment">
 
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        tools:ignore="UselessParent,HardcodedText">
+    <ImageView
+        android:id="@+id/Button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="71dp"
+        android:layout_marginTop="124dp"
+        android:src="@drawable/ic_museum"
+        tools:ignore="ContentDescription" />
 
-        <ImageView
-            android:id="@+id/Button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentTop="true"
-            android:layout_marginStart="69dp"
-            android:layout_marginTop="157dp"
-            android:src="@drawable/ic_museum"
-            tools:ignore="ContentDescription" />
+    <ImageView
+        android:id="@+id/search_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="55dp"
+        android:layout_marginTop="42dp"
+        android:background="@drawable/ic_searchbutton" />
 
-        <ImageView
-            android:id="@+id/button1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentTop="true"
-            android:layout_marginStart="222dp"
-            android:layout_marginTop="157dp"
-            android:src="@drawable/ic_parks"
-            tools:ignore="ContentDescription" />
+    <TextView
+        android:id="@+id/search_text"
+        android:layout_width="246.62dp"
+        android:layout_height="23.57dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="72.71dp"
+        android:layout_marginTop="52.71dp"
+        android:fontFamily="@font/mainfont"
+        android:gravity="top"
+        android:text="Найдите что-нибудь..."
+        android:textColor="#706F6F"
+        android:textSize="16sp" />
 
-        <ImageView
-            android:id="@+id/button3"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentTop="true"
-            android:layout_marginStart="69dp"
-            android:layout_marginTop="314dp"
-            android:src="@drawable/ic_cafe"
-            tools:ignore="ContentDescription" />
+    <ImageView
+        android:id="@+id/button1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="222.13dp"
+        android:layout_marginTop="124dp"
+        android:src="@drawable/ic_parks"
+        tools:ignore="ContentDescription" />
 
-        <ImageView
-            android:id="@+id/button2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentTop="true"
-            android:layout_marginStart="222dp"
-            android:layout_marginTop="314dp"
-            android:src="@drawable/ic_hotels"
-            tools:ignore="ContentDescription" />
+    <ImageView
+        android:id="@+id/button3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="69dp"
+        android:layout_marginTop="285dp"
+        android:src="@drawable/ic_cafe"
+        tools:ignore="ContentDescription" />
 
-        <ImageView
-            android:id="@+id/button4"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentTop="true"
-            android:layout_marginStart="55dp"
-            android:layout_marginTop="549dp"
-            android:src="@drawable/ic_excursion"
-            tools:ignore="ContentDescription" />
+    <ImageView
+        android:id="@+id/button2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="222.13dp"
+        android:layout_marginTop="285dp"
+        android:src="@drawable/ic_hotels"
+        tools:ignore="ContentDescription" />
 
-        <TextView
-            android:id="@+id/some_id"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentTop="true"
-            android:layout_marginStart="70dp"
-            android:layout_marginTop="491dp"
-            android:fontFamily="@font/mainfont"
-            android:gravity="top"
-            android:text="Экскурсии"
-            android:textColor="#525252"
-            android:textSize="16sp" />
+    <ImageView
+        android:id="@+id/button4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="55dp"
+        android:layout_marginTop="549dp"
+        android:src="@drawable/ic_excursion"
+        tools:ignore="ContentDescription" />
 
-    </RelativeLayout>
+    <TextView
+        android:id="@+id/some_id"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="70dp"
+        android:layout_marginTop="491dp"
+        android:fontFamily="@font/mainfont"
+        android:gravity="top"
+        android:text="Экскурсии"
+        android:textColor="#525252"
+        android:textSize="16sp" />
 </FrameLayout>

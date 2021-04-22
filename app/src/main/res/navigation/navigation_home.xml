@@ -11,19 +11,39 @@
         tools:layout="@layout/fragment_blank" >
         <action
             android:id="@+id/action_navigation_home_to_parksFragment"
-            app:destination="@id/parksFragment" />
+            app:destination="@id/parksFragment"
+            app:enterAnim="@anim/fade_in"
+            app:exitAnim="@anim/fade_out"
+            app:popEnterAnim="@anim/fade_in"
+            app:popExitAnim="@anim/fade_out" />
         <action
             android:id="@+id/action_navigation_home_to_cafeFragment"
-            app:destination="@id/cafeFragment" />
+            app:destination="@id/cafeFragment"
+            app:enterAnim="@anim/fade_in"
+            app:exitAnim="@anim/fade_out"
+            app:popEnterAnim="@anim/fade_in"
+            app:popExitAnim="@anim/fade_out" />
         <action
             android:id="@+id/action_navigation_home_to_gunFragment"
-            app:destination="@id/gunFragment" />
+            app:destination="@id/gunFragment"
+            app:enterAnim="@anim/fade_in"
+            app:exitAnim="@anim/fade_out"
+            app:popEnterAnim="@anim/fade_in"
+            app:popExitAnim="@anim/fade_out" />
         <action
             android:id="@+id/action_navigation_home_to_hotelsFragment"
-            app:destination="@id/hotelsFragment" />
+            app:destination="@id/hotelsFragment"
+            app:enterAnim="@anim/fade_in"
+            app:exitAnim="@anim/fade_out"
+            app:popEnterAnim="@anim/fade_in"
+            app:popExitAnim="@anim/fade_out" />
         <action
             android:id="@+id/action_navigation_home_to_itemFragment"
-            app:destination="@id/itemFragment" />
+            app:destination="@id/itemFragment"
+            app:enterAnim="@anim/fade_in"
+            app:exitAnim="@anim/fade_out"
+            app:popEnterAnim="@anim/fade_in"
+            app:popExitAnim="@anim/fade_out" />
     </fragment>
 
     <fragment
@@ -33,7 +53,11 @@
         tools:layout="@layout/fragment_item" >
         <action
             android:id="@+id/action_itemFragment_to_Museumuser"
-            app:destination="@id/Museumuser" />
+            app:destination="@id/Museumuser"
+            app:enterAnim="@anim/fade_in"
+            app:exitAnim="@anim/fade_out"
+            app:popEnterAnim="@anim/fade_in"
+            app:popExitAnim="@anim/fade_out" />
     </fragment>
 
     <fragment
@@ -43,7 +67,11 @@
         tools:layout="@layout/fragment_parks" >
         <action
             android:id="@+id/action_parksFragment_to_Parksuser"
-            app:destination="@id/Parksuser" />
+            app:destination="@id/Parksuser"
+            app:enterAnim="@anim/fade_in"
+            app:exitAnim="@anim/fade_out"
+            app:popEnterAnim="@anim/fade_in"
+            app:popExitAnim="@anim/fade_out" />
     </fragment>
 
     <fragment
@@ -53,7 +81,11 @@
         tools:layout="@layout/fragment_hotels" >
         <action
             android:id="@+id/action_hotelsFragment_to_hotelsuser"
-            app:destination="@id/hotelsuser" />
+            app:destination="@id/hotelsuser"
+            app:enterAnim="@anim/fade_in"
+            app:exitAnim="@anim/fade_out"
+            app:popEnterAnim="@anim/fade_in"
+            app:popExitAnim="@anim/fade_out" />
     </fragment>
 
     <fragment
@@ -63,7 +95,11 @@
         tools:layout="@layout/fragment_cafe" >
         <action
             android:id="@+id/action_cafeFragment_to_cafeuser"
-            app:destination="@id/cafeuser" />
+            app:destination="@id/cafeuser"
+            app:enterAnim="@anim/fade_in"
+            app:exitAnim="@anim/fade_out"
+            app:popEnterAnim="@anim/fade_in"
+            app:popExitAnim="@anim/fade_out" />
     </fragment>
 
 
@@ -91,7 +127,11 @@
         tools:layout="@layout/fragment_user_profile">
         <action
             android:id="@+id/action_Museumuser_to_navigation_notifications"
-            app:destination="@id/navigation_notifications" />
+            app:destination="@id/navigation_notifications"
+            app:enterAnim="@anim/fade_in"
+            app:exitAnim="@anim/fade_out"
+            app:popEnterAnim="@anim/fade_in"
+            app:popExitAnim="@anim/fade_out" />
     </fragment>
 
     <fragment

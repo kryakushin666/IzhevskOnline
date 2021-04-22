@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="822dp"
+    android:background="@color/colorBackground"
     tools:context=".GunFragment">
 
     <ScrollView
@@ -29,6 +30,17 @@
                     android:layout_marginTop="34dp"
                     app:srcCompat="@drawable/ic_backbutton"
                     tools:ignore="ContentDescription"/>
+
+                <TextView
+                    android:id="@+id/mapbutton"
+                    android:layout_width="129dp"
+                    android:layout_height="22dp"
+                    android:layout_marginStart="39dp"
+                    android:layout_marginTop="780dp"
+                    android:gravity="center_horizontal|top"
+                    android:text="Карта маршрута"
+                    android:textColor="#606060"
+                    android:textSize="16sp" />
 
                 <ImageView
                     android:id="@+id/button_play"

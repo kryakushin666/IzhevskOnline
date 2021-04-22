@@ -6,6 +6,9 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="color_home">#3C76E7</color>
+    <color name="colorRed">#F45E6D</color>
     <color name="color_dockbar">#464646</color>
     <color name="colorText">#464646</color>
+    <color name="colorBackground">#F4F4F4</color>
+    <color name="transparent">#00000000</color>
 </resources>
