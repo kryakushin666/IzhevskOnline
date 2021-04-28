@@ -46,12 +46,12 @@
                     android:layout_width="263dp"
                     android:layout_height="97dp"
                     android:layout_marginStart="73dp"
-                    android:layout_marginTop="60dp"
+                    android:layout_marginTop="20dp"
                     android:fontFamily="@font/mainfont"
                     android:gravity="center_horizontal|top"
                     android:text="HELLO WORLD"
                     android:textColor="#2B2C2D"
-                    android:textSize="25sp" />
+                    android:textSize="24sp" />
 
                 <TextView
                     android:layout_width="117dp"
@@ -65,6 +65,7 @@
                     android:textSize="18sp" />
 
                 <TextView
+                    android:id="@+id/opisanieobj"
                     android:layout_width="362dp"
                     android:layout_height="810dp"
                     android:layout_marginStart="27dp"
@@ -87,6 +88,7 @@
                     android:textSize="18sp" />
 
                 <TextView
+                    android:id="@+id/raspolozhenieobj"
                     android:layout_width="362dp"
                     android:layout_height="126dp"
                     android:layout_marginStart="27dp"
@@ -109,10 +111,11 @@
                     android:textSize="18sp" />
 
                 <TextView
+                    android:id="@+id/istoriofcreate"
                     android:layout_width="366dp"
                     android:layout_height="688dp"
                     android:layout_marginStart="27dp"
-                    android:layout_marginTop="1529dp"
+                    android:layout_marginTop="1400dp"
                     android:fontFamily="@font/mainfont"
                     android:gravity="top"
                     android:text="@string/istoriasozdaniainfo"
@@ -123,7 +126,7 @@
                     android:layout_width="219dp"
                     android:layout_height="26dp"
                     android:layout_marginStart="117dp"
-                    android:layout_marginTop="2230dp"
+                    android:layout_marginTop="2130dp"
                     android:fontFamily="@font/mainfont"
                     android:gravity="center_horizontal|top"
                     android:text="Интересные факты"
@@ -131,10 +134,11 @@
                     android:textSize="18sp" />
 
                 <TextView
+                    android:id="@+id/ineresniemesta"
                     android:layout_width="348dp"
                     android:layout_height="492dp"
                     android:layout_marginStart="42dp"
-                    android:layout_marginTop="2269dp"
+                    android:layout_marginTop="2169dp"
                     android:fontFamily="@font/mainfont"
                     android:gravity="top"
                     android:text="@string/interesniefacts"

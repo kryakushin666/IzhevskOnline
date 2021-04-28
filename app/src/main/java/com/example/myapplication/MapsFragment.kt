@@ -55,6 +55,7 @@ import okhttp3.OkHttpClient
 import okhttp3.Request
 
 var maintext = "This my work"
+var mainid = "This my work"
 var dirtext = "This my work"
 var disttext = "This my work"
 var coordtext = "This my work"
@@ -92,7 +93,7 @@ class MapsFragment : Fragment(), GoogleMap.OnMarkerClickListener, GoogleMap.OnMy
 
         map = googleMap
 
-        val contextCompats = requireContext().applicationContext
+        //val contextCompats = requireContext().applicationContext
 
         //Наводят камеру на Ижевск и устанавливают уровень приближения
         val latitude = 56.85970797942636
@@ -112,7 +113,7 @@ class MapsFragment : Fragment(), GoogleMap.OnMarkerClickListener, GoogleMap.OnMy
         // Устанавливаем максимальное приближение
         map.setMinZoomPreference(11.5f)
         // Получаем координаты и выводим как уведомление
-        Toast.makeText(contextCompats, getLastKnownLocation(contextCompats), Toast.LENGTH_LONG).show()
+        //Toast.makeText(contextCompats, getLastKnownLocation(contextCompats), Toast.LENGTH_LONG).show()
     }
     private fun displayError(message: String) {
         val snackBar = Snackbar.make(requireActivity().findViewById(android.R.id.content), message, Snackbar.LENGTH_SHORT)
@@ -156,7 +157,7 @@ class MapsFragment : Fragment(), GoogleMap.OnMarkerClickListener, GoogleMap.OnMy
             map.animateCamera(CameraUpdateFactory.newLatLng(convertertoLatLng(getLastKnownLocation(contextCompats))))
         }
         fabinfo.setOnClickListener {
-            displayMessage("hewl")
+            //displayMessage("hewl")
             findNavController().navigate(R.id.action_maps_screen_to_guided_screen)
         }
         val coord = arguments?.getString(USERNAME_COORDINATES) ?: "HELLO S"
@@ -218,7 +219,29 @@ class MapsFragment : Fragment(), GoogleMap.OnMarkerClickListener, GoogleMap.OnMy
                             .title("Арсенал")
                             .icon(getBitmapDescriptor(R.drawable.icon_on_map))
             )
-
+            //findNavController().navigateUp()
+            //fragmentManager?.beginTransaction().
+            /*val selectedFragment = fragmentManager?.findFragmentByTag(R.id.maps_screen)
+                    as NavHostFragment
+            fragmentManager?.beginTransaction()
+                    ?.setCustomAnimations(
+                            R.anim.fade_in,
+                            R.anim.fade_out,
+                            R.anim.fade_in,
+                            R.anim.fade_out)
+                    ?.attach(selectedFragment)
+                    ?.setPrimaryNavigationFragment(selectedFragment)
+                    .apply {
+                        // Detach all other Fragments
+                        graphIdToTagMap.forEach { _, fragmentTagIter ->
+                            if (fragmentTagIter != newlySelectedItemTag) {
+                                detach(fragmentManager?.findFragmentByTag(firstFragmentTag)!!)
+                            }
+                        }
+                    }
+                    ?.addToBackStack(firstFragmentTag)
+                    ?.setReorderingAllowed(true)
+                    ?.commit()*/
         }
         //val coordinate = converterLatLng(coord)
         Log.d("coord", "oord: $coord")
@@ -539,6 +562,8 @@ class MapsFragment : Fragment(), GoogleMap.OnMarkerClickListener, GoogleMap.OnMy
     private fun showBottom(p0: Marker?) {
         val sheet = DemoBottomSheetFragment()
         maintext = "${p0?.title}"
+        mainid = "${p0?.id}"
+        Log.d("mainid", mainid)
         val coord: LatLng = p0?.position!!
         coordtext = converterLatLng(coord)
         fragmentManager?.let { it1 -> sheet.show(it1, "DemoBottomSheetFragment") }
@@ -668,8 +693,10 @@ class MapsFragment : Fragment(), GoogleMap.OnMarkerClickListener, GoogleMap.OnMy
                 getTwoDirection(getLastKnownLocation(contextCompats), coordtext)
             }
             fragmentLayout.findViewById<TextView>(R.id.some_idsss).setOnClickListener {
-                val bundle = bundleOf(OBJECT_NAME to maintext)
+                val bundle = bundleOf(OBJECT_NAME to maintext, OBJECT_ID to mainid)
                 findNavController().navigate(R.id.allinfos_screen, bundle)
+                dialog?.cancel()
+
             }
             fragmentLayout.findViewById<TextView>(R.id.some_id).text = maintext
 
@@ -713,6 +740,7 @@ class MapsFragment : Fragment(), GoogleMap.OnMarkerClickListener, GoogleMap.OnMy
 
         companion object {
             const val OBJECT_NAME = "objectName"
+            const val OBJECT_ID = "objectId"
         }
     }
 

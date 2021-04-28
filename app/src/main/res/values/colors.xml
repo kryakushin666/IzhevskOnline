@@ -10,5 +10,6 @@
     <color name="color_dockbar">#464646</color>
     <color name="colorText">#464646</color>
     <color name="colorBackground">#F4F4F4</color>
+    <color name="colorBackgroundblack">#121421</color>
     <color name="transparent">#00000000</color>
 </resources>
