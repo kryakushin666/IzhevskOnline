@@ -112,57 +112,7 @@ class MapsFragment : Fragment(), GoogleMap.OnMarkerClickListener, GoogleMap.OnMy
         enableMyLocation()
         // Устанавливаем максимальное приближение
         map.setMinZoomPreference(11.5f)
-        // Получаем координаты и выводим как уведомление
-        //Toast.makeText(contextCompats, getLastKnownLocation(contextCompats), Toast.LENGTH_LONG).show()
-    }
-    private fun displayError(message: String) {
-        val snackBar = Snackbar.make(requireActivity().findViewById(android.R.id.content), message, Snackbar.LENGTH_SHORT)
-        snackBar.view.setBackgroundResource(R.drawable.curved_bg_error)
-        snackBar.show()
-    }
-    private fun displayMessage(message: String) {
-        Snackbar.make(requireActivity().findViewById(android.R.id.content), message, Snackbar.LENGTH_SHORT).show()
-    }
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?,
-    ): View? {
-        val fragmentLayout = inflater.inflate(R.layout.fragment_maps, container, false)
-        val contextCompats = requireContext().applicationContext
-        buttonss = fragmentLayout.findViewById(R.id.buttonss)
-        buttons = fragmentLayout.findViewById(R.id.buttons)
-        fab = fragmentLayout.findViewById(R.id.fablocation)
-        fabinfo = fragmentLayout.findViewById(R.id.fabinfo)
-        //lotties = fragmentLayout.findViewById(R.id.lotties) as LottieAnimationView
-        buttonss.setOnClickListener {
-            val customLayout = layoutInflater.inflate(
-                R.layout.custom_toast_layout,
-                constraintlayout
-            )
-            val animationView1: LottieAnimationView = customLayout.findViewById(R.id.imageSlideIcon)
-            val toast = Toast(contextCompats)
-            toast.duration = Toast.LENGTH_SHORT
-            toast.view = customLayout
-            toast.show()
-            animationView1.setAnimation(R.raw.animation)
-            animationView1.playAnimation()
-
-        }
-        buttons.setOnClickListener {
-            createNotificationChannel()
-            getWeather()
-        }
-        fab.setOnClickListener {
-            map.animateCamera(CameraUpdateFactory.newLatLng(convertertoLatLng(getLastKnownLocation(contextCompats))))
-        }
-        fabinfo.setOnClickListener {
-            //displayMessage("hewl")
-            findNavController().navigate(R.id.action_maps_screen_to_guided_screen)
-        }
-        val coord = arguments?.getString(USERNAME_COORDINATES) ?: "HELLO S"
         val guided = arguments?.getString(OBJECT_GUIDED) ?: "HELLO WORLD"
-        Log.d("tt","$guided loading")
         if(guided == "GunCenter")
         {
             map.addMarker(
@@ -219,6 +169,61 @@ class MapsFragment : Fragment(), GoogleMap.OnMarkerClickListener, GoogleMap.OnMy
                             .title("Арсенал")
                             .icon(getBitmapDescriptor(R.drawable.icon_on_map))
             )
+        }
+        // Получаем координаты и выводим как уведомление
+        //Toast.makeText(contextCompats, getLastKnownLocation(contextCompats), Toast.LENGTH_LONG).show()
+    }
+    private fun displayError(message: String) {
+        val snackBar = Snackbar.make(requireActivity().findViewById(android.R.id.content), message, Snackbar.LENGTH_SHORT)
+        snackBar.view.setBackgroundResource(R.drawable.curved_bg_error)
+        snackBar.show()
+    }
+    private fun displayMessage(message: String) {
+        Snackbar.make(requireActivity().findViewById(android.R.id.content), message, Snackbar.LENGTH_SHORT).show()
+    }
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?,
+    ): View? {
+        val fragmentLayout = inflater.inflate(R.layout.fragment_maps, container, false)
+        val contextCompats = requireContext().applicationContext
+        buttonss = fragmentLayout.findViewById(R.id.buttonss)
+        buttons = fragmentLayout.findViewById(R.id.buttons)
+        fab = fragmentLayout.findViewById(R.id.fablocation)
+        fabinfo = fragmentLayout.findViewById(R.id.fabinfo)
+        //lotties = fragmentLayout.findViewById(R.id.lotties) as LottieAnimationView
+        buttonss.setOnClickListener {
+            val customLayout = layoutInflater.inflate(
+                R.layout.custom_toast_layout,
+                constraintlayout
+            )
+            val animationView1: LottieAnimationView = customLayout.findViewById(R.id.imageSlideIcon)
+            val toast = Toast(contextCompats)
+            toast.duration = Toast.LENGTH_SHORT
+            toast.view = customLayout
+            toast.show()
+            animationView1.setAnimation(R.raw.animation)
+            animationView1.playAnimation()
+
+        }
+        buttons.setOnClickListener {
+            createNotificationChannel()
+            getWeather()
+        }
+        fab.setOnClickListener {
+            map.animateCamera(CameraUpdateFactory.newLatLng(convertertoLatLng(getLastKnownLocation(contextCompats))))
+        }
+        fabinfo.setOnClickListener {
+            //displayMessage("hewl")
+            findNavController().navigate(R.id.action_maps_screen_to_guided_screen)
+        }
+        val coord = arguments?.getString(USERNAME_COORDINATES) ?: "HELLO S"
+        val guided = arguments?.getString(OBJECT_GUIDED) ?: "HELLO WORLD"
+        val mapFragment = childFragmentManager.findFragmentById(R.id.maps) as SupportMapFragment?
+        Log.d("tt","$guided loading")
+        if(guided == "GunCenter")
+        {
             //findNavController().navigateUp()
             //fragmentManager?.beginTransaction().
             /*val selectedFragment = fragmentManager?.findFragmentByTag(R.id.maps_screen)
@@ -242,6 +247,7 @@ class MapsFragment : Fragment(), GoogleMap.OnMarkerClickListener, GoogleMap.OnMy
                     ?.addToBackStack(firstFragmentTag)
                     ?.setReorderingAllowed(true)
                     ?.commit()*/
+                    mapFragment?.getMapAsync(callback)
         }
         //val coordinate = converterLatLng(coord)
         Log.d("coord", "oord: $coord")
@@ -258,7 +264,6 @@ class MapsFragment : Fragment(), GoogleMap.OnMarkerClickListener, GoogleMap.OnMy
         //val contextCompats = requireContext().applicationContext
         val mapFragment = childFragmentManager.findFragmentById(R.id.maps) as SupportMapFragment?
         mapFragment?.getMapAsync(callback)
-
     }
     /*override fun onMyLocationChange(p0: Location?) {
         if (p0 != null) {
