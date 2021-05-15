@@ -208,8 +208,9 @@ class MapsFragment : Fragment(), GoogleMap.OnMarkerClickListener, GoogleMap.OnMy
 
         }
         buttons.setOnClickListener {
-            createNotificationChannel()
-            getWeather()
+            /*createNotificationChannel()
+            getWeather()*/
+            getMoreDirection("56.84383886160861, 53.191198130527944","56.85285289473385, 53.215664171778975", "56.844568122459364, 53.191131214863674|56.848892795955905, 53.19585937814813|56.84408400157632, 53.19771856787305|56.84398424917061, 53.198120889542295|56.83996208388173, 53.19589266822729|56.85177628926549, 53.2002482478798|56.85073186241447, 53.20672264326064")
         }
         fab.setOnClickListener {
             map.animateCamera(CameraUpdateFactory.newLatLng(convertertoLatLng(getLastKnownLocation(contextCompats))))
@@ -341,6 +342,10 @@ class MapsFragment : Fragment(), GoogleMap.OnMarkerClickListener, GoogleMap.OnMy
         GetDirection(getDirectionURL(origin, dest)).execute()
         return
     }
+    private fun getMoreDirection(origin: String, dest: String, waypoints: String) {
+        GetDirection(getDirectionURLs(origin, dest, waypoints)).execute()
+        return
+    }
     private fun getWeather() {
         weatherTask(getWeatherURL()).execute()
         return
@@ -348,6 +353,9 @@ class MapsFragment : Fragment(), GoogleMap.OnMarkerClickListener, GoogleMap.OnMy
     // Функция получения запроса на пострение маршрута
     private fun getDirectionURL(origin: String, dest: String): String {
         return "https://maps.googleapis.com/maps/api/directions/json?origin=${origin}&destination=${dest}&key=AIzaSyDVGH9AfUwk5CLr76_QGmoLhDNWwuj6yps"
+    }
+    private fun getDirectionURLs(origin: String, dest: String, waypoints: String): String {
+        return "https://maps.googleapis.com/maps/api/directions/json?origin=${origin}&destination=${dest}&waypoints=via:${waypoints}&key=AIzaSyDVGH9AfUwk5CLr76_QGmoLhDNWwuj6yps"
     }
     private fun getWeatherURL(): String {
         return "https://api.weatherapi.com/v1/current.json?key=7837c70818904b4eb94100007211104&q=Izhevsk&aqi=no"
@@ -391,7 +399,7 @@ class MapsFragment : Fragment(), GoogleMap.OnMarkerClickListener, GoogleMap.OnMy
             for (i in result.indices) {
                 lineoption.addAll(result[i])
                 lineoption.width(10f)
-                lineoption.color(Color.BLUE)
+                lineoption.color(Color.RED)
                 lineoption.geodesic(true)
             }
             polylineFinal = map.addPolyline(lineoption)
@@ -701,9 +709,26 @@ class MapsFragment : Fragment(), GoogleMap.OnMarkerClickListener, GoogleMap.OnMy
                 val bundle = bundleOf(OBJECT_NAME to maintext, OBJECT_ID to mainid)
                 findNavController().navigate(R.id.allinfos_screen, bundle)
                 dialog?.cancel()
-
             }
+            /*fun changeText(ids: String)
+            {
+                when(ids) {
+                    "m0" -> {
+                        fragmentLayout.findViewById<ImageView>(R.id.mainimg).setImageResource(R.drawable.m0ia)
+                        fragmentLayout.findViewById<ImageView>(R.id.galaryone).setImageResource(R.drawable.m0is)
+                        fragmentLayout.findViewById<ImageView>(R.id.galarytwo).setImageResource(R.drawable.m0id)
+                    }
+                    "m1" -> {
+                        fragmentLayout.findViewById<ImageView>(R.id.mainimg).setImageResource(R.drawable.m1ia)
+                        fragmentLayout.findViewById<ImageView>(R.id.galaryone).setImageResource(R.drawable.m1is)
+                        fragmentLayout.findViewById<ImageView>(R.id.galarytwo).setImageResource(R.drawable.m1id)
+                    }
+                }
+            }
+
+            changeText(mainid)*/
             fragmentLayout.findViewById<TextView>(R.id.some_id).text = maintext
+
 
             return fragmentLayout
         }

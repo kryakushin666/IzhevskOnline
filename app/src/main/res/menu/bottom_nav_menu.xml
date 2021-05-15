@@ -11,7 +11,7 @@
         android:title="" />
 
     <item
-        android:icon="@drawable/icon_profile"
+        android:icon="@drawable/icon_addtomap"
         android:title=""
     />
 

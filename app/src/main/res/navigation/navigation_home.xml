@@ -64,43 +64,19 @@
         android:id="@+id/parksFragment"
         android:name="com.example.myapplication.ParksFragment"
         android:label="@string/title_profile"
-        tools:layout="@layout/fragment_parks" >
-        <action
-            android:id="@+id/action_parksFragment_to_Parksuser"
-            app:destination="@id/Parksuser"
-            app:enterAnim="@anim/fade_in"
-            app:exitAnim="@anim/fade_out"
-            app:popEnterAnim="@anim/fade_in"
-            app:popExitAnim="@anim/fade_out" />
-    </fragment>
+        tools:layout="@layout/fragment_parks" />
 
     <fragment
         android:id="@+id/hotelsFragment"
         android:name="com.example.myapplication.HotelsFragment"
         android:label="@string/title_profile"
-        tools:layout="@layout/fragment_hotels" >
-        <action
-            android:id="@+id/action_hotelsFragment_to_hotelsuser"
-            app:destination="@id/hotelsuser"
-            app:enterAnim="@anim/fade_in"
-            app:exitAnim="@anim/fade_out"
-            app:popEnterAnim="@anim/fade_in"
-            app:popExitAnim="@anim/fade_out" />
-    </fragment>
+        tools:layout="@layout/fragment_hotels" />
 
     <fragment
         android:id="@+id/cafeFragment"
         android:name="com.example.myapplication.CafeFragment"
         android:label="@string/title_profile"
-        tools:layout="@layout/fragment_cafe" >
-        <action
-            android:id="@+id/action_cafeFragment_to_cafeuser"
-            app:destination="@id/cafeuser"
-            app:enterAnim="@anim/fade_in"
-            app:exitAnim="@anim/fade_out"
-            app:popEnterAnim="@anim/fade_in"
-            app:popExitAnim="@anim/fade_out" />
-    </fragment>
+        tools:layout="@layout/fragment_cafe" />
 
 
     <fragment
@@ -109,17 +85,6 @@
         android:label="@string/title_profile"
         tools:layout="@layout/fragment_gun" />
 
-    <fragment
-        android:id="@+id/hotelsuser"
-        android:name="com.example.myapplication.UserProfileHotels"
-        android:label="@string/title_profile"
-        tools:layout="@layout/fragment_user_profile" />
-
-    <fragment
-        android:id="@+id/cafeuser"
-        android:name="com.example.myapplication.UserProfileCafe"
-        android:label="@string/title_profile"
-        tools:layout="@layout/fragment_user_profile" />
     <fragment
         android:id="@+id/Museumuser"
         android:name="com.example.myapplication.UserProfileMuseum"
@@ -133,12 +98,6 @@
             app:popEnterAnim="@anim/fade_in"
             app:popExitAnim="@anim/fade_out" />
     </fragment>
-
-    <fragment
-        android:id="@+id/Parksuser"
-        android:name="com.example.myapplication.UserProfilePark"
-        android:label="@string/title_profile"
-        tools:layout="@layout/fragment_user_profile" />
 
     <include app:graph="@navigation/navigation_notifications" />
 </navigation>

@@ -1,5 +1,7 @@
 package com.example.myapplication
 
+import android.content.Context
+import android.content.SharedPreferences
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -11,6 +13,9 @@ import androidx.navigation.fragment.findNavController
 
 
 class BlankFragment : Fragment() {
+
+
+    private lateinit var pref: SharedPreferences
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -27,21 +32,26 @@ class BlankFragment : Fragment() {
         val fragmentLayout = inflater.inflate(R.layout.fragment_blank, container, false)
 
         fragmentLayout.findViewById<ImageView>(R.id.Button).setOnClickListener {
-            findNavController().navigate(R.id.action_navigation_home_to_itemFragment)
+            initData(0)
         }
         fragmentLayout.findViewById<ImageView>(R.id.button1).setOnClickListener {
-            findNavController().navigate(R.id.action_navigation_home_to_parksFragment)
+            initData(1)
         }
         fragmentLayout.findViewById<ImageView>(R.id.button2).setOnClickListener {
-            findNavController().navigate(R.id.action_navigation_home_to_hotelsFragment)
+            initData(2)
         }
         fragmentLayout.findViewById<ImageView>(R.id.button3).setOnClickListener {
-            findNavController().navigate(R.id.action_navigation_home_to_cafeFragment)
-        }
-        fragmentLayout.findViewById<ImageView>(R.id.button4).setOnClickListener {
-            findNavController().navigate(R.id.action_navigation_home_to_gunFragment)
+            initData(3)
         }
         // возвращаем макет фрагмента
         return fragmentLayout
+    }
+    private fun initData(id: Int)
+    {
+        val pref = context?.getSharedPreferences("NameOfScreen", Context.MODE_PRIVATE)
+        var editor = pref?.edit()
+        editor?.putInt("idScreen", id)
+        editor?.apply()
+        findNavController().navigate(R.id.action_navigation_home_to_itemFragment)
     }
 }

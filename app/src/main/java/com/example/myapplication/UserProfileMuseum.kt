@@ -47,7 +47,6 @@ class UserProfileMuseum : Fragment() {
             view.findNavController().navigate(
                     R.id.action_Museumuser_to_navigation_notifications,
                     bundle)
-
             /*Navigation.findNavController(
                     requireActivity(),
                     R.id.navigation_home
@@ -55,7 +54,7 @@ class UserProfileMuseum : Fragment() {
         }
 
         view.findViewById<ImageView>(R.id.buttons).setOnClickListener {
-            findNavController().navigate(R.id.itemFragment)
+            findNavController().popBackStack()
         }
         return view
     }

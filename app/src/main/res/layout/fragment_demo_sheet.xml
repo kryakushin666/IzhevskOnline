@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:ignore="HardcodedText"
     android:id="@+id/bottom_sheet"
     android:layout_width="match_parent"
-    android:background="@color/colorBackground"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    tools:ignore="HardcodedText">
 
     <TextView
         android:id="@+id/some_id"
@@ -13,74 +13,120 @@
         android:layout_height="84dp"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
-        android:layout_marginStart="100dp"
-        android:layout_marginTop="306dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="16dp"
         android:fontFamily="@font/mainfont"
         android:gravity="center_horizontal|top"
         android:text="HELLO WORLD"
         android:textColor="#1D1D1D"
         android:textSize="20sp"
-        />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/some_idss"
         android:layout_width="281dp"
         android:layout_height="88dp"
         android:layout_alignParentStart="true"
-        android:layout_marginStart="65dp"
         android:layout_alignParentTop="true"
-        android:layout_marginTop="390dp"
-        android:text="@string/maininf"
-        android:textSize="16sp"
-        android:textColor="#3A3A3A"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="13dp"
         android:gravity="top"
-        />
+        android:text="@string/maininf"
+        android:textColor="#3A3A3A"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.506"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/addtoroute" />
 
     <TextView
         android:id="@+id/some_idsss"
         android:layout_width="90dp"
         android:layout_height="22dp"
         android:layout_alignParentStart="true"
-        android:layout_marginStart="65dp"
         android:layout_alignParentTop="true"
-        android:layout_marginTop="486dp"
-        android:text="Подробнее"
-        android:textSize="16sp"
-        android:textColor="#3C76E7"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="24dp"
         android:gravity="top"
-        />
+        android:text="Подробнее"
+        android:textColor="#3C76E7"
+        android:textSize="16sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/some_idss" />
 
     <ImageView
         android:id="@+id/rectangle_3"
         android:layout_width="165dp"
         android:layout_height="40dp"
         android:layout_alignParentStart="true"
-        android:layout_marginStart="123dp"
         android:layout_alignParentTop="true"
-        android:layout_marginTop="265dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="8dp"
         android:background="@drawable/ic_buttondir"
-        tools:ignore="ContentDescription"
-        />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.502"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/mainimg"
+        tools:ignore="ContentDescription" />
 
     <ImageView
+        android:id="@+id/mainimg"
         android:layout_width="165dp"
         android:layout_height="164.8dp"
         android:layout_alignParentStart="true"
-        android:layout_marginStart="123dp"
         android:layout_alignParentTop="true"
-        android:layout_marginTop="83dp"
-        android:background="@drawable/monum"
-        android:elevation="40dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="12dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/some_id"
+        app:srcCompat="@drawable/parkhotel"
         />
 
     <ImageView
-        android:layout_width="280.75dp"
-        android:layout_height="180dp"
+        android:id="@+id/galaryone"
+        android:layout_width="149dp"
+        android:layout_height="153dp"
         android:layout_alignParentStart="true"
-        android:layout_marginStart="65dp"
         android:layout_alignParentTop="true"
-        android:layout_marginTop="551dp"
-        android:background="@drawable/galary"
-        />
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="35dp"
+        android:layout_marginBottom="16dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/some_idsss"
+        app:srcCompat="@drawable/museum_ak" />
 
-</RelativeLayout>
+    <ImageView
+        android:id="@+id/galarytwo"
+        android:layout_width="149dp"
+        android:layout_height="153dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="35dp"
+        android:layout_marginEnd="40dp"
+        android:layout_marginBottom="16dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/some_idsss"
+        app:srcCompat="@drawable/museum_ak" />
+
+    <TextView
+        android:id="@+id/addtoroute"
+        android:layout_width="168dp"
+        android:layout_height="20dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="24dp"
+        android:gravity="center_horizontal|top"
+        android:text="Добавить к маршруту"
+        android:textColor="#3C76E7"
+        android:textSize="15sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.51"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/rectangle_3" />
+</androidx.constraintlayout.widget.ConstraintLayout>
