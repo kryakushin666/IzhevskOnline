@@ -7,30 +7,48 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.appcompat.app.AppCompatActivity
 import androidx.core.os.bundleOf
-import androidx.fragment.app.Fragment
 import androidx.navigation.findNavController
-import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.RecyclerView
+import com.splunk.mint.Mint
 
 /**
  * A fragment representing a list of Items.
  */
 
 
-class ItemFragment : Fragment() {
+class ItemActivity : AppCompatActivity() {
 
     private var idscreen: Int = -1
     private var namescreen: String = "null"
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_item)
+        supportActionBar?.hide()
+        Mint.initAndStartSession(this.application, "e35d8a22")
+        Mint.enableLogging(true)
+        loadData()
+        voteScreen(idscreen)
+        findViewById<ImageView>(R.id.buttons).setOnClickListener {
+            this.finish()
+        }
+        findViewById<TextView>(R.id.nameoftitle).text = checkname(idscreen)
+        val viewAdapter = MyAdapter(Array(15) { listOfTitle[it % listOfTitle.size] }, idscreen)
 
-        arguments?.let {
+        findViewById<RecyclerView>(R.id.leaderboard_list).run {
+            // use this setting to improve performance if you know that changes
+            // in content do not change the layout size of the RecyclerView
+            setHasFixedSize(true)
+
+            // specify an viewAdapter (see also next example) Person ${it + 1}
+            adapter = viewAdapter
+
         }
     }
     fun loadData() {
-        val pref = context?.getSharedPreferences("NameOfScreen", Context.MODE_PRIVATE)
-        var editor = pref?.edit()
+        val pref = this.getSharedPreferences("NameOfScreen", Context.MODE_PRIVATE)
+        val editor = pref?.edit()
         idscreen = pref!!.getInt("idScreen", -1)
         editor?.apply()
     }
@@ -133,31 +151,6 @@ class ItemFragment : Fragment() {
         }
     }
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
-                              savedInstanceState: Bundle?): View? {
-        val fragmentLayout = inflater.inflate(R.layout.fragment_item, container, false)
-        loadData()
-        voteScreen(idscreen)
-        fragmentLayout.findViewById<ImageView>(R.id.buttons).setOnClickListener {
-            findNavController().navigate(R.id.navigation_home)
-        }
-        fragmentLayout.findViewById<TextView>(R.id.nameoftitle).text = checkname(idscreen)
-        val viewAdapter = MyAdapter(Array(15) { listOfTitle[it % listOfTitle.size] }, idscreen)
-
-        fragmentLayout.findViewById<RecyclerView>(R.id.leaderboard_list).run {
-            // use this setting to improve performance if you know that changes
-            // in content do not change the layout size of the RecyclerView
-            setHasFixedSize(true)
-
-            // specify an viewAdapter (see also next example) Person ${it + 1}
-            adapter = viewAdapter
-
-        }
-
-        // возвращаем макет фрагмента
-        return fragmentLayout
-
-    }
     class MyAdapter(private val myDataset: Array<String>, idscreens: Int) :
         RecyclerView.Adapter<MyAdapter.ViewHolder>() {
 

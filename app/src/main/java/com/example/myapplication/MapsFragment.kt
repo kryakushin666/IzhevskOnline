@@ -704,6 +704,7 @@ class MapsFragment : Fragment(), GoogleMap.OnMarkerClickListener, GoogleMap.OnMy
             rectangle = fragmentLayout.findViewById(R.id.rectangle_3)
             rectangle.setOnClickListener {
                 getTwoDirection(getLastKnownLocation(contextCompats), coordtext)
+                dialog?.cancel()
             }
             fragmentLayout.findViewById<TextView>(R.id.some_idsss).setOnClickListener {
                 val bundle = bundleOf(OBJECT_NAME to maintext, OBJECT_ID to mainid)

@@ -23,17 +23,34 @@
 
     <TextView
         android:id="@+id/goodmorning"
-        android:layout_width="158dp"
-        android:layout_height="0dp"
+        android:layout_width="236dp"
+        android:layout_height="37dp"
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
-        android:layout_marginStart="56dp"
-        android:layout_marginTop="32dp"
+        android:layout_marginStart="44dp"
+        android:layout_marginTop="16dp"
         android:fontFamily="@font/mainfont"
         android:gravity="top"
         android:lineSpacingExtra="5sp"
-        android:text="28 апреля
-        Доброго дня!"
+        android:text="28 апреля"
+        android:textColor="#2B2C2D"
+        android:textSize="22sp"
+        android:translationY="-2.52sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/goodforpeople"
+        android:layout_width="237dp"
+        android:layout_height="60dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="44dp"
+        android:layout_marginTop="52dp"
+        android:fontFamily="@font/mainfont"
+        android:gravity="top"
+        android:lineSpacingExtra="5sp"
+        android:text="Доброго дня!"
         android:textColor="#2B2C2D"
         android:textSize="22sp"
         android:translationY="-2.52sp"
@@ -55,19 +72,18 @@
 
     <View
         android:id="@+id/rectangle_3"
-        android:layout_width="275dp"
-        android:layout_height="42dp"
+        android:layout_width="317dp"
+        android:layout_height="43dp"
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
-        android:layout_marginStart="40dp"
-        android:layout_marginTop="46dp"
-        android:layout_marginEnd="40dp"
-        android:layout_marginBottom="45dp"
+        android:layout_marginStart="44dp"
+        android:layout_marginTop="21dp"
+        android:layout_marginEnd="50dp"
         android:background="@drawable/ic_searchbutton"
-        app:layout_constraintBottom_toTopOf="@+id/button1"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/settingb" />
+        app:layout_constraintTop_toBottomOf="@+id/goodforpeople" />
 
     <TextView
         android:id="@+id/search_text"

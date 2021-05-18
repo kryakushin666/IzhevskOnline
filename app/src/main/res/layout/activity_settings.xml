@@ -1,0 +1,93 @@
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorBackground"
+    tools:ignore="RelativeOverlap, HardcodedText">
+
+
+    <TextView
+        android:id="@+id/textsettings"
+        android:layout_width="236dp"
+        android:layout_height="52dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="48dp"
+        android:fontFamily="@font/mainfont"
+        android:gravity="center_horizontal|top"
+        android:text="Настройки"
+        android:textColor="#313131"
+        android:textSize="30sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        />
+
+
+    <ImageView
+        android:id="@+id/backbutton"
+        android:layout_width="55dp"
+        android:layout_height="52dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="47dp"
+        android:layout_marginEnd="51dp"
+        android:background="@drawable/ic_backbutton"
+        app:layout_constraintEnd_toStartOf="@+id/textsettings"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/trainingbutton"
+        android:layout_width="192dp"
+        android:layout_height="55dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="179dp"
+        android:layout_marginTop="65dp"
+        android:layout_marginEnd="179dp"
+        android:gravity="center_horizontal|top"
+        android:text="Обучение"
+        android:textColor="#3C76E7"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textsettings" />
+
+    <TextView
+        android:id="@+id/laguagebutton"
+        android:layout_width="192dp"
+        android:layout_height="55dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="144dp"
+        android:layout_marginTop="21dp"
+        android:layout_marginEnd="144dp"
+        android:gravity="center_horizontal|top"
+        android:text="Язык"
+        android:textColor="#3C76E7"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/trainingbutton" />
+
+    <TextView
+        android:id="@+id/faqbutton"
+        android:layout_width="192dp"
+        android:layout_height="55dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="144dp"
+        android:layout_marginTop="21dp"
+        android:layout_marginEnd="144dp"
+        android:gravity="center_horizontal|top"
+        android:text="О нас"
+        android:textColor="#3C76E7"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/laguagebutton" />
+</androidx.constraintlayout.widget.ConstraintLayout>

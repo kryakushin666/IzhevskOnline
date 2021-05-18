@@ -4,6 +4,7 @@
     <string name="title_home">Дом</string>
     <string name="title_notifications">Карта</string>
     <string name="title_profile">Профиль</string>
+    <string name="withlove">С ❤️ из Ижевска</string>
     <string name="maininf">Монумент, посвящённый
         400-летию вхождения Удмуртии в
         состав России, открытый 26 июня
@@ -88,4 +89,7 @@
     <string name="interesniem8">Ижевский арсенал стал последним произведением архитектора С. Е. Дудина, скончавшегося во время строительства здания в 1825 году. Изначально здание арсенала использовалось как оружейный склад, который вмещал до 75 тысяч ружей. В изготовлении некоторых экспонатов участвовали Александр I в 1824 году и наследник престола Александр Николаевич в 1837 году. В здании располагалась заводская школа, в которой с детства учили сбору оружия.</string>
 
     <string name="notfound">Произошла ошибка, перезапустите приложение и попробуйте ещё раз</string>
+    <string name="title_activity_settings">FullscreenActivity</string>
+    <string name="dummy_button">Dummy Button</string>
+    <string name="dummy_content">DUMMY\nCONTENT</string>
 </resources>

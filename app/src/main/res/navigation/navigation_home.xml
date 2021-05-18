@@ -48,9 +48,9 @@
 
     <fragment
         android:id="@+id/itemFragment"
-        android:name="com.example.myapplication.ItemFragment"
+        android:name="com.example.myapplication.ItemActivity"
         android:label="@string/title_profile"
-        tools:layout="@layout/fragment_item" >
+        tools:layout="@layout/activity_item" >
         <action
             android:id="@+id/action_itemFragment_to_Museumuser"
             app:destination="@id/Museumuser"
