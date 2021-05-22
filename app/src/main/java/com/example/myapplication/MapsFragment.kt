@@ -40,6 +40,7 @@ import com.airbnb.lottie.LottieAnimationView
 import com.andrefrsousa.superbottomsheet.SuperBottomSheetFragment
 import com.example.myapplication.GunFragment.Companion.OBJECT_GUIDED
 import com.example.myapplication.UserProfileMuseum.Companion.USERNAME_COORDINATES
+import com.example.myapplication.UserProfileMuseum.Companion.USERNAME_NAME
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationRequest
 import com.google.android.gms.maps.CameraUpdateFactory
@@ -93,7 +94,7 @@ class MapsFragment : Fragment(), GoogleMap.OnMarkerClickListener, GoogleMap.OnMy
 
         map = googleMap
 
-        //val contextCompats = requireContext().applicationContext
+        val contextCompats = requireContext().applicationContext
 
         //Наводят камеру на Ижевск и устанавливают уровень приближения
         val latitude = 56.85970797942636
@@ -113,6 +114,18 @@ class MapsFragment : Fragment(), GoogleMap.OnMarkerClickListener, GoogleMap.OnMy
         // Устанавливаем максимальное приближение
         map.setMinZoomPreference(11.5f)
         val guided = arguments?.getString(OBJECT_GUIDED) ?: "HELLO WORLD"
+        val coord = arguments?.getString(USERNAME_COORDINATES) ?: "HELLO S"
+        var nameofobject = arguments?.getString(USERNAME_NAME) ?: "HELLO S"
+        if(coord != "HELLO S")
+        {
+            map.addMarker(
+                    MarkerOptions()
+                            .position(convertertoLatLng(coord))
+                            .title(nameofobject)
+                            .icon(getBitmapDescriptor(R.drawable.icon_on_map))
+            )
+            getTwoDirection(getLastKnownLocation(contextCompats), coord)
+        }
         if(guided == "GunCenter")
         {
             map.addMarker(
@@ -219,9 +232,13 @@ class MapsFragment : Fragment(), GoogleMap.OnMarkerClickListener, GoogleMap.OnMy
             //displayMessage("hewl")
             findNavController().navigate(R.id.action_maps_screen_to_guided_screen)
         }
-        val coord = arguments?.getString(USERNAME_COORDINATES) ?: "HELLO S"
-        val guided = arguments?.getString(OBJECT_GUIDED) ?: "HELLO WORLD"
         val mapFragment = childFragmentManager.findFragmentById(R.id.maps) as SupportMapFragment?
+        val coord = arguments?.getString(USERNAME_COORDINATES) ?: "HELLO S"
+        if(coord != "HELLO S")
+        {
+            mapFragment?.getMapAsync(callback)
+        }
+        val guided = arguments?.getString(OBJECT_GUIDED) ?: "HELLO WORLD"
         Log.d("tt","$guided loading")
         if(guided == "GunCenter")
         {
@@ -379,8 +396,8 @@ class MapsFragment : Fragment(), GoogleMap.OnMarkerClickListener, GoogleMap.OnMy
                 dirtext = duration
                 disttext = distance
 
-                val sheet = DemoBottomSheetFragments()
-                fragmentManager?.let { it1 -> sheet.show(it1, "DemoBottomSheetFragments") }
+                //val sheet = DemoBottomSheetFragments()
+                //fragmentManager?.let { it1 -> sheet.show(it1, "DemoBottomSheetFragments") }
 
                 for (i in 0 until respObj.routes[0].legs[0].steps.size) {
                     path.addAll(decodePolyline(respObj.routes[0].legs[0].steps[i].polyline.points))
@@ -399,7 +416,7 @@ class MapsFragment : Fragment(), GoogleMap.OnMarkerClickListener, GoogleMap.OnMy
             for (i in result.indices) {
                 lineoption.addAll(result[i])
                 lineoption.width(10f)
-                lineoption.color(Color.RED)
+                lineoption.color(Color.BLUE)
                 lineoption.geodesic(true)
             }
             polylineFinal = map.addPolyline(lineoption)

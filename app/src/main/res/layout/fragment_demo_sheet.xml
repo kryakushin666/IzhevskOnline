@@ -26,18 +26,17 @@
 
     <TextView
         android:id="@+id/some_idss"
-        android:layout_width="281dp"
-        android:layout_height="88dp"
+        android:layout_width="276dp"
+        android:layout_height="92dp"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="13dp"
+        android:layout_marginTop="12dp"
         android:gravity="top"
         android:text="@string/maininf"
         android:textColor="#3A3A3A"
-        android:textSize="16sp"
+        android:textSize="14sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.506"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/addtoroute" />
 
@@ -82,7 +81,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/some_id"
-        app:srcCompat="@drawable/parkhotel"
+        app:srcCompat="@drawable/arsenala"
         />
 
     <ImageView
@@ -91,13 +90,14 @@
         android:layout_height="153dp"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
-        android:layout_marginStart="16dp"
+        android:layout_marginStart="40dp"
         android:layout_marginTop="35dp"
         android:layout_marginBottom="16dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/some_idsss"
-        app:srcCompat="@drawable/museum_ak" />
+        app:layout_constraintVertical_bias="0.571"
+        app:srcCompat="@drawable/arsenalb" />
 
     <ImageView
         android:id="@+id/galarytwo"
@@ -111,7 +111,8 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/some_idsss"
-        app:srcCompat="@drawable/museum_ak" />
+        app:layout_constraintVertical_bias="0.571"
+        app:srcCompat="@drawable/arsenalc" />
 
     <TextView
         android:id="@+id/addtoroute"

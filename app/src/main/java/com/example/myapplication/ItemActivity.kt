@@ -7,36 +7,34 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
-import androidx.appcompat.app.AppCompatActivity
 import androidx.core.os.bundleOf
+import androidx.fragment.app.Fragment
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
-import com.splunk.mint.Mint
 
 /**
  * A fragment representing a list of Items.
  */
 
 
-class ItemActivity : AppCompatActivity() {
+class ItemActivity : Fragment() {
 
     private var idscreen: Int = -1
     private var namescreen: String = "null"
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_item)
-        supportActionBar?.hide()
-        Mint.initAndStartSession(this.application, "e35d8a22")
-        Mint.enableLogging(true)
+    override fun onCreateView(
+            inflater: LayoutInflater, container: ViewGroup?,
+            savedInstanceState: Bundle?,
+    ): View? {
+        val view = inflater.inflate(R.layout.activity_item, container, false)
         loadData()
         voteScreen(idscreen)
-        findViewById<ImageView>(R.id.buttons).setOnClickListener {
-            this.finish()
+        view.findViewById<ImageView>(R.id.buttons).setOnClickListener {
+            view.findNavController().popBackStack()
         }
-        findViewById<TextView>(R.id.nameoftitle).text = checkname(idscreen)
+        view.findViewById<TextView>(R.id.nameoftitle).text = checkname(idscreen)
         val viewAdapter = MyAdapter(Array(15) { listOfTitle[it % listOfTitle.size] }, idscreen)
 
-        findViewById<RecyclerView>(R.id.leaderboard_list).run {
+        view.findViewById<RecyclerView>(R.id.leaderboard_list).run {
             // use this setting to improve performance if you know that changes
             // in content do not change the layout size of the RecyclerView
             setHasFixedSize(true)
@@ -45,9 +43,11 @@ class ItemActivity : AppCompatActivity() {
             adapter = viewAdapter
 
         }
+        return view
     }
     fun loadData() {
-        val pref = this.getSharedPreferences("NameOfScreen", Context.MODE_PRIVATE)
+        val contextCompats = requireContext().applicationContext
+        val pref = contextCompats.getSharedPreferences("NameOfScreen", Context.MODE_PRIVATE)
         val editor = pref?.edit()
         idscreen = pref!!.getInt("idScreen", -1)
         editor?.apply()
@@ -194,7 +194,6 @@ class ItemActivity : AppCompatActivity() {
                 holder.item.findNavController().navigate(
                         R.id.action_itemFragment_to_Museumuser,
                         bundle)
-
             }
         }
         fun voteScreen(id: Int) {

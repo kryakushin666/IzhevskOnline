@@ -16,27 +16,16 @@
         android:layout_marginStart="123dp"
         android:layout_marginTop="52dp"
         android:layout_marginEnd="122dp"
+        android:layout_marginBottom="83dp"
         android:fontFamily="@font/mainfont"
         android:gravity="center_horizontal|top"
         android:text="Маршрут"
         android:textColor="#313131"
         android:textSize="30sp"
+        app:layout_constraintBottom_toTopOf="@+id/rectangle_7"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/route_lists"
-        android:layout_width="304dp"
-        android:layout_height="80dp"
-        android:layout_marginTop="113dp"
-        android:background="@color/colorBackground"
-        android:layoutAnimation="@anim/item_layout_animation"
-        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/some_id"
-        tools:listitem="@layout/list_view_route" />
 
     <TextView
         android:id="@+id/textView3"
@@ -65,4 +54,31 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView3" />
+
+    <ImageView
+        android:id="@+id/rectangle_7"
+        android:layout_width="381dp"
+        android:layout_height="0dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="15dp"
+        android:layout_marginEnd="15dp"
+        android:layout_marginBottom="416dp"
+        android:background="@drawable/rectangleforchoicemap"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/route_lists"
+        android:layout_width="321dp"
+        android:layout_height="92dp"
+        android:layout_marginTop="104dp"
+        android:background="@color/colorBackground"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/some_id"
+        tools:listitem="@layout/list_view_route" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

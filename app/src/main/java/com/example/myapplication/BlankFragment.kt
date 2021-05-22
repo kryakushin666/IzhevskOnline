@@ -10,6 +10,7 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import java.util.*
 
 
@@ -82,7 +83,8 @@ class BlankFragment : Fragment() {
         val editor = pref?.edit()
         editor?.putInt("idScreen", id)
         editor?.apply()
-        val intent = Intent(contextCompats, ItemActivity::class.java)
-        startActivity(intent)
+        /*val intent = Intent(contextCompats, ItemActivity::class.java)
+        startActivity(intent)*/
+        findNavController().navigate(R.id.action_navigation_home_to_itemFragment)
     }
 }

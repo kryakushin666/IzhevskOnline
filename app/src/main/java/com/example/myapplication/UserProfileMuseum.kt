@@ -42,7 +42,7 @@ class UserProfileMuseum : Fragment() {
 
         val buttontomap: ImageView = view.findViewById(R.id.buttontomap)
         buttontomap.setOnClickListener {
-            val bundle = bundleOf(USERNAME_COORDINATES to coord)
+            val bundle = bundleOf(USERNAME_COORDINATES to coord, USERNAME_NAME to name)
 
             view.findNavController().navigate(
                     R.id.action_Museumuser_to_navigation_notifications,
@@ -59,7 +59,8 @@ class UserProfileMuseum : Fragment() {
         return view
     }
     companion object {
-        var USERNAME_COORDINATES = coord
+        var USERNAME_COORDINATES = "coord"
+        var USERNAME_NAME = "nane"
     }
 }
 
