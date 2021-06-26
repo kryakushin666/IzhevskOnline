@@ -5,7 +5,7 @@
     app:startDestination="@id/profile_screen">
     <fragment
         android:id="@+id/profile_screen"
-        android:name="com.example.myapplication.ProfileFragment"
+        android:name="com.example.myapplication.fragments.ProfileFragment"
         android:label="@string/title_profile"
         tools:layout="@layout/fragment_profile" />
 </navigation>

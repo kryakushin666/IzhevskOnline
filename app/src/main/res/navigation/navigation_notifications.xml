@@ -6,7 +6,7 @@
     app:startDestination="@id/maps_screen">
     <fragment
         android:id="@+id/maps_screen"
-        android:name="com.example.myapplication.MapsFragment"
+        android:name="com.example.myapplication.fragments.MapsFragment"
         android:label="@string/title_notifications"
         tools:layout="@layout/fragment_maps" >
         <action
@@ -19,7 +19,7 @@
     </fragment>
     <fragment
         android:id="@+id/bottom_screen"
-        android:name="com.example.myapplication.MapsFragment$DemoBottomSheetFragment"
+        android:name="com.example.myapplication.fragments.MapsFragment$DemoBottomSheetFragment"
         android:label="@string/title_notifications"
         tools:layout="@layout/fragment_demo_sheet" >
         <action
@@ -30,13 +30,13 @@
     </fragment>
     <fragment
         android:id="@+id/allinfos_screen"
-        android:name="com.example.myapplication.AllInfoFragment"
+        android:name="com.example.myapplication.fragments.AllInfoFragment"
         android:label="@string/title_notifications"
         tools:layout="@layout/fragment_allinfo" >
     </fragment>
     <fragment
         android:id="@+id/guided_screen"
-        android:name="com.example.myapplication.GuidedFragment"
+        android:name="com.example.myapplication.fragments.GuidedFragment"
         android:label="@string/title_notifications"
         tools:layout="@layout/fragment_guided" >
         <action
@@ -56,7 +56,7 @@
     </fragment>
     <fragment
         android:id="@+id/gunFragment"
-        android:name="com.example.myapplication.GunFragment"
+        android:name="com.example.myapplication.fragments.GunFragment"
         android:label="@string/title_profile"
         tools:layout="@layout/fragment_gun" >
         <action

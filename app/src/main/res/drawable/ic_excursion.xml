@@ -7,7 +7,7 @@
     xmlns:aapt="http://schemas.android.com/aapt"
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
-    <path android:fillColor="#7563E5" android:pathData="M16,0L285,0A16,16 0,0 1,301 16L301,44A16,16 0,0 1,285 60L16,60A16,16 0,0 1,0 44L0,16A16,16 0,0 1,16 0z"/>
+    <path android:fillColor="@color/colorMain" android:pathData="M16,0L285,0A16,16 0,0 1,301 16L301,44A16,16 0,0 1,285 60L16,60A16,16 0,0 1,0 44L0,16A16,16 0,0 1,16 0z"/>
     <path android:pathData="M16,0L285,0A16,16 0,0 1,301 16L301,44A16,16 0,0 1,285 60L16,60A16,16 0,0 1,0 44L0,16A16,16 0,0 1,16 0z">
         <aapt:attr name="android:fillColor">
             <gradient android:endX="145.299" android:endY="44.2341"

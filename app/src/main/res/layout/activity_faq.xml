@@ -32,7 +32,7 @@
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="47dp"
+        android:layout_marginTop="48dp"
         android:layout_marginEnd="51dp"
         android:background="@drawable/ic_backbutton"
         app:layout_constraintEnd_toStartOf="@+id/textsettings"
@@ -69,22 +69,47 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView3" />
 
-    <com.google.android.material.textview.MaterialTextView
+    <TextSwitcher
         android:id="@+id/withlove"
-        android:layout_width="236dp"
-        android:layout_height="29dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
-        android:layout_marginStart="87dp"
-        android:layout_marginTop="32dp"
-        android:layout_marginEnd="87dp"
+        android:layout_marginTop="25dp"
         android:gravity="center_horizontal|top"
         android:text="@string/withlove"
         android:textColor="#2B2C2D"
         android:textSize="22sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/tap2"
+        app:layout_constraintStart_toEndOf="@+id/tap1"
+        app:layout_constraintTop_toBottomOf="@+id/version" />
+
+    <TextView
+        android:id="@+id/tap2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="25dp"
+        android:gravity="center_horizontal|top"
+        android:text="из Ижевска"
+        android:textColor="#2B2C2D"
+        android:textSize="22sp"
+        app:layout_constraintEnd_toEndOf="@+id/imageView3"
+        app:layout_constraintStart_toEndOf="@+id/withlove"
+        app:layout_constraintTop_toBottomOf="@+id/version" />
+
+    <TextView
+        android:id="@+id/tap1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="25dp"
+        android:layout_marginEnd="5dp"
+        android:gravity="center_horizontal|top"
+        android:text="С"
+        android:textColor="#2B2C2D"
+        android:textSize="22sp"
+        app:layout_constraintEnd_toStartOf="@+id/withlove"
+        app:layout_constraintStart_toStartOf="@+id/imageView3"
         app:layout_constraintTop_toBottomOf="@+id/version" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

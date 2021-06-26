@@ -8,7 +8,7 @@
     xmlns:aapt="http://schemas.android.com/aapt"
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
-    <path android:fillColor="#806FE8" android:pathData="M20,0L145,0A20,20 0,0 1,165 20L165,20A20,20 0,0 1,145 40L20,40A20,20 0,0 1,0 20L0,20A20,20 0,0 1,20 0z"/>
+    <path android:fillColor="@color/colorMain" android:pathData="M20,0L145,0A20,20 0,0 1,165 20L165,20A20,20 0,0 1,145 40L20,40A20,20 0,0 1,0 20L0,20A20,20 0,0 1,20 0z"/>
     <path android:pathData="M20,0L145,0A20,20 0,0 1,165 20L165,20A20,20 0,0 1,145 40L20,40A20,20 0,0 1,0 20L0,20A20,20 0,0 1,20 0z">
         <aapt:attr name="android:fillColor">
             <gradient android:endX="91.8862" android:endY="24.527"

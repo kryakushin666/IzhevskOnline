@@ -1,13 +1,19 @@
-package com.example.myapplication
+package com.example.myapplication.activities
 //supportActionBar?.hide()
+import android.content.Context
 import android.os.Bundle
+import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.LiveData
 import androidx.navigation.NavController
 import androidx.navigation.ui.setupActionBarWithNavController
+import com.example.myapplication.R
+import com.example.myapplication.setupWithNavController
+import com.example.myapplication.utilits.initFirebase
+import com.example.myapplication.utilits.initMint
 import com.google.android.material.bottomnavigation.BottomNavigationView
-import com.splunk.mint.Mint
 
+lateinit var bottomNavigationView: BottomNavigationView
 
 class MapsActivity : AppCompatActivity() {
 
@@ -17,11 +23,16 @@ class MapsActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_maps)
         supportActionBar?.hide()
-        Mint.initAndStartSession(this.application, "e35d8a22")
-        Mint.enableLogging(true)
+        initMint(this.application)
+        initFirebase()
+        bottomNavigationView = findViewById(R.id.bottom_nav)
         if (savedInstanceState == null) {
             setupBottomNavigationBar()
         } // Else, need to wait for onRestoreInstanceState
+        if (loadRoute() == 1) {
+            bottomNavigationView.selectedItemId = R.id.navigation_notifications
+            putData()
+        }
     }
 
     override fun onRestoreInstanceState(savedInstanceState: Bundle) {
@@ -57,5 +68,28 @@ class MapsActivity : AppCompatActivity() {
 
     override fun onSupportNavigateUp(): Boolean {
         return currentNavController?.value?.navigateUp() ?: false
+    }
+
+    fun fromFragmentData(data: String?) {
+        if (data != null) {
+            val bottomNavigationView = findViewById<BottomNavigationView>(R.id.bottom_nav)
+            bottomNavigationView.selectedItemId = R.id.navigation_notifications
+            Log.d("Data", "data loaded")
+        }
+    }
+
+    private fun loadRoute(): Int {
+        val pref = this.getSharedPreferences("RouteToMap", Context.MODE_PRIVATE)
+        val editor = pref?.edit()
+        val authComp = pref!!.getInt("RouteToMap", 0)
+        editor?.apply()
+        return authComp
+    }
+
+    private fun putData() {
+        val pref = this.getSharedPreferences("RouteToMap", Context.MODE_PRIVATE)
+        val editor = pref?.edit()
+        editor?.putInt("RouteToMap", 0)
+        editor?.apply()
     }
 }

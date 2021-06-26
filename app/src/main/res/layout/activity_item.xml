@@ -7,41 +7,54 @@
     android:background="@color/colorBackground"
     tools:context=".HotelsFragment">
 
-    <ImageView
-        android:id="@+id/buttons"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="29dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/ic_backbutton"
-        tools:ignore="ContentDescription" />
-
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/colorBackground">
+        android:background="@color/colorBackground"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:layout_editor_absoluteX="-30dp">
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/leaderboard_list"
-            android:layout_width="match_parent"
-            android:layout_height="688dp"
+
+        <ImageView
+            android:id="@+id/buttons"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="24dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/ic_backbutton"
+            tools:ignore="ContentDescription" />
+
+
+        <com.yalantis.phoenix.PullToRefreshView
+            android:id="@+id/pull_to_refresh"
             android:layout_alignParentStart="true"
             android:layout_alignParentTop="true"
             android:layout_alignParentBottom="true"
             android:layout_marginTop="97dp"
-            android:background="@color/colorBackground"
-            android:layoutAnimation="@anim/item_layout_animation"
-            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.481"
+            android:layout_width="match_parent"
+            android:layout_height="0dp">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/leaderboard_list"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/colorBackground"
+            android:layoutAnimation="@anim/item_layout_animation"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+
             tools:listitem="@layout/list_view_item" />
+
+        </com.yalantis.phoenix.PullToRefreshView>
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <TextView

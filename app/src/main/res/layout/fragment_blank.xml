@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/colorBackground"
-    tools:context=".BlankFragment"
+    tools:context=".fragments.BlankFragment"
     tools:ignore="ObsoleteLayoutParam, HardcodedText">
 
     <ImageView
@@ -21,7 +21,7 @@
         app:layout_constraintStart_toEndOf="@+id/goodmorning"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
+    <TextSwitcher
         android:id="@+id/goodmorning"
         android:layout_width="236dp"
         android:layout_height="37dp"
@@ -37,17 +37,16 @@
         android:textSize="22sp"
         android:translationY="-2.52sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"/>
 
-    <TextView
+    <TextSwitcher
         android:id="@+id/goodforpeople"
-        android:layout_width="237dp"
-        android:layout_height="60dp"
+        android:layout_width="235dp"
+        android:layout_height="67dp"
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
         android:layout_marginStart="44dp"
         android:layout_marginTop="52dp"
-        android:fontFamily="@font/mainfont"
         android:gravity="top"
         android:lineSpacingExtra="5sp"
         android:text="Доброго дня!"
@@ -55,7 +54,7 @@
         android:textSize="22sp"
         android:translationY="-2.52sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"/>
 
     <ImageView
         android:id="@+id/Button"

@@ -1,9 +1,11 @@
+
 @file:Suppress("PropertyName")
 
-package ModulesDTO
+package com.example.myapplication.modulesDTO
 
 class GoogleMapDTO {
     var routes = ArrayList<Routes>()
+    var status = ""
 }
 
 class Routes {
@@ -15,7 +17,7 @@ class Legs {
     var duration = Duration()
     var end_address = ""
     var start_address = ""
-    var end_location =Location()
+    var end_location = Location()
     var start_location = Location()
     var steps = ArrayList<Steps>()
 }
@@ -25,7 +27,7 @@ class Steps {
     var duration = Duration()
     var end_address = ""
     var start_address = ""
-    var end_location =Location()
+    var end_location = Location()
     var start_location = Location()
     var polyline = PolyLine()
     var travel_mode = ""
@@ -36,7 +38,6 @@ class Duration {
     var text = ""
     var value = 0
 }
-
 class Distance {
     var text = ""
     var value = 0
@@ -46,7 +47,8 @@ class PolyLine {
     var points = ""
 }
 
-class Location{
-    var lat =""
-    var lng =""
+class Location {
+    var lat = ""
+    var lng = ""
 }
+

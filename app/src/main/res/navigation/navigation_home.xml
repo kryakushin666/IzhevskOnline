@@ -6,7 +6,7 @@
     app:startDestination="@id/blank_screen">
     <fragment
         android:id="@+id/blank_screen"
-        android:name="com.example.myapplication.BlankFragment"
+        android:name="com.example.myapplication.fragments.BlankFragment"
         android:label="@string/title_home"
         tools:layout="@layout/fragment_blank" >
         <action
@@ -48,7 +48,7 @@
 
     <fragment
         android:id="@+id/itemFragment"
-        android:name="com.example.myapplication.ItemActivity"
+        android:name="com.example.myapplication.activities.ItemActivityss"
         android:label="@string/title_profile"
         tools:layout="@layout/activity_item" >
         <action
@@ -81,13 +81,13 @@
 
     <fragment
         android:id="@+id/gunFragment"
-        android:name="com.example.myapplication.GunFragment"
+        android:name="com.example.myapplication.fragments.GunFragment"
         android:label="@string/title_profile"
         tools:layout="@layout/fragment_gun" />
 
     <fragment
         android:id="@+id/Museumuser"
-        android:name="com.example.myapplication.UserProfileMuseum"
+        android:name="com.example.myapplication.fragments.UserProfileMuseum"
         android:label="@string/title_profile"
         tools:layout="@layout/fragment_user_profile">
         <action

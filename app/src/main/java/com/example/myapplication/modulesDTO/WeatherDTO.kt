@@ -1,6 +1,6 @@
 @file:Suppress("PropertyName")
 
-package ModulesDTO
+package com.example.myapplication.modulesDTO
 
 class WeatherDTO {
     var current = Current()

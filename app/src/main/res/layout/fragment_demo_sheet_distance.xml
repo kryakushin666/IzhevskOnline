@@ -1,35 +1,173 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/bottom_sheet_route"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:ignore="HardcodedText"
-    xmlns:tools="http://schemas.android.com/tools">
+    android:background="@drawable/cornerlists"
+    android:orientation="horizontal"
+    app:behavior_hideable="true"
+    android:maxHeight="200dp"
+    app:behavior_peekHeight="200dp"
+    app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior"
+    tools:ignore="HardcodedText">
 
-    <TextView
-        android:id="@+id/some_id"
-        android:layout_width="250dp"
-        android:layout_height="104dp"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginStart="80dp"
-        android:layout_marginTop="238dp"
-        android:gravity="center_horizontal|top"
-        android:text="HELLO WORLD"
-        android:fontFamily="@font/mainfont"
-        android:textAppearance="@style/some_id"
-        />
+    <androidx.cardview.widget.CardView
+        android:id="@+id/route1"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_gravity="center"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="38dp"
+        app:cardCornerRadius="15dp"
+        android:backgroundTint="@color/colorBackground"
+        app:layout_constraintBottom_toBottomOf="@+id/route2"
+        app:layout_constraintEnd_toStartOf="@+id/route2"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/route2">
 
-    <TextView
-        android:id="@+id/some_idss"
-        android:layout_width="250dp"
-        android:layout_height="104dp"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginStart="77dp"
-        android:layout_marginTop="348dp"
-        android:fontFamily="@font/mainfont"
-        android:gravity="center_horizontal|top"
-        android:text="HELLO WORLD"
-        android:textAppearance="@style/some_id" />
 
-</androidx.coordinatorlayout.widget.CoordinatorLayout>
+        <TextView
+            android:id="@+id/minut1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="20 мин"
+            android:textColor= "@color/colorMain"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/km1"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:text="1.2 км"
+            android:textColor="@color/colorMain"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+        <ImageView
+            android:id="@+id/imageRoute1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:srcCompat="@drawable/box_route" />
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/route2"
+        android:layout_width="0dp"
+        android:layout_height="77dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="36dp"
+        android:layout_marginEnd="38dp"
+        app:cardCornerRadius="15dp"
+        android:backgroundTint="@color/colorBackground"
+        app:layout_constraintEnd_toStartOf="@+id/route3"
+        app:layout_constraintStart_toEndOf="@+id/route1"
+        app:layout_constraintTop_toTopOf="parent">
+
+
+        <TextView
+            android:id="@+id/minut2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="20 мин"
+            android:textColor="@color/colorGray"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+        <TextView
+            android:id="@+id/km2"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:text="1.2 км"
+            android:textColor="@color/colorGray"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+        <ImageView
+            android:id="@+id/imageRoute2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="invisible"
+            app:srcCompat="@drawable/box_route" />
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/route3"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_gravity="center"
+        android:backgroundTint="@color/colorBackground"
+        android:layout_marginEnd="16dp"
+        app:cardCornerRadius="15dp"
+        app:layout_constraintBottom_toBottomOf="@+id/route2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/route2"
+        app:layout_constraintTop_toTopOf="@+id/route2">
+
+
+        <TextView
+            android:id="@+id/minut3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="20 мин"
+            android:textColor="@color/colorGray"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/km3"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:text="1.2 км"
+            android:textColor="@color/colorGray"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+        <ImageView
+            android:id="@+id/imageRoute3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="invisible"
+            app:srcCompat="@drawable/box_route" />
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/start"
+        android:layout_width="310dp"
+        android:layout_height="50dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="21dp"
+        android:backgroundTint="@color/colorBackground"
+        app:cardCornerRadius="16dp"
+        app:layout_constraintEnd_toEndOf="@+id/route3"
+        app:layout_constraintStart_toStartOf="@+id/route1"
+        app:layout_constraintTop_toBottomOf="@+id/route2">
+
+        <ImageView
+            android:id="@+id/imageView13"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:srcCompat="@drawable/main_box" />
+
+        <TextView
+            android:id="@+id/textView11"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:textColor="#EAEAEA"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            android:text="Начать" />
+
+
+    </androidx.cardview.widget.CardView>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
