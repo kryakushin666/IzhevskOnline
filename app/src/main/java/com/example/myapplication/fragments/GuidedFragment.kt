@@ -72,9 +72,7 @@ class GuidedFragment : Fragment() {
                     view.findViewById<TextView>(R.id.mainname).text = model.name
                     mBottomSheetGun.state = BottomSheetBehavior.STATE_EXPANDED
                 }
-
             }
-
         }
         mRecyclerView.adapter = mAdapter
         mAdapter.startListening()

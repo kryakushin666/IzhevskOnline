@@ -1,5 +1,5 @@
 package com.example.myapplication.activities
-//supportActionBar?.hide()
+
 import android.content.Context
 import android.os.Bundle
 import android.util.Log

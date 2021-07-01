@@ -14,11 +14,6 @@ import com.example.myapplication.R
 import com.example.myapplication.utilits.initMint
 import kotlinx.android.synthetic.main.activity_faq.*
 
-
-/**
- * An example full-screen activity that shows and hides the system UI (i.e.
- * status bar and navigation/system bar) with user interaction.
- */
 class FAQActivity : AppCompatActivity() {
 
     /*var rotatingTextWrapper: RotatingTextWrapper? = null

@@ -9,15 +9,6 @@ import android.widget.ImageView
 import androidx.fragment.app.Fragment
 import com.example.myapplication.R
 
-
-
-
-
-
-
-/**
- * A fragment representing a list of Items.
- */
 class GunFragment : Fragment() {
 
     private lateinit var buttonPlay: ImageView

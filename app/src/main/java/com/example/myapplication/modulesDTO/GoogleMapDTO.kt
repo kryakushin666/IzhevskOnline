@@ -1,4 +1,3 @@
-
 @file:Suppress("PropertyName")
 
 package com.example.myapplication.modulesDTO

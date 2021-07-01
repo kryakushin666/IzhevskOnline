@@ -87,4 +87,5 @@ dependencies {
     implementation 'com.yalantis:phoenix:1.2.3'
     implementation 'wu.seal.jsontokotlin:library:3.6.1'
     implementation 'com.google.android.gms:play-services-ads:20.2.0'
+    implementation 'com.squareup.picasso:picasso:2.71828'
 }

@@ -50,7 +50,6 @@ import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.snackbar.Snackbar
 
-
 var maintext = "This my work"
 var mainid = "This my work"
 var dirtext = "This my work"

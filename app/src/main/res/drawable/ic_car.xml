@@ -1,0 +1,14 @@
+<!--
+  ~ Copyright (c) 2021. Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+  ~ (c) $Name
+  ~ Morbi non lorem porttitor neque feugiat blandit. Ut vitae ipsum eget quam lacinia accumsan.
+  ~ Etiam sed turpis ac ipsum condimentum fringilla. Maecenas magna.
+  ~ Proin dapibus sapien vel ante. Aliquam erat volutpat. Pellentesque sagittis ligula eget metus.
+  ~ Vestibulum commodo. Ut rhoncus gravida arcu.
+  -->
+
+<vector android:autoMirrored="true" android:height="17dp"
+    android:viewportHeight="17" android:viewportWidth="19"
+    android:width="19dp" xmlns:android="http://schemas.android.com/apk/res/android">
+    <path android:fillColor="#464646" android:pathData="M16.8044,1.0731C16.5933,0.4462 16.0022,0 15.3056,0H3.6944C2.9978,0 2.4172,0.4462 2.1956,1.0731L0,7.4375V15.9375C0,16.5219 0.475,17 1.0556,17H2.1111C2.6917,17 3.1667,16.5219 3.1667,15.9375V14.875H15.8333V15.9375C15.8333,16.5219 16.3083,17 16.8889,17H17.9444C18.525,17 19,16.5219 19,15.9375V7.4375L16.8044,1.0731ZM3.6944,11.6875C2.8183,11.6875 2.1111,10.9756 2.1111,10.0938C2.1111,9.2119 2.8183,8.5 3.6944,8.5C4.5706,8.5 5.2778,9.2119 5.2778,10.0938C5.2778,10.9756 4.5706,11.6875 3.6944,11.6875ZM15.3056,11.6875C14.4294,11.6875 13.7222,10.9756 13.7222,10.0938C13.7222,9.2119 14.4294,8.5 15.3056,8.5C16.1817,8.5 16.8889,9.2119 16.8889,10.0938C16.8889,10.9756 16.1817,11.6875 15.3056,11.6875ZM2.1111,6.375L3.6944,1.5938H15.3056L16.8889,6.375H2.1111Z"/>
+</vector>

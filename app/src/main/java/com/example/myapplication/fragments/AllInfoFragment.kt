@@ -21,13 +21,6 @@ import java.util.regex.Pattern
 @Suppress("NULLABILITY_MISMATCH_BASED_ON_JAVA_ANNOTATIONS")
 class AllInfoFragment : Fragment() {
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-
-        arguments?.let {
-        }
-    }
-
     @SuppressLint("SetTextI18n")
     override fun onCreateView(
             inflater: LayoutInflater, container: ViewGroup?,

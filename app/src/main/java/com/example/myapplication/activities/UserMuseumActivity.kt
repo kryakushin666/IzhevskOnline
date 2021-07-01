@@ -20,7 +20,6 @@ var coords = "my work"
  */
 class UserMuseumActivity : AppCompatActivity() {
 
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.fragment_user_profile)
