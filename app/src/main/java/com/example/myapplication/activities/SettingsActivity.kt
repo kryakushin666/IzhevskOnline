@@ -1,22 +1,28 @@
 package com.example.myapplication.activities
 
-import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.example.myapplication.R
+import com.example.myapplication.utilits.editData
+import com.example.myapplication.utilits.initFirebase
 import com.example.myapplication.utilits.initMint
 import com.getkeepsafe.taptargetview.TapTarget
 import com.getkeepsafe.taptargetview.TapTargetSequence
+import com.google.firebase.auth.FirebaseAuth
 import kotlinx.android.synthetic.main.activity_settings.*
 
 class SettingsActivity : AppCompatActivity() {
+
+    private lateinit var auth: FirebaseAuth
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_settings)
         supportActionBar?.hide()
         initMint(this.application)
+        initFirebase()
+        auth = FirebaseAuth.getInstance()
         backbutton.setOnClickListener {
             finish()
         }
@@ -27,9 +33,19 @@ class SettingsActivity : AppCompatActivity() {
         exitofaccount.setOnClickListener {
             val intent = Intent(this, AuthActivity::class.java)
             startActivity(intent)
-            putAuth()
+            editData(this, "AuthSuccessful", "AuthComp", "0", "putInt")
             finishAffinity()
+            auth.signOut()
         }
+        gototwodesign.setOnClickListener {
+            if(editData(this, "BlankTwoFragment", "TwoFragment", "0", "getInt")?.toInt() == 0) {
+                editData(this, "BlankTwoFragment", "TwoFragment", "1", "putInt")
+            } else editData(this, "BlankTwoFragment", "TwoFragment", "0", "putInt")
+            finishAffinity()
+            val intent = Intent(this, MapsActivity::class.java)
+            startActivity(intent)
+        }
+
         // Using deprecated methods makes you look way cool
         // Using deprecated methods makes you look way cool
         TapTargetSequence(this)
@@ -71,11 +87,5 @@ class SettingsActivity : AppCompatActivity() {
             }).start()
     }
 
-    private fun putAuth() {
-        val pref = this.getSharedPreferences("AuthSuccessful", Context.MODE_PRIVATE)
-        val editor = pref?.edit()
-        editor?.putInt("AuthComp", 0)
-        editor?.apply()
-    }
 
 }

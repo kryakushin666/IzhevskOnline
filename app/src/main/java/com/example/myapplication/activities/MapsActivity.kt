@@ -1,16 +1,15 @@
 package com.example.myapplication.activities
 
-import android.content.Context
 import android.os.Bundle
-import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.LiveData
 import androidx.navigation.NavController
 import androidx.navigation.ui.setupActionBarWithNavController
 import com.example.myapplication.R
-import com.example.myapplication.setupWithNavController
+import com.example.myapplication.utilits.editData
 import com.example.myapplication.utilits.initFirebase
 import com.example.myapplication.utilits.initMint
+import com.example.myapplication.utilits.setupWithNavController
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
 lateinit var bottomNavigationView: BottomNavigationView
@@ -29,9 +28,10 @@ class MapsActivity : AppCompatActivity() {
         if (savedInstanceState == null) {
             setupBottomNavigationBar()
         } // Else, need to wait for onRestoreInstanceState
-        if (loadRoute() == 1) {
+
+        if (editData(this,"RouteToMap", "RouteToMap", "0", "getInt")?.toInt() == 1) {
             bottomNavigationView.selectedItemId = R.id.navigation_notifications
-            putData()
+            editData(this, "RouteToMap", "RouteToMap", "0", "putInt")
         }
     }
 
@@ -70,26 +70,4 @@ class MapsActivity : AppCompatActivity() {
         return currentNavController?.value?.navigateUp() ?: false
     }
 
-    fun fromFragmentData(data: String?) {
-        if (data != null) {
-            val bottomNavigationView = findViewById<BottomNavigationView>(R.id.bottom_nav)
-            bottomNavigationView.selectedItemId = R.id.navigation_notifications
-            Log.d("Data", "data loaded")
-        }
-    }
-
-    private fun loadRoute(): Int {
-        val pref = this.getSharedPreferences("RouteToMap", Context.MODE_PRIVATE)
-        val editor = pref?.edit()
-        val authComp = pref!!.getInt("RouteToMap", 0)
-        editor?.apply()
-        return authComp
-    }
-
-    private fun putData() {
-        val pref = this.getSharedPreferences("RouteToMap", Context.MODE_PRIVATE)
-        val editor = pref?.edit()
-        editor?.putInt("RouteToMap", 0)
-        editor?.apply()
-    }
 }

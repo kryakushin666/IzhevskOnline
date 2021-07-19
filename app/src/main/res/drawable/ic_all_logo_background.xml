@@ -4,9 +4,9 @@
     android:viewportWidth="108"
     android:viewportHeight="108"
     android:autoMirrored="true">
-  <group android:scaleX="0.36"
-      android:scaleY="0.36">
-      <path android:fillColor="#313131" android:pathData="M0,0h300v300h-300z"/>
-     
-  </group>
+    <group android:scaleX="0.36"
+        android:scaleY="0.36">
+        <path android:fillColor="#313131" android:pathData="M0,0h300v300h-300z"/>
+
+    </group>
 </vector>

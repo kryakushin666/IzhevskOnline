@@ -7,6 +7,7 @@ import android.content.Context
 import android.content.pm.PackageManager
 import android.graphics.Bitmap
 import android.graphics.Canvas
+import android.graphics.Color
 import android.graphics.drawable.VectorDrawable
 import android.location.Location
 import android.location.LocationManager
@@ -29,15 +30,12 @@ import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.example.myapplication.R
-import com.example.myapplication.activities.UserMuseumActivity.Companion.USERNAME_COORDINATES
 import com.example.myapplication.activities.bottomNavigationView
 import com.example.myapplication.directions.DirectionsHelper
 import com.example.myapplication.fragments.GunFragment.Companion.OBJECT_GUIDED
+import com.example.myapplication.fragments.UserMuseumFragment.Companion.USERNAME_COORDINATES
 import com.example.myapplication.notification.NotificationHelper
-import com.example.myapplication.utilits.initFirebase
-import com.example.myapplication.utilits.latitudeStartMap
-import com.example.myapplication.utilits.longitudeStartMap
-import com.example.myapplication.utilits.zoomLevel
+import com.example.myapplication.utilits.*
 import com.example.myapplication.weather.WeatherHelper
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationRequest
@@ -48,7 +46,6 @@ import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.*
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.floatingactionbutton.FloatingActionButton
-import com.google.android.material.snackbar.Snackbar
 
 var maintext = "This my work"
 var mainid = "This my work"
@@ -114,9 +111,10 @@ class MapsFragment : Fragment(), GoogleMap.OnMarkerClickListener,
         // Устанавливаем максимальное приближение
         map.setMinZoomPreference(zoomLevel)
         val guided = arguments?.getString(OBJECT_GUIDED) ?: "HELLO WORLD"
-        val coord = loadRouteDataCoord()
-        val nameofobject = loadRouteDataName()
-        putRouteData()
+        val coord = editData(contextCompats, "USERNAME", "USERNAME_COORDINATES", "HELLO S", "getString").toString()
+        val nameofobject = editData(contextCompats, "USERNAME", "USERNAME_NAME", "0", "getString").toString()
+        editData(contextCompats, "USERNAME", "USERNAME_COORDINATES", "HELLO S", "putString")
+        editData(contextCompats, "USERNAME", "USERNAME_NAME", "0", "putString")
 
         if (coord != "HELLO S") {
             map.addMarker(
@@ -190,27 +188,6 @@ class MapsFragment : Fragment(), GoogleMap.OnMarkerClickListener,
         // Получаем координаты и выводим как уведомление
         //Toast.makeText(contextCompats, getLastKnownLocation(contextCompats), Toast.LENGTH_LONG).show()
     }
-
-    private fun displayError(message: String) {
-        val snackBar = Snackbar.make(
-            requireActivity().findViewById(android.R.id.content),
-            message,
-            Snackbar.LENGTH_SHORT
-        )
-        snackBar.view.setBackgroundResource(R.drawable.curved_bg_error)
-        snackBar.show()
-    }
-
-    private fun displayMessage(message: String) {
-        val snackBar = Snackbar.make(
-            requireActivity().findViewById(android.R.id.content),
-            message,
-            Snackbar.LENGTH_SHORT
-        )
-        snackBar.view.setBackgroundResource(R.drawable.curved_bg_successful)
-        snackBar.show()
-    }
-
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -248,14 +225,28 @@ class MapsFragment : Fragment(), GoogleMap.OnMarkerClickListener,
         km1 = fragmentLayout.findViewById(R.id.km1)
         km2 = fragmentLayout.findViewById(R.id.km2)
         km3 = fragmentLayout.findViewById(R.id.km3)
+        textdistance.text = minut1.text
+        textdistance.setTextColor(Color.parseColor("#5D8EEF"))
+
+        km1.setTextColor(Color.parseColor("#5D8EEF"))
+        minut1.setTextColor(Color.parseColor("#5D8EEF"))
+        km2.setTextColor(Color.parseColor("#5D8EEF"))
+        minut2.setTextColor(Color.parseColor("#5D8EEF"))
+        km3.setTextColor(Color.parseColor("#5D8EEF"))
+        minut3.setTextColor(Color.parseColor("#5D8EEF"))
+        imageRoute1.visibility = View.VISIBLE
+        imageRoute2.visibility = View.INVISIBLE
+        imageRoute3.visibility = View.INVISIBLE
         route1.setOnClickListener {
             textdistance.text = minut1.text
-            km1.setTextColor(ContextCompat.getColor(contextCompats, R.color.colorMain))
-            minut1.setTextColor(ContextCompat.getColor(contextCompats, R.color.colorMain))
-            km2.setTextColor(ContextCompat.getColor(contextCompats, R.color.colorGray))
-            minut2.setTextColor(ContextCompat.getColor(contextCompats, R.color.colorGray))
-            km3.setTextColor(ContextCompat.getColor(contextCompats, R.color.colorGray))
-            minut3.setTextColor(ContextCompat.getColor(contextCompats, R.color.colorGray))
+            textdistance.setTextColor(Color.parseColor("#5D8EEF"))
+
+            km1.setTextColor(Color.parseColor("#5D8EEF"))
+            minut1.setTextColor(Color.parseColor("#5D8EEF"))
+            km2.setTextColor(Color.parseColor("#5D8EEF"))
+            minut2.setTextColor(Color.parseColor("#5D8EEF"))
+            km3.setTextColor(Color.parseColor("#5D8EEF"))
+            minut3.setTextColor(Color.parseColor("#5D8EEF"))
             imageRoute1.visibility = View.VISIBLE
             imageRoute2.visibility = View.INVISIBLE
             imageRoute3.visibility = View.INVISIBLE
@@ -263,31 +254,37 @@ class MapsFragment : Fragment(), GoogleMap.OnMarkerClickListener,
         }
         route2.setOnClickListener {
             textdistance.text = minut2.text
-            km1.setTextColor(ContextCompat.getColor(contextCompats, R.color.colorGray))
-            minut1.setTextColor(ContextCompat.getColor(contextCompats, R.color.colorGray))
-            km2.setTextColor(ContextCompat.getColor(contextCompats, R.color.colorMain))
-            minut2.setTextColor(ContextCompat.getColor(contextCompats, R.color.colorMain))
-            km3.setTextColor(ContextCompat.getColor(contextCompats, R.color.colorGray))
-            minut3.setTextColor(ContextCompat.getColor(contextCompats, R.color.colorGray))
+            textdistance.setTextColor(Color.parseColor("#5D8EEF"))
+            km1.setTextColor(Color.parseColor("#5D8EEF"))
+            minut1.setTextColor(Color.parseColor("#5D8EEF"))
+            km2.setTextColor(Color.parseColor("#5D8EEF"))
+            minut2.setTextColor(Color.parseColor("#5D8EEF"))
+            km3.setTextColor(Color.parseColor("#5D8EEF"))
+            minut3.setTextColor(Color.parseColor("#5D8EEF"))
             imageRoute2.visibility = View.VISIBLE
             imageRoute1.visibility = View.INVISIBLE
             imageRoute3.visibility = View.INVISIBLE
         }
         route3.setOnClickListener {
             textdistance.text = minut3.text
-            km1.setTextColor(ContextCompat.getColor(contextCompats, R.color.colorGray))
-            minut1.setTextColor(ContextCompat.getColor(contextCompats, R.color.colorGray))
-            km2.setTextColor(ContextCompat.getColor(contextCompats, R.color.colorGray))
-            minut2.setTextColor(ContextCompat.getColor(contextCompats, R.color.colorGray))
-            km3.setTextColor(ContextCompat.getColor(contextCompats, R.color.colorMain))
-            minut3.setTextColor(ContextCompat.getColor(contextCompats, R.color.colorMain))
+            textdistance.setTextColor(Color.parseColor("#5D8EEF"))
+            km1.setTextColor(Color.parseColor("#5D8EEF"))
+            minut1.setTextColor(Color.parseColor("#5D8EEF"))
+            km2.setTextColor(Color.parseColor("#5D8EEF"))
+            minut2.setTextColor(Color.parseColor("#5D8EEF"))
+            km3.setTextColor(Color.parseColor("#5D8EEF"))
+            minut3.setTextColor(Color.parseColor("#5D8EEF"))
             imageRoute3.visibility = View.VISIBLE
             imageRoute1.visibility = View.INVISIBLE
             imageRoute2.visibility = View.INVISIBLE
         }
         //lotties = fragmentLayout.findViewById(R.id.lotties) as LottieAnimationView
         buttonss.setOnClickListener {
-            
+            DirectionsHelper(requireFragmentManager()).getTwoDirection(
+                getLastKnownLocation(
+                    contextCompats
+                ), "56.83996208388173, 53.19589266822729"
+            )
         }
         fragmentLayout.findViewById<ImageView>(R.id.backbutton).setOnClickListener {
             mBottomSheetRoute.state = BottomSheetBehavior.STATE_HIDDEN
@@ -387,19 +384,19 @@ class MapsFragment : Fragment(), GoogleMap.OnMarkerClickListener,
             when (ids) {
                 "m0" -> {
                     fragmentLayout.findViewById<ImageView>(R.id.mainimg)
-                        .setImageResource(R.drawable.amaks)
+                        .setImageResource(R.drawable.ic_eyeforad)
                     fragmentLayout.findViewById<ImageView>(R.id.galaryone)
-                        .setImageResource(R.drawable.amaks)
+                        .setImageResource(R.drawable.ic_eyeforad)
                     fragmentLayout.findViewById<ImageView>(R.id.galarytwo)
-                        .setImageResource(R.drawable.amaks)
+                        .setImageResource(R.drawable.ic_eyeforad)
                 }
                 "m1" -> {
                     fragmentLayout.findViewById<ImageView>(R.id.mainimg)
-                        .setImageResource(R.drawable.cafe_kare)
+                        .setImageResource(R.drawable.ic_eyeforad)
                     fragmentLayout.findViewById<ImageView>(R.id.galaryone)
-                        .setImageResource(R.drawable.cafe_kare)
+                        .setImageResource(R.drawable.ic_eyeforad)
                     fragmentLayout.findViewById<ImageView>(R.id.galarytwo)
-                        .setImageResource(R.drawable.cafe_kare)
+                        .setImageResource(R.drawable.ic_eyeforad)
                 }
             }
         }
@@ -419,35 +416,6 @@ class MapsFragment : Fragment(), GoogleMap.OnMarkerClickListener,
         }
         mBottomSheetBehavior.addBottomSheetCallback(bottomSheetCallback)
         return fragmentLayout
-
-    }
-
-    private fun loadRouteDataCoord(): String {
-        val contextCompats = requireContext().applicationContext
-        val pref = contextCompats.getSharedPreferences("USERNAME", Context.MODE_PRIVATE)
-        val editor = pref?.edit()
-        val authComp = pref!!.getString("USERNAME_COORDINATES", "HELLO S")
-        editor?.apply()
-        return authComp!!
-    }
-
-    private fun loadRouteDataName(): String {
-        val contextCompats = requireContext().applicationContext
-        val pref = contextCompats.getSharedPreferences("USERNAME", Context.MODE_PRIVATE)
-        val editor = pref?.edit()
-        val authComp = pref!!.getString("USERNAME_NAME", "0")
-        editor?.apply()
-        return authComp!!
-    }
-
-    private fun putRouteData() {
-        val contextCompats = requireContext().applicationContext
-        val pref = contextCompats.getSharedPreferences("USERNAME", Context.MODE_PRIVATE)
-        val editor = pref?.edit()
-        editor?.putString("USERNAME_NAME", "0")
-        editor?.putString("USERNAME_COORDINATES", "HELLO S")
-        editor?.apply()
-
 
     }
 
@@ -491,7 +459,6 @@ class MapsFragment : Fragment(), GoogleMap.OnMarkerClickListener,
                 Toast.makeText(contextCompats, "Вы попали в зону локации $name", Toast.LENGTH_LONG)
                     .show()
             }
-
         }
     }
 
@@ -621,19 +588,19 @@ class MapsFragment : Fragment(), GoogleMap.OnMarkerClickListener,
             when (ids) {
                 "m0" -> {
                     fragmentLayout.findViewById<ImageView>(R.id.mainimg)
-                        .setImageResource(R.drawable.amaks)
+                        .setImageResource(R.drawable.ic_eyeforad)
                     fragmentLayout.findViewById<ImageView>(R.id.galaryone)
-                        .setImageResource(R.drawable.amaks)
+                        .setImageResource(R.drawable.ic_eyeforad)
                     fragmentLayout.findViewById<ImageView>(R.id.galarytwo)
-                        .setImageResource(R.drawable.amaks)
+                        .setImageResource(R.drawable.ic_eyeforad)
                 }
                 "m1" -> {
                     fragmentLayout.findViewById<ImageView>(R.id.mainimg)
-                        .setImageResource(R.drawable.cafe_kare)
+                        .setImageResource(R.drawable.ic_eyeforad)
                     fragmentLayout.findViewById<ImageView>(R.id.galaryone)
-                        .setImageResource(R.drawable.cafe_kare)
+                        .setImageResource(R.drawable.ic_eyeforad)
                     fragmentLayout.findViewById<ImageView>(R.id.galarytwo)
-                        .setImageResource(R.drawable.cafe_kare)
+                        .setImageResource(R.drawable.ic_eyeforad)
                 }
             }
         }

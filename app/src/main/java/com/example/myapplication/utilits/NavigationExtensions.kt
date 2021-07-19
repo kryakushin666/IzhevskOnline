@@ -1,4 +1,4 @@
-package com.example.myapplication
+package com.example.myapplication.utilits
 
 import android.R
 import android.content.Intent

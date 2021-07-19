@@ -11,6 +11,8 @@
         <item name="colorSecondaryVariant">@color/teal_700</item>
         <item name="colorOnSecondary">@color/black</item>
         <item name="android:windowContentOverlay">@null</item>
+       <!-- <item name="android:background">@color/colorBackground</item>
+        <item name="android:textColorHint">@color/colorTexts</item>-->
         <!-- Status bar color. -->
         <!-- Customize your theme here. -->
     </style>

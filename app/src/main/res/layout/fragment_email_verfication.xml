@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#6F98E7">
+
+        <ImageView
+            android:id="@+id/exitbutton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/ic_exitbutton"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/mainfont"
+            android:paddingStart="62dp"
+            android:paddingEnd="62dp"
+            android:layout_marginTop="145dp"
+            android:gravity="center_horizontal|top"
+            android:text="Подтвердите адрес эл. почты"
+            android:textColor="#F4F4F4"
+            android:textSize="28sp" />
+
+        <TextView
+            android:id="@+id/textemail"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Мы отправили код на почту ********@*****.**"
+            android:textSize="18sp"
+            android:textColor="#E9E9E9"
+            android:fontFamily="@font/mainfont"
+            android:layout_marginTop="15dp"
+            android:paddingStart="75dp"
+            android:paddingEnd="79dp"
+            android:gravity="center_horizontal|top"/>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="112dp"
+        android:layout_marginEnd="111dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="47dp"
+        app:cardCornerRadius="20dp">
+
+        <ImageView
+            android:id="@+id/mainimg"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="centerCrop"
+            android:backgroundTint="#D9E5FC"
+            android:background="@drawable/main_box" />
+
+        <EditText
+            android:id="@+id/codeInput"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:textSize="19sp"
+            android:background="@null"
+            android:textColor="#808080"
+            android:fontFamily="@font/mainfont"
+            android:hint="Код"
+            android:inputType="text"
+            android:autofillHints="Код" />
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardView1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="100dp"
+        app:cardCornerRadius="20dp">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="centerCrop"
+            android:backgroundTint="#D9E5FC"
+            android:background="@drawable/main_box" />
+
+        <TextView
+            android:id="@+id/continue_next"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:textSize="19sp"
+            android:background="@null"
+            android:textColor="#808080"
+            android:fontFamily="@font/mainfont"
+            android:text="Продолжить"
+            />
+    </androidx.cardview.widget.CardView>
+
+
+
+
+</LinearLayout>

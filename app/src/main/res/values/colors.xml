@@ -13,6 +13,7 @@
     <color name="colorBackgroundSplash">#313131</color>
     <color name="colorBackground">#F4F4F4</color>
     <color name="colorMain">#E3256B</color>
+    <color name="acenttest">#5D8EEF</color>
     <color name="colorLogo">#313131</color>
     <color name="colorBackgroundblack">#121421</color>
     <color name="transparent">#00000000</color>
@@ -22,4 +23,6 @@
     <color name="light_blue_A400">#FF00B0FF</color>
     <color name="black_overlay">#66000000</color>
     <color name="colorGray">#616161</color>
+    <color name="colorTexts">#2B2C2D</color>
+    <color name="colorTextsBlack">#F4F4F4</color>
 </resources>

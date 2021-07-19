@@ -13,7 +13,7 @@
         android:layout_height="52dp"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
-        android:layout_marginTop="48dp"
+        android:layout_marginTop="24dp"
         android:fontFamily="@font/mainfont"
         android:gravity="center_horizontal|top"
         android:text="Настройки"
@@ -32,7 +32,7 @@
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="48dp"
+        android:layout_marginTop="24dp"
         android:layout_marginEnd="51dp"
         android:background="@drawable/ic_backbutton"
         app:layout_constraintEnd_toStartOf="@+id/textsettings"
@@ -108,4 +108,22 @@
         app:layout_constraintHorizontal_bias="0.492"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/faqbutton" />
+
+    <TextView
+        android:id="@+id/gototwodesign"
+        android:layout_width="192dp"
+        android:layout_height="55dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="144dp"
+        android:layout_marginTop="21dp"
+        android:layout_marginEnd="144dp"
+        android:gravity="center_horizontal|top"
+        android:text="Тестовый дизайн"
+        android:textColor="#3C76E7"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.492"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/exitofaccount" />
 </androidx.constraintlayout.widget.ConstraintLayout>

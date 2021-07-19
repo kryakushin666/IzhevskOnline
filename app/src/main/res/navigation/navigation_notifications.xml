@@ -27,6 +27,9 @@
             app:destination="@id/allinfos_screen"
             app:popUpTo="@id/maps_screen"
             app:popUpToInclusive="true" />
+        <action
+            android:id="@+id/action_bottom_screen_self"
+            app:destination="@id/bottom_screen" />
     </fragment>
     <fragment
         android:id="@+id/allinfos_screen"

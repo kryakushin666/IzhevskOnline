@@ -19,9 +19,9 @@ import okhttp3.Request
 
 interface Directions {
     // Функция дешифровки URL
-    class GetDirection(private val url: String, private val fragmentManager: FragmentManager) : AsyncTask<Void, Void, List<List<LatLng>>>() {
+    class GetDirection(private val url: String, private val fragmentManager: FragmentManager) : AsyncTask<String, Void, String>() {
         @SuppressLint("WrongThread")
-        override fun doInBackground(vararg params: Void?): List<List<LatLng>>? {
+        override fun doInBackground(vararg params: String?): String {
             val client = OkHttpClient()
             val request = Request.Builder().url(url).build()
             val response = client.newCall(request).execute()
@@ -64,13 +64,14 @@ interface Directions {
                     bottomNavigationView.visibility = View.INVISIBLE
 
                     result.add(path)
+                    createPolyline(result)
                 } else {
                     ErrRouteDialog().show(fragmentManager, "MyCustomFragment")
                 }
             } catch (e: Exception) {
                 e.printStackTrace()
             }
-            return result
+            return "result"
         }
 
         private fun decodePolyline(encoded: String): List<LatLng> {
@@ -110,8 +111,8 @@ interface Directions {
 
             return poly
         }
-        // Отрисовка линий маршрута на карте
-        override fun onPostExecute(result: List<List<LatLng>>) {
+
+        fun createPolyline(result: List<List<LatLng>>) {
             polylineFinal?.remove()
             val lineoption = PolylineOptions()
             for (i in result.indices) {
@@ -128,6 +129,9 @@ interface Directions {
             val alltext = dirtext
             textdistance.text = alltext
             mBottomSheetTimeRoute.visibility = View.VISIBLE
+        }
+        // Отрисовка линий маршрута на карте
+        override fun onPostExecute(result: String?) {
         }
     }
 }

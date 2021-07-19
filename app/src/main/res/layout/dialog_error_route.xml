@@ -7,8 +7,8 @@
 
     <TextView
         android:id="@+id/maintext"
-        android:layout_width="203dp"
-        android:layout_height="65dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
         android:layout_marginStart="49dp"
@@ -26,8 +26,8 @@
 
     <TextView
         android:id="@+id/helpourproject"
-        android:layout_width="197dp"
-        android:layout_height="26dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
         android:layout_marginStart="61dp"
@@ -75,8 +75,9 @@
         app:srcCompat="@drawable/rectbutton" />
 
     <TextView
-        android:layout_width="123dp"
-        android:layout_height="28dp"
+        android:id="@+id/returntext"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
         android:layout_marginStart="90dp"

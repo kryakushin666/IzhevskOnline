@@ -2,10 +2,12 @@ package com.example.myapplication.fragments
 
 import android.media.MediaPlayer
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import com.example.myapplication.R
 
@@ -14,12 +16,6 @@ class GunFragment : Fragment() {
     private lateinit var buttonPlay: ImageView
     private lateinit var mp: MediaPlayer
     private var mainGuided = "GunCenter"
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-        }
-    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -31,6 +27,7 @@ class GunFragment : Fragment() {
             val bundle = bundleOf(OBJECT_GUIDED to mainGuided)
             findNavController().navigate(R.id.action_gunFragment_to_maps_screen, bundle)
         }
+
         buttonPlay = fragmentLayout.findViewById(R.id.button_play)*/
        /* mp = MediaPlayer.create(contextCompats, R.raw.music)
         mp.isLooping = true
@@ -38,6 +35,14 @@ class GunFragment : Fragment() {
         buttonPlay.setOnClickListener {
             playBtnClick()
         }*/
+        val bm = fragmentLayout.findViewById<ImageView>(R.id.imageView10)
+        bm.setOnClickListener {
+           /* val wrappedDrawable: Drawable = DrawableCompat.wrap(ContextCompat.getDrawable(requireContext(), R.drawable.main_box)!!)
+            DrawableCompat.setTint(wrappedDrawable, ContextCompat.getColor(requireContext(), R.color.colorGreen))
+            bm?.background = wrappedDrawable*/
+            bm.setBackgroundColor(ContextCompat.getColor(requireContext(), R.color.colorGreen))
+            Log.d("Shiza", "da-da")
+        }
         // возвращаем макет фрагмента
         return fragmentLayout
     }

@@ -1,0 +1,14 @@
+<!--
+  ~ Copyright (c) 2021. Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+  ~ (c) $Name
+  ~ Morbi non lorem porttitor neque feugiat blandit. Ut vitae ipsum eget quam lacinia accumsan.
+  ~ Etiam sed turpis ac ipsum condimentum fringilla. Maecenas magna.
+  ~ Proin dapibus sapien vel ante. Aliquam erat volutpat. Pellentesque sagittis ligula eget metus.
+  ~ Vestibulum commodo. Ut rhoncus gravida arcu.
+  -->
+
+<vector android:autoMirrored="true" android:height="16dp"
+    android:viewportHeight="16" android:viewportWidth="17"
+    android:width="17dp" xmlns:android="http://schemas.android.com/apk/res/android">
+    <path android:fillColor="#E7D264" android:pathData="M8.5,0L10.4084,5.8734L16.584,5.8734L11.5878,9.5033L13.4962,15.3766L8.5,11.7467L3.5038,15.3766L5.4122,9.5033L0.416,5.8734L6.5916,5.8734L8.5,0Z"/>
+</vector>

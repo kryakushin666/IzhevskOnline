@@ -4,5 +4,5 @@
 
     <item
         android:drawable="@drawable/ic_logo_foreground"
-        android:gravity="top" />
+        android:gravity="center" />
 </layer-list>

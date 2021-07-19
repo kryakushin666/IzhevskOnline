@@ -5,6 +5,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.RecyclerView
@@ -28,6 +29,11 @@ class ProfileFragment : Fragment() {
         val listOfTitle = listOf(
             "Добавить маршрут"
         )
+        val bm = fragmentLayout.findViewById<ImageView>(R.id.toproute)
+        bm.setOnClickListener {
+            //val color = ContextCompat.getDrawable(requireContext(), R.drawable.ic_excursion)
+            //bmsetBackgroundColor(Color.parseColor("#5D8EEF"))
+        }
         val viewAdapter = MyAdapter(Array(15) { listOfTitle[it % listOfTitle.size] }, fragmentLayout)
         val recyclerView = fragmentLayout.findViewById<RecyclerView>(R.id.route_lists)
         recyclerView.run {
