@@ -13,7 +13,7 @@
     tools:ignore="HardcodedText">
 
     <TextView
-        android:id="@+id/some_id"
+        android:id="@+id/mainName"
         android:layout_width="209dp"
         android:layout_height="84dp"
         android:layout_alignParentStart="true"
@@ -37,6 +37,7 @@
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="12dp"
+        android:visibility="invisible"
         android:gravity="top"
         android:text="@string/maininf"
         android:textColor="#3A3A3A"
@@ -46,7 +47,7 @@
         app:layout_constraintTop_toBottomOf="@+id/addtoroute" />
 
     <TextView
-        android:id="@+id/some_idsss"
+        android:id="@+id/detailed"
         android:layout_width="90dp"
         android:layout_height="22dp"
         android:layout_alignParentStart="true"
@@ -58,10 +59,10 @@
         android:textColor="#3C76E7"
         android:textSize="16sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/some_idss" />
+        app:layout_constraintTop_toBottomOf="@+id/routeStart" />
 
     <ImageView
-        android:id="@+id/rectangle_3"
+        android:id="@+id/routeStart"
         android:layout_width="165dp"
         android:layout_height="40dp"
         android:layout_alignParentStart="true"
@@ -82,16 +83,16 @@
         android:layout_gravity="center"
         android:layout_marginTop="24dp"
         app:cardCornerRadius="20dp"
-        app:layout_constraintEnd_toEndOf="@+id/some_id"
-        app:layout_constraintStart_toStartOf="@+id/some_id"
-        app:layout_constraintTop_toBottomOf="@+id/some_id">
+        app:layout_constraintEnd_toEndOf="@+id/mainName"
+        app:layout_constraintStart_toStartOf="@+id/mainName"
+        app:layout_constraintTop_toBottomOf="@+id/mainName">
 
         <ImageView
             android:id="@+id/mainimg"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:scaleType="centerCrop"
-            android:src="@drawable/ic_errorroute" />
+            android:src="@drawable/main_box" />
     </androidx.cardview.widget.CardView>
 
     <androidx.cardview.widget.CardView
@@ -103,14 +104,14 @@
         android:layout_marginTop="40dp"
         app:cardCornerRadius="20dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/some_idsss">
+        app:layout_constraintTop_toBottomOf="@+id/detailed">
 
         <ImageView
             android:id="@+id/galaryone"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:scaleType="centerCrop"
-            app:srcCompat="@drawable/ic_errorroute" />
+            app:srcCompat="@drawable/main_box" />
 
     </androidx.cardview.widget.CardView>
 
@@ -122,14 +123,14 @@
         android:layout_marginEnd="40dp"
         app:cardCornerRadius="20dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/some_idsss">
+        app:layout_constraintTop_toBottomOf="@+id/detailed">
 
         <ImageView
             android:id="@+id/galarytwo"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:scaleType="centerCrop"
-            app:srcCompat="@drawable/ic_errorroute" />
+            app:srcCompat="@drawable/main_box" />
 
     </androidx.cardview.widget.CardView>
 
@@ -137,18 +138,19 @@
         android:id="@+id/addtoroute"
         android:layout_width="168dp"
         android:layout_height="20dp"
-        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="24dp"
         android:gravity="center_horizontal|top"
+        android:visibility="invisible"
         android:text="Добавить к маршруту"
         android:textColor="#3C76E7"
         android:textSize="15sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.51"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/rectangle_3" />
+        app:layout_constraintTop_toBottomOf="@+id/routeStart" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

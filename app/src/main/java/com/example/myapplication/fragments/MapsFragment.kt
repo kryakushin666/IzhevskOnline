@@ -13,6 +13,7 @@ import android.location.Location
 import android.location.LocationManager
 import android.os.Build
 import android.os.Bundle
+import android.os.Handler
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -29,15 +30,18 @@ import androidx.core.content.ContextCompat
 import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.RecyclerView
 import com.example.myapplication.R
+import com.example.myapplication.`interface`.respObjDatabase
 import com.example.myapplication.activities.bottomNavigationView
+import com.example.myapplication.database.DatabaseHelper
 import com.example.myapplication.directions.DirectionsHelper
-import com.example.myapplication.fragments.GunFragment.Companion.OBJECT_GUIDED
+import com.example.myapplication.fragments.GunFragment.Companion.EXCURSION_ID
 import com.example.myapplication.fragments.UserMuseumFragment.Companion.USERNAME_COORDINATES
 import com.example.myapplication.notification.NotificationHelper
+import com.example.myapplication.place.PlaceHelper
 import com.example.myapplication.utilits.*
 import com.example.myapplication.weather.WeatherHelper
-import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationRequest
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
@@ -46,43 +50,41 @@ import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.*
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.floatingactionbutton.FloatingActionButton
+import okhttp3.internal.wait
+
 
 var maintext = "This my work"
 var mainid = "This my work"
 var dirtext = "This my work"
 var disttext = "This my work"
 var coordtext = "This my work"
-var maintemp = 0.0
-lateinit var mBottomSheetRoute: BottomSheetBehavior<*>
-lateinit var mBottomSheetTimeRoute: ConstraintLayout
 
-lateinit var textdistance: TextView
+//lateinit var mBottomSheetRoute: BottomSheetBehavior<*>
+//lateinit var mBottomSheetTimeRoute: ConstraintLayout
 
-lateinit var minut1: TextView
+//lateinit var textdistance: TextView
+
+/*lateinit var minut1: TextView
 lateinit var minut2: TextView
 lateinit var minut3: TextView
 lateinit var km1: TextView
 lateinit var km2: TextView
-lateinit var km3: TextView
+lateinit var km3: TextView*/
 
 var polylineFinal: Polyline? = null
 
 lateinit var map: GoogleMap
 
-var fusedLocationProviderClient: FusedLocationProviderClient? = null
 var locationRequest: LocationRequest? = null
 var userLocationMarker: Marker? = null
 var userLocationAccuracyCircle: Circle? = null
 
 @Suppress("CAST_NEVER_SUCCEEDS")
-class MapsFragment : Fragment(), GoogleMap.OnMarkerClickListener,
-    GoogleMap.OnMyLocationChangeListener {
+class MapsFragment : Fragment(), GoogleMap.OnMarkerClickListener {
 
     // Разрешения для использования и получения геолокации
     //private lateinit var fusedLocationClient: FusedLocationProviderClient
     private val requestLocationPermission = 1
-    private lateinit var buttonss: TextView
-    private lateinit var buttons: TextView
     private lateinit var fab: ImageView
     private lateinit var fabinfo: FloatingActionButton
     private lateinit var fabcamera: FloatingActionButton
@@ -102,21 +104,22 @@ class MapsFragment : Fragment(), GoogleMap.OnMarkerClickListener,
         map.moveCamera(CameraUpdateFactory.newLatLngZoom(homeLatLng, zoomLevel))
         // Создание меток на карте
         map.setOnMarkerClickListener(this)
-        map.setOnMyLocationChangeListener(this)
         map.uiSettings.isMapToolbarEnabled = false
         map.uiSettings.isMyLocationButtonEnabled = false
         //map.setOnMyLocationChangeListener(this)
         // Включение геолокации и запрос разрешения
         enableMyLocation()
+        //map.isTrafficEnabled = true
         // Устанавливаем максимальное приближение
         map.setMinZoomPreference(zoomLevel)
-        val guided = arguments?.getString(OBJECT_GUIDED) ?: "HELLO WORLD"
+        var guided = arguments?.getInt(EXCURSION_ID, -1)
         val coord = editData(contextCompats, "USERNAME", "USERNAME_COORDINATES", "HELLO S", "getString").toString()
         val nameofobject = editData(contextCompats, "USERNAME", "USERNAME_NAME", "0", "getString").toString()
         editData(contextCompats, "USERNAME", "USERNAME_COORDINATES", "HELLO S", "putString")
         editData(contextCompats, "USERNAME", "USERNAME_NAME", "0", "putString")
 
         if (coord != "HELLO S") {
+            map.clear()
             map.addMarker(
                 MarkerOptions()
                     .position(convertertoLatLng(coord))
@@ -129,64 +132,34 @@ class MapsFragment : Fragment(), GoogleMap.OnMarkerClickListener,
                 ), coord
             )*/
         }
-        if (guided == "GunCenter") {
-            map.addMarker(
-                MarkerOptions()
-                    .position(LatLng(56.84383886160861, 53.191198130527944))
-                    .title("Главный корпус\n оружейного завода")
-                    .icon(getBitmapDescriptor(R.drawable.icon_on_map))
-            )
-            map.addMarker(
-                MarkerOptions()
-                    .position(LatLng(56.844568122459364, 53.191131214863674))
-                    .title("Памятник Дерябину")
-                    .icon(getBitmapDescriptor(R.drawable.icon_on_map))
-            )
-            map.addMarker(
-                MarkerOptions()
-                    .position(LatLng(56.848892795955905, 53.19585937814813))
-                    .title("Ижевский\n индустриальный техникум")
-                    .icon(getBitmapDescriptor(R.drawable.icon_on_map))
-            )
-            map.addMarker(
-                MarkerOptions()
-                    .position(LatLng(56.84408400157632, 53.19771856787305))
-                    .title("Памятник ижевским\n оружейникам")
-                    .icon(getBitmapDescriptor(R.drawable.icon_on_map))
-            )
-            map.addMarker(
-                MarkerOptions()
-                    .position(LatLng(56.84398424917061, 53.198120889542295))
-                    .title("Музей ИЖМАШ")
-                    .icon(getBitmapDescriptor(R.drawable.icon_on_map))
-            )
-            map.addMarker(
-                MarkerOptions()
-                    .position(LatLng(56.83996208388173, 53.19589266822729))
-                    .title("Долгий мост\n и завод «Ижсталь")
-                    .icon(getBitmapDescriptor(R.drawable.icon_on_map))
-            )
-            map.addMarker(
-                MarkerOptions()
-                    .position(LatLng(56.85177628926549, 53.2002482478798))
-                    .title("Здание из красного\n кирпича")
-                    .icon(getBitmapDescriptor(R.drawable.icon_on_map))
-            )
-            map.addMarker(
-                MarkerOptions()
-                    .position(LatLng(56.85073186241447, 53.20672264326064))
-                    .title("Музейно-выставочный\n комплекс стрелкового\n оружия имени Михаила\n Тимофеевича Калашникова")
-                    .icon(getBitmapDescriptor(R.drawable.icon_on_map))
-            )
-            map.addMarker(
-                MarkerOptions()
-                    .position(LatLng(56.85285289473385, 53.215664171778975))
-                    .title("Арсенал")
-                    .icon(getBitmapDescriptor(R.drawable.icon_on_map))
-            )
+        if(guided != -1 && guided != null) {
+            val allCounterLatLng: ArrayList<String> = ArrayList()
+            val allCounterName: ArrayList<String> = ArrayList()
+            var size: Int? = null
+            allCounterLatLng.clear()
+            allCounterName.clear()
+            map.clear()
+            DatabaseHelper(requireFragmentManager()) {
+                Log.d("dada", respObjDatabase.response.size.toString())
+                size = respObjDatabase.response.size
+                for(i in 0 until size!!) {
+                    allCounterLatLng.add(respObjDatabase.response[i].latlng)
+                    allCounterName.add(respObjDatabase.response[i].name)
+                }
+                activity?.runOnUiThread {
+                    map.clear()
+                    for (i in 0 until size!!) {
+                        map.addMarker(
+                            MarkerOptions()
+                                .position(convertertoLatLng(allCounterLatLng[i % allCounterLatLng.size]))
+                                .title(allCounterName[i % allCounterName.size])
+                                .icon(getBitmapDescriptor(R.drawable.icon_on_map))
+                        )
+                    }
+                }
+            }.getTwoData("SELECT * FROM `excursionsObjects` WHERE `id` = '$guided'")
+            guided = -1
         }
-        // Получаем координаты и выводим как уведомление
-        //Toast.makeText(contextCompats, getLastKnownLocation(contextCompats), Toast.LENGTH_LONG).show()
     }
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -195,8 +168,6 @@ class MapsFragment : Fragment(), GoogleMap.OnMarkerClickListener,
     ): View? {
         val fragmentLayout = inflater.inflate(R.layout.fragment_maps, container, false)
         val contextCompats = requireContext().applicationContext
-        buttonss = fragmentLayout.findViewById(R.id.buttonss)
-        buttons = fragmentLayout.findViewById(R.id.buttons)
         fab = fragmentLayout.findViewById(R.id.fablocation)
         fabinfo = fragmentLayout.findViewById(R.id.fabinfo)
         fabcamera = fragmentLayout.findViewById(R.id.fabcamera)
@@ -204,19 +175,18 @@ class MapsFragment : Fragment(), GoogleMap.OnMarkerClickListener,
         fabexc = fragmentLayout.findViewById(R.id.fabexc)
         mBottomSheetBehavior =
             BottomSheetBehavior.from(fragmentLayout.findViewById(R.id.bottom_sheet))
-        mBottomSheetRoute =
-            BottomSheetBehavior.from(fragmentLayout.findViewById(R.id.bottom_sheet_route))
-        textdistance = fragmentLayout.findViewById(R.id.time_route)
-        mBottomSheetTimeRoute = fragmentLayout.findViewById(R.id.bottom_time_route)
+        //mBottomSheetRoute = BottomSheetBehavior.from(fragmentLayout.findViewById(R.id.bottom_sheet_route))
+        //textdistance = fragmentLayout.findViewById(R.id.time_route)
+        //mBottomSheetTimeRoute = fragmentLayout.findViewById(R.id.bottom_time_route)
         mBottomSheetBehavior.state = BottomSheetBehavior.STATE_HIDDEN
-        mBottomSheetRoute.state = BottomSheetBehavior.STATE_HIDDEN
+        //mBottomSheetRoute.state = BottomSheetBehavior.STATE_HIDDEN
         bottomNavigationView.visibility = View.VISIBLE
-        mBottomSheetTimeRoute.visibility = View.INVISIBLE
-        minut1 = fragmentLayout.findViewById(R.id.minut1)
+        //mBottomSheetTimeRoute.visibility = View.INVISIBLE
+        /*minut1 = fragmentLayout.findViewById(R.id.minut1)
         minut2 = fragmentLayout.findViewById(R.id.minut2)
-        minut3 = fragmentLayout.findViewById(R.id.minut3)
+        minut3 = fragmentLayout.findViewById(R.id.minut3)*/
 
-        val imageRoute1 = fragmentLayout.findViewById<ImageView>(R.id.imageRoute1)
+        /*val imageRoute1 = fragmentLayout.findViewById<ImageView>(R.id.imageRoute1)
         val imageRoute2 = fragmentLayout.findViewById<ImageView>(R.id.imageRoute2)
         val imageRoute3 = fragmentLayout.findViewById<ImageView>(R.id.imageRoute3)
         val route1 = fragmentLayout.findViewById<CardView>(R.id.route1)
@@ -278,26 +248,13 @@ class MapsFragment : Fragment(), GoogleMap.OnMarkerClickListener,
             imageRoute1.visibility = View.INVISIBLE
             imageRoute2.visibility = View.INVISIBLE
         }
-        //lotties = fragmentLayout.findViewById(R.id.lotties) as LottieAnimationView
-        buttonss.setOnClickListener {
-            DirectionsHelper(requireFragmentManager()).getTwoDirection(
-                getLastKnownLocation(
-                    contextCompats
-                ), "56.83996208388173, 53.19589266822729"
-            )
-        }
-        fragmentLayout.findViewById<ImageView>(R.id.backbutton).setOnClickListener {
+        lotties = fragmentLayout.findViewById(R.id.lotties) as LottieAnimationView*/
+        /*fragmentLayout.findViewById<ImageView>(R.id.backbutton).setOnClickListener {
             mBottomSheetRoute.state = BottomSheetBehavior.STATE_HIDDEN
             mBottomSheetTimeRoute.visibility = View.INVISIBLE
             bottomNavigationView.visibility = View.VISIBLE
             polylineFinal?.remove()
-        }
-        initFirebase()
-        buttons.setOnClickListener {
-            NotificationHelper().createNotificationChannel(contextCompats)
-            WeatherHelper().getWeather(contextCompats)
-            // getMoreDirection("56.84383886160861, 53.191198130527944","56.85285289473385, 53.215664171778975", "56.844568122459364, 53.191131214863674|56.848892795955905, 53.19585937814813|56.84408400157632, 53.19771856787305|56.84398424917061, 53.198120889542295|56.83996208388173, 53.19589266822729|56.85177628926549, 53.2002482478798|56.85073186241447, 53.20672264326064")
-        }
+        }*/
         fab.setOnClickListener {
             map.animateCamera(
                 CameraUpdateFactory.newLatLng(
@@ -327,57 +284,52 @@ class MapsFragment : Fragment(), GoogleMap.OnMarkerClickListener,
                 fabcamera.startAnimation(fabOpen)
                 fabcheckloc.startAnimation(fabOpen)
                 fabexc.startAnimation(fabOpen)
-                /*fabcamera.isClickable
-                fabcheckloc.isClickable*/
                 fabcheckloc.show()
                 fabcamera.show()
                 fabexc.show()
-
                 fabIsOpen = true
             }
-
         }
         fabcamera.setOnClickListener {
-            Toast.makeText(contextCompats, "fabcamera", Toast.LENGTH_SHORT).show()
+            findNavController().navigate(R.id.action_maps_screen_to_checklandmark_screen)
         }
         fabcheckloc.setOnClickListener {
-            Toast.makeText(contextCompats, "fabcheckloc", Toast.LENGTH_SHORT).show()
+            val bundle = bundleOf("UserLocation" to getLastKnownLocation(contextCompats))
+            findNavController().navigate(R.id.action_maps_screen_to_checkloc_screen, bundle)
         }
         fabexc.setOnClickListener {
             findNavController().navigate(R.id.action_maps_screen_to_guided_screen)
         }
         val mapFragment = childFragmentManager.findFragmentById(R.id.maps) as SupportMapFragment?
-        val coord = arguments?.getString(USERNAME_COORDINATES) ?: "HELLO S"
+        val coord = editData(contextCompats, "USERNAME", "USERNAME_COORDINATES", "HELLO S", "getString").toString()
         if (coord != "HELLO S") {
             mapFragment?.getMapAsync(callback)
+            Log.d("MapsFragment", coord)
         }
-        val guided = arguments?.getString(OBJECT_GUIDED) ?: "HELLO WORLD"
+        val guided = arguments?.getInt(EXCURSION_ID, -1)
         Log.d("tt", "$guided loading")
-        if (guided == "GunCenter") {
+        if(guided != -1 && guided != null) {
             mapFragment?.getMapAsync(callback)
         }
-        //val coordinate = converterLatLng(coord)
-        Log.d("coord", "oord: $coord")
-
         if (coord != "HELLO S") {
-            DirectionsHelper(requireFragmentManager()).getTwoDirection(
+            DirectionsHelper(requireFragmentManager(), requireActivity()).getTwoDirection(
                 getLastKnownLocation(
                     contextCompats
                 ), coord
             )
         }
-        lateinit var rectangle: ImageView
-        rectangle = fragmentLayout.findViewById(R.id.rectangle_3)
-        rectangle.setOnClickListener {
-            DirectionsHelper(requireFragmentManager()).getTwoDirection(
+        val routeStart = fragmentLayout.findViewById<ImageView>(R.id.routeStart)
+        routeStart.setOnClickListener {
+            DirectionsHelper(requireFragmentManager(), requireActivity()).getTwoDirection(
                 getLastKnownLocation(
                     contextCompats
                 ), coordtext
             )
             mBottomSheetBehavior.state = BottomSheetBehavior.STATE_HIDDEN
         }
-        fragmentLayout.findViewById<TextView>(R.id.some_idsss).setOnClickListener {
-            val bundle = bundleOf(OBJECT_NAME to maintext, OBJECT_ID to mainid)
+        fragmentLayout.findViewById<TextView>(R.id.detailed).setOnClickListener {
+            val objectId = arguments?.getInt(EXCURSION_ID, -1)
+            val bundle = bundleOf(OBJECT_NAME to maintext, OBJECT_ID to objectId)
             findNavController().navigate(R.id.allinfos_screen, bundle)
         }
         fun changeText(ids: String) {
@@ -402,7 +354,7 @@ class MapsFragment : Fragment(), GoogleMap.OnMarkerClickListener,
         }
 
         changeText(mainid)
-        fragmentLayout.findViewById<TextView>(R.id.some_id).text = maintext
+        fragmentLayout.findViewById<TextView>(R.id.mainName).text = maintext
         val bottomSheetCallback = object : BottomSheetBehavior.BottomSheetCallback() {
 
             override fun onStateChanged(bottomSheet: View, newState: Int) {
@@ -426,12 +378,6 @@ class MapsFragment : Fragment(), GoogleMap.OnMarkerClickListener,
         mapFragment?.getMapAsync(callback)
     }
 
-    fun converterToLatLng(coordinate: LatLng): String {
-        val lat = coordinate.latitude
-        val lng = coordinate.longitude
-        return "$lat, $lng"
-    }
-
     // Функция проверки есть ли разрешение
     private fun isPermissionGranted(): Boolean {
         val contextCompats = requireContext().applicationContext
@@ -439,27 +385,6 @@ class MapsFragment : Fragment(), GoogleMap.OnMarkerClickListener,
             contextCompats,
             Manifest.permission.ACCESS_FINE_LOCATION
         ) == PackageManager.PERMISSION_GRANTED
-    }
-
-
-    override fun onMyLocationChange(location: Location) {
-        val target = Location("target")
-        var name = "какой-то"
-        val contextCompats = requireContext().applicationContext
-        for (point in arrayOf(
-            LatLng(56.85285289473385, 53.215664171778975),
-            LatLng(56.85073186241447, 53.20672264326064)
-        )) {
-            target.latitude = point.latitude
-            target.longitude = point.longitude
-            if (point == LatLng(56.85285289473385, 53.215664171778975)) {
-                name = "арсенал"
-            }
-            if (location.distanceTo(target) < 50f) {
-                Toast.makeText(contextCompats, "Вы попали в зону локации $name", Toast.LENGTH_LONG)
-                    .show()
-            }
-        }
     }
 
     // Функция включения геолокации
@@ -571,41 +496,33 @@ class MapsFragment : Fragment(), GoogleMap.OnMarkerClickListener,
         coordtext = converterLatLng(coord)
         bottomNavigationView.visibility = View.INVISIBLE
         mBottomSheetBehavior.state = BottomSheetBehavior.STATE_HALF_EXPANDED
-        val rectangle: ImageView = fragmentLayout.findViewById(R.id.rectangle_3)
-        rectangle.setOnClickListener {
-            DirectionsHelper(requireFragmentManager()).getTwoDirection(
+        val routeStart: ImageView = fragmentLayout.findViewById(R.id.routeStart)
+        routeStart.setOnClickListener {
+            DirectionsHelper(requireFragmentManager(), requireActivity()).getTwoDirection(
                 getLastKnownLocation(
                     contextCompats
                 ), coordtext
             )
             mBottomSheetBehavior.state = BottomSheetBehavior.STATE_HIDDEN
         }
-        fragmentLayout.findViewById<TextView>(R.id.some_idsss).setOnClickListener {
+        fragmentLayout.findViewById<TextView>(R.id.detailed).setOnClickListener {
             val bundle = bundleOf(OBJECT_NAME to maintext, OBJECT_ID to mainid)
             findNavController().navigate(R.id.allinfos_screen, bundle)
         }
-        fun changeText(ids: String) {
-            when (ids) {
-                "m0" -> {
-                    fragmentLayout.findViewById<ImageView>(R.id.mainimg)
-                        .setImageResource(R.drawable.ic_eyeforad)
-                    fragmentLayout.findViewById<ImageView>(R.id.galaryone)
-                        .setImageResource(R.drawable.ic_eyeforad)
-                    fragmentLayout.findViewById<ImageView>(R.id.galarytwo)
-                        .setImageResource(R.drawable.ic_eyeforad)
+        fun changeText(name: String) {
+            DatabaseHelper(requireFragmentManager()) {
+                activity?.runOnUiThread {
+                    fragmentLayout.findViewById<ImageView>(R.id.mainimg).downloadAndInto(
+                        respObjDatabase.response[0].galleryone)
+                    fragmentLayout.findViewById<ImageView>(R.id.galaryone).downloadAndInto(
+                        respObjDatabase.response[0].gallerytwo)
+                    fragmentLayout.findViewById<ImageView>(R.id.galarytwo).downloadAndInto(
+                        respObjDatabase.response[0].gallerythree)
                 }
-                "m1" -> {
-                    fragmentLayout.findViewById<ImageView>(R.id.mainimg)
-                        .setImageResource(R.drawable.ic_eyeforad)
-                    fragmentLayout.findViewById<ImageView>(R.id.galaryone)
-                        .setImageResource(R.drawable.ic_eyeforad)
-                    fragmentLayout.findViewById<ImageView>(R.id.galarytwo)
-                        .setImageResource(R.drawable.ic_eyeforad)
-                }
-            }
+            }.getTwoData("SELECT * FROM `excursionsObjects` WHERE `name` = '$name'")
         }
-        changeText(mainid)
-        fragmentLayout.findViewById<TextView>(R.id.some_id).text = maintext
+        changeText(maintext)
+        fragmentLayout.findViewById<TextView>(R.id.mainName).text = maintext
         //fragmentManager?.let { it1 -> sheet.show(it1, "DemoBottomSheetFragment") }
 
     }

@@ -21,16 +21,16 @@
 
     <ImageView
         android:id="@+id/buttontomap"
-        android:layout_width="165dp"
-        android:layout_height="0dp"
+        android:layout_width="167dp"
+        android:layout_height="41dp"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
         android:layout_marginTop="28dp"
-        android:background="@drawable/ic_buttonmain"
+        android:background="@drawable/main_box"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.501"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/picture" />
+        app:layout_constraintTop_toBottomOf="@+id/pictureCard" />
 
     <TextView
         android:id="@+id/textView4"
@@ -38,7 +38,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
-        android:layout_marginBottom="7dp"
+        android:layout_marginBottom="8dp"
         android:fontFamily="@font/mainfont"
         android:gravity="center_horizontal|top"
         android:text="На карте"
@@ -46,20 +46,30 @@
         android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="@+id/buttontomap"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent" />
 
-    <ImageView
-        android:id="@+id/picture"
+    <androidx.cardview.widget.CardView
+        android:id="@+id/pictureCard"
         android:layout_width="205dp"
         android:layout_height="142dp"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
         android:layout_marginTop="31dp"
+        app:cardCornerRadius="11dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/profile_user_name"
-        tools:background="@drawable/parkhotel"
-        tools:ignore="ContentDescription" />
+        app:layout_constraintTop_toBottomOf="@+id/profile_user_name">
+
+        <ImageView
+            android:id="@+id/picture"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="centerCrop"
+            android:background="@drawable/main_box"
+            tools:ignore="ContentDescription" />
+
+    </androidx.cardview.widget.CardView>
 
     <TextView
         android:id="@+id/some_id"

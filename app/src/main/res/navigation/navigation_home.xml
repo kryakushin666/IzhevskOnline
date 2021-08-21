@@ -10,13 +10,6 @@
         android:label="@string/title_home"
         tools:layout="@layout/fragment_blank" >
         <action
-            android:id="@+id/action_navigation_home_to_gunFragment"
-            app:destination="@id/gunFragment"
-            app:enterAnim="@anim/fade_in"
-            app:exitAnim="@anim/fade_out"
-            app:popEnterAnim="@anim/fade_in"
-            app:popExitAnim="@anim/fade_out" />
-        <action
             android:id="@+id/action_navigation_home_to_itemFragment"
             app:destination="@id/itemFragment"
             app:enterAnim="@anim/fade_in"
@@ -38,13 +31,6 @@
             app:popEnterAnim="@anim/fade_in"
             app:popExitAnim="@anim/fade_out" />
     </fragment>
-
-
-    <fragment
-        android:id="@+id/gunFragment"
-        android:name="com.example.myapplication.fragments.GunFragment"
-        android:label="@string/title_profile"
-        tools:layout="@layout/fragment_gun" />
 
     <fragment
         android:id="@+id/Museumuser"

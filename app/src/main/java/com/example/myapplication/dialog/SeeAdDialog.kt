@@ -13,7 +13,11 @@ import com.example.myapplication.activities.AdActivity
 
 class SeeAdDialog : DialogFragment() {
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
         dialog!!.window?.setBackgroundDrawableResource(R.drawable.shapealert);
         val view = inflater.inflate(R.layout.dialog_successful_route, container, false)
         val contextCompats = requireContext().applicationContext

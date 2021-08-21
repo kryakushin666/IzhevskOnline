@@ -22,7 +22,19 @@ class FAQActivity : AppCompatActivity() {
     private var versionCode = "0"
     var packageInfo: PackageInfo? = null
     private val textList =
-        arrayOf("❤", "🧡", "💛", "💚", "💙", "💜", "🤎", "🖤", "🤍", "💞", "💖")
+        arrayOf(
+            "❤",
+            "🧡",
+            "💛",
+            "💚",
+            "💙",
+            "💜",
+            "🤎",
+            "🖤",
+            "🤍",
+            "💞",
+            "💖"
+        ) // Массив с сердвечками для показа
     var index = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {

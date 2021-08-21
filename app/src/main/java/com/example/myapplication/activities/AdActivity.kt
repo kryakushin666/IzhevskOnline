@@ -1,5 +1,3 @@
-
-
 package com.example.myapplication.activities
 
 import android.os.Bundle
@@ -19,28 +17,36 @@ import com.google.android.gms.ads.interstitial.InterstitialAdLoadCallback
 class AdActivity : AppCompatActivity() {
 
     private var mInterstitialAd: InterstitialAd? = null
-    private var TAG = "AdActivity"
+    private var TAG = "AdActivity" // Тэг для логирования
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        // Устанавливаем layout и убираем верхнюю панель
         setContentView(R.layout.activity_ad)
         supportActionBar?.hide()
+        // Инициализируем Mint
         initMint(this.application)
+        // Инициализируем Mobile Ads
         MobileAds.initialize(this)
         val adRequest = AdRequest.Builder().build()
+        // Загружзаем рекламу
+        InterstitialAd.load(
+            this,
+            getString(R.string.admob_reward_id),
+            adRequest,
+            object : InterstitialAdLoadCallback() {
+                override fun onAdFailedToLoad(adError: LoadAdError) {
+                    Log.d(TAG, adError.message)
+                    mInterstitialAd = null
+                }
 
-        InterstitialAd.load(this,getString(R.string.admob_reward_id), adRequest, object : InterstitialAdLoadCallback() {
-            override fun onAdFailedToLoad(adError: LoadAdError) {
-                Log.d(TAG, adError.message)
-                mInterstitialAd = null
-            }
-
-            override fun onAdLoaded(interstitialAd: InterstitialAd) {
-                Log.d(TAG, "Ad was loaded.")
-                mInterstitialAd = interstitialAd
-            }
-        })
-        mInterstitialAd?.fullScreenContentCallback = object: FullScreenContentCallback() {
+                override fun onAdLoaded(interstitialAd: InterstitialAd) {
+                    Log.d(TAG, "Ad was loaded.")
+                    mInterstitialAd = interstitialAd
+                }
+            })
+        // Показываем
+        mInterstitialAd?.fullScreenContentCallback = object : FullScreenContentCallback() {
             override fun onAdDismissedFullScreenContent() {
                 Log.d(TAG, "Ad was dismissed.")
             }

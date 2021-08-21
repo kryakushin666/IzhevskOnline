@@ -27,30 +27,6 @@
             tools:context=".activities.MapsActivity"
             tools:ignore="FragmentTagUsage" />
 
-        <Button
-            android:id="@+id/buttonss"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentTop="true"
-            android:layout_alignParentBottom="true"
-            android:layout_marginTop="37dp"
-            android:layout_marginEnd="33dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <Button
-            android:id="@+id/buttons"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentTop="true"
-            android:layout_alignParentEnd="true"
-            android:layout_alignParentBottom="true"
-            android:layout_marginStart="36dp"
-            android:layout_marginTop="37dp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
         <com.google.android.material.bottomnavigation.BottomNavigationView
             android:id="@+id/bottom_nav"
             android:layout_width="0dp"
@@ -96,9 +72,9 @@
             android:layout_height="wrap_content"
             android:layout_alignParentStart="true"
             android:layout_alignParentTop="true"
-            android:layout_marginStart="16dp"
+            android:layout_marginStart="20dp"
             android:layout_marginBottom="92dp"
-            android:src="@drawable/ic_control_camera_24"
+            android:src="@drawable/ic_baseline_camera_24"
             android:visibility="invisible"
             app:backgroundTint="#313131"
             app:fabSize="mini"
@@ -113,9 +89,9 @@
             android:layout_height="wrap_content"
             android:layout_alignParentStart="true"
             android:layout_alignParentTop="true"
-            android:layout_marginStart="16dp"
+            android:layout_marginStart="20dp"
             android:layout_marginBottom="148dp"
-            android:src="@drawable/ic_control_camera_24"
+            android:src="@drawable/ic_baseline_my_location_24"
             android:visibility="invisible"
             app:backgroundTint="#313131"
             app:fabSize="mini"
@@ -129,9 +105,9 @@
             android:layout_height="wrap_content"
             android:layout_alignParentStart="true"
             android:layout_alignParentTop="true"
-            android:layout_marginStart="16dp"
+            android:layout_marginStart="20dp"
             android:layout_marginBottom="208dp"
-            android:src="@drawable/ic_control_camera_24"
+            android:src="@drawable/ic_baseline_location_on_24"
             android:visibility="invisible"
             app:backgroundTint="#313131"
             app:fabSize="mini"
@@ -141,7 +117,7 @@
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <!--<androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/bottom_time_route"
         android:layout_width="match_parent"
         android:layout_height="120dp"
@@ -202,8 +178,7 @@
             app:layout_constraintStart_toEndOf="@+id/imageView17"
             app:layout_constraintTop_toBottomOf="@+id/textView12" />
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout> -->
 
     <include layout="@layout/fragment_demo_sheet" />
-    <include layout="@layout/fragment_demo_sheet_distance" />
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

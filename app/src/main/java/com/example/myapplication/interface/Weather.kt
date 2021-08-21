@@ -21,9 +21,9 @@ interface Weather {
             Log.d("Weather", " data : $data")
             try {
                 val respObj = Gson().fromJson(data, WeatherDTO::class.java)
-                val maintemp = respObj.current.temp_c.toInt()
-                Log.d("temp", "$maintemp")
-                NotificationHelper().sendNotification(WeatherHelper().checkWeather(maintemp), contextCompats)
+                val mainTemp = respObj.current.temp_c.toInt()
+                Log.d("temp", "$mainTemp")
+                NotificationHelper().sendNotification(WeatherHelper().checkWeather(mainTemp), contextCompats)
 
             } catch (e: Exception) {
                 e.printStackTrace()

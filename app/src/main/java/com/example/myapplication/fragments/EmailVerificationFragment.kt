@@ -28,13 +28,7 @@ import com.example.myapplication.activities.AuthActivity
 import com.example.myapplication.activities.MapsActivity
 import com.example.myapplication.database.DatabaseHelper
 import com.example.myapplication.email.EmailHelper
-import com.example.myapplication.fragments.RegFragment.Companion.OBJECT_EMAIL
-import com.example.myapplication.fragments.RegFragment.Companion.OBJECT_LASTNAME
-import com.example.myapplication.fragments.RegFragment.Companion.OBJECT_NAME
-import com.example.myapplication.fragments.RegFragment.Companion.OBJECT_PASSWORD
-import com.example.myapplication.fragments.RegFragment.Companion.OBJECT_UID
 import com.example.myapplication.utilits.editData
-import com.google.firebase.auth.FirebaseAuth
 
 
 /**
@@ -45,49 +39,46 @@ class EmailVerificationFragment : Fragment() {
 
     private val TAG = "EmailVerificationFragment"
 
-    private var mAuth: FirebaseAuth? = null
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?,
     ): View? {
         val fragmentLayout = inflater.inflate(R.layout.fragment_email_verfication, container, false)
-        val contextCompats = requireContext().applicationContext
+
         fragmentLayout.findViewById<ImageView>(R.id.exitbutton).setOnClickListener {
             findNavController().popBackStack()
         }
-        val email: String = arguments?.getString(OBJECT_EMAIL, "email").toString()
+        val email: String = arguments?.getString("EmailOfPeople", "email").toString()
         val outputCode: String = sendEmailVerification(email)
         fragmentLayout.findViewById<TextView>(R.id.textemail).text = "Мы отправили код на почту $email"
         Log.d(TAG, outputCode)
         fragmentLayout.findViewById<TextView>(R.id.continue_next).setOnClickListener {
             val codeInput: String = fragmentLayout.findViewById<EditText>(R.id.codeInput).text.toString()
-            checkCode(outputCode, codeInput, fragmentLayout)
+            checkCode(outputCode, codeInput)
         }
-        Log.d(TAG, "init $TAG is successful")
+        Log.d(TAG, "Init $TAG is successful")
         return fragmentLayout
     }
 
     private fun sendEmailVerification(email: String): String {
-        Log.d(TAG, "start emailVerification")
+        Log.d(TAG, "Start Email Verification")
         val contextCompats = requireContext().applicationContext
         return EmailHelper().setVerifyCode(contextCompats, email)
 
     }
-    private fun checkCode(outputCode: String, codeInput: String, view: View) {
+    private fun checkCode(outputCode: String, codeInput: String) {
         val contextCompats = requireContext().applicationContext
         if(outputCode == codeInput){
-            val name: String = arguments?.getString(OBJECT_NAME, "name").toString()
-            val uid: String = arguments?.getString(OBJECT_UID, "uid").toString()
-            val email: String = arguments?.getString(OBJECT_EMAIL, "email").toString()
-            val password: String = arguments?.getString(OBJECT_PASSWORD, "password").toString()
-            val lastname: String = arguments?.getString(OBJECT_LASTNAME, "lastname").toString()
+            val name: String = arguments?.getString("NameOfPeople", "name").toString()
+            val email: String = arguments?.getString("EmailOfPeople", "email").toString()
+            val password: String = arguments?.getString("PasswordOfPeople", "password").toString()
+            val lastname: String = arguments?.getString("LastNameOfPeople", "lastname").toString()
             editData(contextCompats, "USERNAME", "USERNAME_EMAIL", email, "putString")
-            editData(contextCompats, "NameofPeople", "NamePeople", name, "putString")
+            editData(contextCompats, "NameOfPeople", "NamePeople", name, "putString")
             editData(contextCompats, "AuthSuccessful", "AuthComp", "1", "putInt")
             DatabaseHelper(requireFragmentManager()) {
-                Log.d(TAG, respObjDatabase[0].email)
-            }.getTwoData("INSERT INTO `accounts`(`id`, `name`, `lastname`, `email`, `password`) VALUES ('$uid','$name','$lastname','$email','$password')")
+                Log.d(TAG, respObjDatabase.response[0].email)
+            }.getTwoData("INSERT INTO `accounts`(`name`, `lastname`, `email`, `password`) VALUES ('$name','$lastname','$email','$password')")
             Handler().postDelayed(
                 {
                     val intent = Intent(contextCompats, MapsActivity::class.java)

@@ -10,8 +10,11 @@ import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.example.myapplication.R
+import com.example.myapplication.`interface`.respObjDatabase
+import com.example.myapplication.database.DatabaseHelper
 import com.example.myapplication.fragments.MapsFragment.Companion.OBJECT_ID
 import com.example.myapplication.fragments.MapsFragment.Companion.OBJECT_NAME
+import com.example.myapplication.utilits.downloadAndInto
 import java.util.regex.Matcher
 import java.util.regex.Pattern
 
@@ -28,137 +31,22 @@ class AllInfoFragment : Fragment() {
     ): View? {
         val fragmentLayout = inflater.inflate(R.layout.fragment_allinfo, container, false)
         val name = arguments?.getString(OBJECT_NAME) ?: "HELLO WORLD"
-        val id = arguments?.getString(OBJECT_ID) ?: "HELLO WORLD"
-        val p: Pattern = Pattern.compile("(\\d+)")
-        val m: Matcher = p.matcher(id)
-        var findedid: String? = null
-        while (m.find()) {
-            findedid = m.group(1)
-        }
-        val guided = arguments?.getString(GunFragment.OBJECT_GUIDED) ?: "HELLO WORLD"
-        findedid!!.toInt()
-        fun changeText(ids: String) {
-            if(guided == "GunCenter") {
-                when (ids) {
-                    "m0" -> {
-                        fragmentLayout.findViewById<TextView>(R.id.opisanieobj).text =
-                            getString(R.string.opisaniem0)
-                        fragmentLayout.findViewById<TextView>(R.id.raspolozhenieobj).text =
-                            getString(R.string.raspolozheniem0)
-                        fragmentLayout.findViewById<TextView>(R.id.istoriofcreate).text =
-                            getString(R.string.istoriasozdaniam0)
-                        fragmentLayout.findViewById<TextView>(R.id.ineresniemesta).text =
-                            getString(R.string.interesniem0)
-                    }
-                    "m1" -> {
-                        fragmentLayout.findViewById<TextView>(R.id.opisanieobj).text =
-                            getString(R.string.opisaniem1)
-                        fragmentLayout.findViewById<TextView>(R.id.raspolozhenieobj).text =
-                            getString(R.string.raspolozheniem1)
-                        fragmentLayout.findViewById<TextView>(R.id.istoriofcreate).text =
-                            getString(R.string.istoriasozdaniam1)
-                        fragmentLayout.findViewById<TextView>(R.id.ineresniemesta).text =
-                            getString(R.string.interesniem1)
-                    }
-                    "m2" -> {
-                        fragmentLayout.findViewById<TextView>(R.id.opisanieobj).text =
-                            getString(R.string.opisaniem2)
-                        fragmentLayout.findViewById<TextView>(R.id.raspolozhenieobj).text =
-                            getString(R.string.raspolozheniem2)
-                        fragmentLayout.findViewById<TextView>(R.id.istoriofcreate).text =
-                            getString(R.string.istoriasozdaniam2)
-                        fragmentLayout.findViewById<TextView>(R.id.ineresniemesta).text =
-                            getString(R.string.interesniem2)
-                    }
-                    "m3" -> {
-                        fragmentLayout.findViewById<TextView>(R.id.opisanieobj).text =
-                            getString(R.string.opisaniem3)
-                        fragmentLayout.findViewById<TextView>(R.id.raspolozhenieobj).text =
-                            getString(R.string.raspolozheniem3)
-                        fragmentLayout.findViewById<TextView>(R.id.istoriofcreate).text =
-                            getString(R.string.istoriasozdaniam3)
-                        fragmentLayout.findViewById<TextView>(R.id.ineresniemesta).text =
-                            getString(R.string.interesniem3)
-                    }
-                    "m4" -> {
-                        fragmentLayout.findViewById<TextView>(R.id.opisanieobj).text =
-                            getString(R.string.opisaniem4)
-                        fragmentLayout.findViewById<TextView>(R.id.raspolozhenieobj).text =
-                            getString(R.string.raspolozheniem4)
-                        fragmentLayout.findViewById<TextView>(R.id.istoriofcreate).text =
-                            getString(R.string.istoriasozdaniam4)
-                        fragmentLayout.findViewById<TextView>(R.id.ineresniemesta).text =
-                            getString(R.string.interesniem4)
-                    }
-                    "m5" -> {
-                        fragmentLayout.findViewById<TextView>(R.id.opisanieobj).text =
-                            getString(R.string.opisaniem5)
-                        fragmentLayout.findViewById<TextView>(R.id.raspolozhenieobj).text =
-                            getString(R.string.raspolozheniem5)
-                        fragmentLayout.findViewById<TextView>(R.id.istoriofcreate).text =
-                            getString(R.string.istoriasozdaniam5)
-                        fragmentLayout.findViewById<TextView>(R.id.ineresniemesta).text =
-                            getString(R.string.interesniem5)
-                    }
-                    "m6" -> {
-                        fragmentLayout.findViewById<TextView>(R.id.opisanieobj).text =
-                            getString(R.string.opisaniem6)
-                        fragmentLayout.findViewById<TextView>(R.id.raspolozhenieobj).text =
-                            getString(R.string.raspolozheniem6)
-                        fragmentLayout.findViewById<TextView>(R.id.istoriofcreate).text =
-                            getString(R.string.istoriasozdaniam6)
-                        fragmentLayout.findViewById<TextView>(R.id.ineresniemesta).text =
-                            getString(R.string.interesniem6)
-                    }
-                    "m7" -> {
-                        fragmentLayout.findViewById<TextView>(R.id.opisanieobj).text =
-                            getString(R.string.opisaniem7)
-                        fragmentLayout.findViewById<TextView>(R.id.raspolozhenieobj).text =
-                            getString(R.string.raspolozheniem7)
-                        fragmentLayout.findViewById<TextView>(R.id.istoriofcreate).text =
-                            getString(R.string.istoriasozdaniam7)
-                        fragmentLayout.findViewById<TextView>(R.id.ineresniemesta).text =
-                            getString(R.string.interesniem7)
-                    }
-                    "m8" -> {
-                        fragmentLayout.findViewById<TextView>(R.id.opisanieobj).text =
-                            getString(R.string.opisaniem8)
-                        fragmentLayout.findViewById<TextView>(R.id.raspolozhenieobj).text =
-                            getString(R.string.raspolozheniem8)
-                        fragmentLayout.findViewById<TextView>(R.id.istoriofcreate).text =
-                            getString(R.string.istoriasozdaniam8)
-                        fragmentLayout.findViewById<TextView>(R.id.ineresniemesta).text =
-                            getString(R.string.interesniem8)
-                    }
-                    else -> {
-                        fragmentLayout.findViewById<TextView>(R.id.opisanieobj).text =
-                            getString(R.string.notfound)
-                        fragmentLayout.findViewById<TextView>(R.id.raspolozhenieobj).text =
-                            getString(R.string.notfound)
-                        fragmentLayout.findViewById<TextView>(R.id.istoriofcreate).text =
-                            getString(R.string.notfound)
-                        fragmentLayout.findViewById<TextView>(R.id.ineresniemesta).text =
-                            getString(R.string.notfound)
-                    }
+        fun changeText(name: String) {
+            DatabaseHelper(requireFragmentManager()) {
+                activity?.runOnUiThread {
+                    fragmentLayout.findViewById<TextView>(R.id.describeText).text = respObjDatabase.response[0].opisanie
+                    fragmentLayout.findViewById<TextView>(R.id.locationText).text = respObjDatabase.response[0].raspolozhenie
+                    fragmentLayout.findViewById<TextView>(R.id.historyText).text = respObjDatabase.response[0].historycreate
+                    fragmentLayout.findViewById<TextView>(R.id.interestingFactsText).text = respObjDatabase.response[0].interestplace
                 }
-            }
-            else {
-                fragmentLayout.findViewById<TextView>(R.id.opisanieobj).text =
-                    getString(R.string.notexc)
-                fragmentLayout.findViewById<TextView>(R.id.raspolozhenieobj).text =
-                    getString(R.string.notexc)
-                fragmentLayout.findViewById<TextView>(R.id.istoriofcreate).text =
-                    getString(R.string.notexc)
-                fragmentLayout.findViewById<TextView>(R.id.ineresniemesta).text =
-                    getString(R.string.notexc)
-            }
+            }.getTwoData("SELECT * FROM `excursionsObjects` WHERE `name` = '$name'")
         }
-        fragmentLayout.findViewById<TextView>(R.id.maintexts).text = name
+        fragmentLayout.findViewById<TextView>(R.id.mainText).text = name
 
-        changeText(id)
+        changeText(name)
 
 
-        fragmentLayout.findViewById<ImageView>(R.id.buttons).setOnClickListener {
+        fragmentLayout.findViewById<ImageView>(R.id.buttonback).setOnClickListener {
             //findNavController().popBackStack(R.id.navigation_notifications,true)
             findNavController().popBackStack()
         }

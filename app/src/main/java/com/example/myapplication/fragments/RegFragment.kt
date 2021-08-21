@@ -25,6 +25,7 @@ import androidx.navigation.fragment.findNavController
 import com.example.myapplication.R
 import com.example.myapplication.activities.AuthActivity
 import com.example.myapplication.utilits.*
+import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.auth.FirebaseAuth
 import java.util.*
 
@@ -48,8 +49,6 @@ class RegFragment : Fragment() {
         fragmentLayout.findViewById<ImageView>(R.id.exitbutton).setOnClickListener {
             findNavController().popBackStack()
         }
-        val contextCompats = requireContext().applicationContext
-        initFirebase()
         mAuth = FirebaseAuth.getInstance()
         /*when (loaddata()) {
             0 -> {
@@ -64,39 +63,34 @@ class RegFragment : Fragment() {
         val viewLastName = fragmentLayout.findViewById<EditText>(R.id.lastname)
         val viewPassword = fragmentLayout.findViewById<EditText>(R.id.password)
 
-        val getEmail: String = arguments?.getString(AuthFragment.OBJECT_EMAIL, "email").toString()
-        val getName: String = arguments?.getString(AuthFragment.OBJECT_NAME, "name").toString()
-        val getLastName: String = arguments?.getString(AuthFragment.OBJECT_LASTNAME, "lastname").toString()
-        if(getName != "name") {
+        val getEmail: String = arguments?.getString("emailAuthActivity", "email").toString()
+        val getName: String = arguments?.getString("nameAuthActivity", "name").toString()
+        val getLastName: String = arguments?.getString("lastNameAuthActivity", "lastname").toString()
+        if(getName != "name" && getName != "null") {
             viewName.text = getName.toEditable()
             viewEmail.text = getEmail.toEditable()
             viewLastName.text = getLastName.toEditable()
             Log.d(TAG, "Автозаполение с помощью ВК!")
         }
         fragmentLayout.findViewById<CardView>(R.id.loginbutton).setOnClickListener {
-            val uid: String = UUID.randomUUID().toString()
 
             val email = viewEmail.text.toString()//.replace(".",",")
             val name = viewName.text.toString()
             val lastname = viewLastName.text.toString()
             val password = viewPassword.text.toString()
             if (email.isEmpty() || name.isEmpty() || lastname.isEmpty() || password.isEmpty()) {
-                displayError("Заполните все поля и попробуйте ещё раз.", fragmentLayout)
                 return@setOnClickListener
             }
             if (password.length < 6) {
-                displayError("Пароль должен быть не меньше, чем 6 символов!", fragmentLayout)
                 return@setOnClickListener
             }
             val dateMap = mutableMapOf<String, Any>()
-            dateMap[CHILD_UID] = uid
             dateMap[CHILD_EMAIL] = email
             dateMap[CHILD_NAME] = name
             dateMap[CHILD_LASTNAME] = lastname
             dateMap[CHILD_PASSWORD] = password
-            Log.d(TAG, "$uid, $email, $name, $lastname, $password")
+            Log.d(TAG, "$email, $name, $lastname, $password")
             if (email in banWords || name in banWords || lastname in banWords || password in banWords) {
-                displayError("Не выражаться! Капитан Америка не одобряет", fragmentLayout)
                 return@setOnClickListener
             }
             when {
@@ -107,17 +101,9 @@ class RegFragment : Fragment() {
                     return@setOnClickListener
                 }*/
                 email.contains("+", ignoreCase = true) && email.contains("@", ignoreCase = true) -> {
-                    displayMessage(
-                        "Регистрация возможна только через почту, либо через номер телефона!",
-                        fragmentLayout
-                    )
                     return@setOnClickListener
                 }
                 email.contains("+", ignoreCase = true) -> {
-                    displayMessage(
-                        "Вы успешно зарегистрировались с помощью телефона!",
-                        fragmentLayout
-                    )
                 }
                 email.contains("@", ignoreCase = true) -> {
                     //displayMessage("Запрос на регистрацию с помощью эл. почты!", fragmentLayout)
@@ -126,10 +112,6 @@ class RegFragment : Fragment() {
                 }
                 //regAccount(email, dateMap)
                 else -> {
-                    displayError(
-                        "Вход возможен только через почту или номер телефона!",
-                        fragmentLayout
-                    )
                     return@setOnClickListener
                 }
             }
@@ -139,13 +121,12 @@ class RegFragment : Fragment() {
     private fun regAccountWithEmail(dateMap: MutableMap<String, Any>) {
         val contextCompats = requireContext().applicationContext
         Log.d(TAG, "$TAGFirebase start reg. with email")
-        val name: String = dateMap[CHILD_NAME].toString()
+        val name = dateMap[CHILD_NAME].toString()
         val lastname = dateMap[CHILD_LASTNAME].toString()
         val email = dateMap[CHILD_EMAIL].toString()
         val password: String = dateMap[CHILD_PASSWORD].toString()
-        val uid: String = dateMap[CHILD_UID].toString()
         Log.d(TAG,"$name, $lastname, $email, $password")
-        val bundle = bundleOf(OBJECT_EMAIL to email, OBJECT_NAME to name, OBJECT_LASTNAME to lastname, OBJECT_PASSWORD to password, OBJECT_UID to uid)
+        val bundle = bundleOf("EmailOfPeople" to email, "NameOfPeople" to name, "LastNameOfPeople" to lastname, "PasswordOfPeople" to password)
         findNavController().navigate(R.id.action_RegFragment_to_EmailVerificationFragment, bundle)
         /*REF_DATABASE_ROOT.child(NODE_USERS).child(uid).updateChildren(dateMap).addOnCompleteListener { task ->
             if (task.isSuccessful) {
@@ -174,24 +155,6 @@ class RegFragment : Fragment() {
         
     }
     fun String.toEditable(): Editable =  Editable.Factory.getInstance().newEditable(this)
-    private fun createAccount(email: String, password: String) {
-        Log.e(TAGFirebase, "createAccount: $email")
-        val contextCompats = requireContext().applicationContext
-        mAuth!!.createUserWithEmailAndPassword(email, password)
-                .addOnCompleteListener(activity as AuthActivity) { task ->
-                    if (task.isSuccessful) {
-                        Log.e(TAGFirebase, "createAccount: Success!")
-
-                        // update UI with the signed-in user's information
-                        val user = mAuth!!.currentUser
-                        
-
-                    } else {
-                        Log.e(TAGFirebase, "createAccount: Fail!", task.exception)
-                        Toast.makeText(contextCompats, "Authentication failed!", Toast.LENGTH_SHORT).show()
-                    }
-                }
-    }
 
 
     /*private fun sendEmailVerification() {
@@ -214,7 +177,6 @@ class RegFragment : Fragment() {
     }*/
     companion object {
         var OBJECT_UID = "null uid"
-        var OBJECT_NAME = "null uid"
         var OBJECT_LASTNAME = "null uid"
         var OBJECT_PASSWORD = "null uid"
         var OBJECT_EMAIL = "null email"

@@ -23,6 +23,7 @@ import com.example.myapplication.utilits.editData
 import com.yalantis.phoenix.PullToRefreshView
 import kotlin.math.roundToInt
 
+
 /**
  * A fragment representing a list of Items.
  */
@@ -52,35 +53,39 @@ class ItemFragment : Fragment() {
         allcounterimage.clear()
         allcounterlatlng.clear()
         idscreen = editData(contextCompats, "NameOfScreen", "idScreen", "-1", "getInt")!!.toInt()
+        val recyclerView = fragmentLayout.findViewById<RecyclerView>(R.id.leaderboard_list)
+        val notFound = fragmentLayout.findViewById<TextView>(R.id.notFound)
         bottomNavigationView.visibility = View.INVISIBLE
         fragmentLayout.findViewById<ImageView>(R.id.buttons).setOnClickListener {
             findNavController().navigate(R.id.navigation_home)
         }
         fragmentLayout.findViewById<TextView>(R.id.nameoftitle).text = checkname(idscreen)
         DatabaseHelper(requireFragmentManager()) {
-            itemCounter = respObjDatabase.size
-            for (i in 0 until respObjDatabase.size) {
-                allcountername.add(respObjDatabase[i].name)
-                allcounterimage.add(respObjDatabase[i].logo_image)
-                allcounterrating.add(respObjDatabase[i].rating)
-                allcounterlatlng.add(respObjDatabase[i].latlng)
+            itemCounter = respObjDatabase.response.size
+            for (i in 0 until respObjDatabase.response.size) {
+                allcountername.add(respObjDatabase.response[i].name)
+                allcounterimage.add(respObjDatabase.response[i].logo_image)
+                allcounterrating.add(respObjDatabase.response[i].rating)
+                allcounterlatlng.add(respObjDatabase.response[i].latlng)
             }
             Log.d("dada", itemCounter.toString())
             viewAdapter = MyAdapter(Array(itemCounter) { allcountername[it % allcountername.size] })
-        }.getTwoData(screenDetection(contextCompats))
-        Handler().postDelayed(
-            {
-                fragmentLayout.findViewById<RecyclerView>(R.id.leaderboard_list).run {
+            activity?.runOnUiThread {
+                recyclerView.run {
                     // use this setting to improve performance if you know that changes
                     // in content do not change the layout size of the RecyclerView
                     setHasFixedSize(true)
 
                     // specify an viewAdapter (see also next example) Person ${it + 1}
                     adapter = viewAdapter
+
                 }
-            },
-            500 // value in milliseconds
-        )
+                if(viewAdapter!!.itemCount != 0) {
+                    recyclerView.visibility = View.VISIBLE
+                    notFound.visibility = View.INVISIBLE
+                }
+            }
+        }.getTwoData(screenDetection(contextCompats))
         val mPullToRefreshView = fragmentLayout.findViewById<View>(R.id.pull_to_refresh) as PullToRefreshView
         mPullToRefreshView.setOnRefreshListener {
             mPullToRefreshView.postDelayed(
@@ -126,57 +131,61 @@ class ItemFragment : Fragment() {
 
         // Replace the contents of a view (invoked by the layout manager)
         override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-            // - get element from your dataset at this position
-            // - replace the contents of the view with that element
-            val rating0 = holder.item.findViewById<ImageView>(R.id.rating0)
-            val rating1 = holder.item.findViewById<ImageView>(R.id.rating1)
-            val rating2 = holder.item.findViewById<ImageView>(R.id.rating2)
-            val rating3 = holder.item.findViewById<ImageView>(R.id.rating3)
-            val rating4 = holder.item.findViewById<ImageView>(R.id.rating4)
-            val rating5 = holder.item.findViewById<ImageView>(R.id.rating5)
-            holder.item.findViewById<TextView>(R.id.rating).text = allcounterrating[position % allcounterrating.size]
             holder.item.findViewById<TextView>(R.id.user_name_text).text = myDataset[position]
-            if(allcounterrating[position % allcounterrating.size] != "") {
-                when (allcounterrating[position % allcounterrating.size].toFloat().roundToInt()) {
-                    0 -> {
-                        rating0.visibility = View.VISIBLE
-                    }
-                    1 -> {
-                        rating1.visibility = View.VISIBLE
-                    }
-                    2 -> {
-                        rating1.visibility = View.VISIBLE
-                        rating2.visibility = View.VISIBLE
-                    }
-                    3 -> {
-                        rating1.visibility = View.VISIBLE
-                        rating2.visibility = View.VISIBLE
-                        rating3.visibility = View.VISIBLE
-                    }
-                    4 -> {
-                        rating1.visibility = View.VISIBLE
-                        rating2.visibility = View.VISIBLE
-                        rating3.visibility = View.VISIBLE
-                        rating4.visibility = View.VISIBLE
-                    }
-                    5 -> {
-                        rating1.visibility = View.VISIBLE
-                        rating2.visibility = View.VISIBLE
-                        rating3.visibility = View.VISIBLE
-                        rating4.visibility = View.VISIBLE
-                        rating5.visibility = View.VISIBLE
+            holder.item.findViewById<ImageView>(R.id.user_avatar_image).downloadAndInto("tps://firebasestor.googlapis.com/v0/b/izhevskonline123.appspot.com/o/8")
+            if(allcounterrating.isNotEmpty()) {
+                val rating0 = holder.item.findViewById<ImageView>(R.id.rating0)
+                val rating1 = holder.item.findViewById<ImageView>(R.id.rating1)
+                val rating2 = holder.item.findViewById<ImageView>(R.id.rating2)
+                val rating3 = holder.item.findViewById<ImageView>(R.id.rating3)
+                val rating4 = holder.item.findViewById<ImageView>(R.id.rating4)
+                val rating5 = holder.item.findViewById<ImageView>(R.id.rating5)
+                holder.item.findViewById<TextView>(R.id.rating).text = allcounterrating[position % allcounterrating.size]
+                holder.item.findViewById<TextView>(R.id.user_name_text).text = myDataset[position]
+                if(allcounterrating[position % allcounterrating.size] != "") {
+                    when (allcounterrating[position % allcounterrating.size].toFloat().roundToInt()) {
+                        0 -> {
+                            rating0.visibility = View.VISIBLE
+                        }
+                        1 -> {
+                            rating1.visibility = View.VISIBLE
+                        }
+                        2 -> {
+                            rating1.visibility = View.VISIBLE
+                            rating2.visibility = View.VISIBLE
+                        }
+                        3 -> {
+                            rating1.visibility = View.VISIBLE
+                            rating2.visibility = View.VISIBLE
+                            rating3.visibility = View.VISIBLE
+                        }
+                        4 -> {
+                            rating1.visibility = View.VISIBLE
+                            rating2.visibility = View.VISIBLE
+                            rating3.visibility = View.VISIBLE
+                            rating4.visibility = View.VISIBLE
+                        }
+                        5 -> {
+                            rating1.visibility = View.VISIBLE
+                            rating2.visibility = View.VISIBLE
+                            rating3.visibility = View.VISIBLE
+                            rating4.visibility = View.VISIBLE
+                            rating5.visibility = View.VISIBLE
+                        }
                     }
                 }
-            }
-            holder.item.findViewById<ImageView>(R.id.user_avatar_image)
-                .downloadAndInto(allcounterimage[position % allcountername.size])
+                holder.item.findViewById<ImageView>(R.id.user_avatar_image)
+                    .downloadAndInto(allcounterimage[position % allcountername.size])
 
-            holder.item.setOnClickListener {
-                val bundle = bundleOf(USERNAME_KEY to myDataset[position], USERNAME_COORDINATE to listOfCoordinate[position % listOfCoordinate.size], USERNAME_IMAGE to allcounterimage[position % allcountername.size])
-                holder.item.findNavController().navigate(
-                    R.id.action_itemFragment_to_Museumuser,
-                    bundle)
+                holder.item.setOnClickListener {
+                    val bundle = bundleOf(USERNAME_KEY to myDataset[position], USERNAME_COORDINATE to allcounterlatlng[position % allcounterlatlng.size], USERNAME_IMAGE to allcounterimage[position % allcountername.size])
+                    holder.item.findNavController().navigate(
+                        R.id.action_itemFragment_to_Museumuser,
+                        bundle)
+                }
             }
+            // - get element from your dataset at this position
+            // - replace the contents of the view with that element
         }
 
         // Return the size of your dataset (invoked by the layout manager)
@@ -208,13 +217,3 @@ class ItemFragment : Fragment() {
         }
     }
 }
-private var listOfTitle = listOf(
-    "Музей стрелкового оружия им. М.Т. Калашникова",
-    "Музей Ижмаш",
-    "Kotleta bar"
-)
-private var listOfCoordinate = listOf(
-    "56.85285289473385, 53.215664171778975",
-    "56.85073186241447, 53.20672264326064",
-    "56.84383886160861, 53.191198130527944"
-)

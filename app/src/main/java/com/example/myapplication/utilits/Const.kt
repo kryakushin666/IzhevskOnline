@@ -22,33 +22,13 @@ lateinit var REF_DATABASE_ROOT: DatabaseReference
 lateinit var REF_STORAGE_ROOT: StorageReference
 lateinit var USER: User
 
-const val NODE_USERS = "users"
 const val CHILD_UID = "uid"
 const val CHILD_EMAIL = "email"
 const val CHILD_NAME = "name"
 const val CHILD_LASTNAME = "lastname"
 const val CHILD_PASSWORD = "password"
 
-const val NODE_SECONDARY = "secondary"
-const val CHILD_MUSEUM = "museum"
-const val CHILD_PARK = "park"
-const val CHILD_HOTELS = "hotels"
-const val CHILD_REST = "rest"
-const val CHILD_NAME_SECONDARY = "name"
-const val CHILD_LATLNG = "latlng"
-const val CHILD_IMAGE = "image"
-
 const val NODE_EXCURSION = "excursion"
-const val CHILD_NAME_EXC = "name"
-
-const val FOLDER_OBJECT_IMAGE = "object_image"
-
-
-fun initFirebase() {
-    REF_DATABASE_ROOT = FirebaseDatabase.getInstance().reference
-    REF_STORAGE_ROOT = FirebaseStorage.getInstance().reference
-    USER = User()
-}
 // Picasso DI
 fun ImageView.downloadAndInto(UrlString: String) {
     Picasso.get()
@@ -110,11 +90,3 @@ const val longitudeStartMap = 53.196807013800594 // Координата Иже�
 
 const val APIWeather = "7837c70818904b4eb94100007211104" // API key погоды 7837c70818904b4eb94100007211104
 const val APIMap = "AIzaSyDVGH9AfUwk5CLr76_QGmoLhDNWwuj6yps" // API key карты
-
-// Colors
-fun changeAllColor(context: Context, colorString: String) {
-    DrawableCompat.setTint(DrawableCompat.wrap(ContextCompat.getDrawable(context, R.drawable.rectbutton)!!), Color.parseColor(colorString))
-    DrawableCompat.setTint(DrawableCompat.wrap(ContextCompat.getDrawable(context, R.drawable.box_route)!!), Color.parseColor(colorString))
-    //DrawableCompat.setTint(DrawableCompat.wrap(ContextCompat.getDrawable(context, R.drawable.rectbutton)!!), Color.parseColor(colorString))
-
-}

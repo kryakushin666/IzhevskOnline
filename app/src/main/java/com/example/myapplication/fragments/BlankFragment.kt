@@ -1,9 +1,9 @@
 package com.example.myapplication.fragments
 
 import android.content.Intent
-import android.content.SharedPreferences
 import android.graphics.Color
 import android.graphics.Typeface
+import android.os.Build
 import android.os.Bundle
 import android.os.Handler
 import android.view.Gravity
@@ -17,17 +17,17 @@ import android.widget.TextSwitcher
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
-import com.example.myapplication.BuildConfig
 import com.example.myapplication.R
-import com.example.myapplication.`interface`.respObjDatabase
 import com.example.myapplication.activities.SettingsActivity
 import com.example.myapplication.activities.bottomNavigationView
-import com.example.myapplication.database.DatabaseHelper
-import com.example.myapplication.dialog.UpgradeDialog
 import com.example.myapplication.utilits.editData
 import com.google.firebase.auth.FirebaseAuth
+import java.io.File
 import java.util.*
+import java.util.Base64.getEncoder
 
+
+var Data: String? = null
 
 class BlankFragment : Fragment() {
 
@@ -38,28 +38,26 @@ class BlankFragment : Fragment() {
 
     private var mAuth: FirebaseAuth? = null
 
-    private lateinit var pref: SharedPreferences
-
     override fun onCreateView(
-            inflater: LayoutInflater, container: ViewGroup?,
-            savedInstanceState: Bundle?,
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?,
     ): View? {
         var fragmentLayout: View? = null
         val contextCompats = requireContext().applicationContext
         val twofragment = editData(contextCompats, "BlankTwoFragment", "TwoFragment", "0", "getInt")
-        if(twofragment?.toInt() == 1) {
+        if (twofragment?.toInt() == 1) {
             fragmentLayout = inflater.inflate(R.layout.fragment_blank_new, container, false)
             bottomNavigationView.visibility = View.INVISIBLE
         } else {
             fragmentLayout = inflater.inflate(R.layout.fragment_blank, container, false)
             bottomNavigationView.visibility = View.VISIBLE
         }
-        val versionCode = BuildConfig.VERSION_CODE.toFloat()
+        /*val versionCode = BuildConfig.VERSION_CODE.toFloat()
         DatabaseHelper(requireFragmentManager()) {
-            if(versionCode != respObjDatabase[0].lastversion) {
+            if (versionCode != respObjDatabase.response[0].lastversion) {
                 UpgradeDialog().show(requireFragmentManager(), "MyCustomFragment")
             }
-        }.getTwoData("SELECT * FROM `version_app`")
+        }.getTwoData("SELECT * FROM `version_app`")*/
         mAuth = FirebaseAuth.getInstance()
         fragmentLayout.findViewById<ImageView>(R.id.settingb).setOnClickListener {
             val intent = Intent(contextCompats, SettingsActivity::class.java)
@@ -72,7 +70,8 @@ class BlankFragment : Fragment() {
             //resources.getColor(R.color.colorMain) == "#121421".toInt()
         }
 
-        if(twofragment?.toInt() == 0) {
+
+        if (twofragment?.toInt() == 0) {
             fragmentLayout.findViewById<ImageView>(R.id.Button).setOnClickListener {
                 editData(contextCompats, "NameOfScreen", "idScreen", "0", "putInt")
                 findNavController().navigate(R.id.action_navigation_home_to_itemFragment)
@@ -92,7 +91,7 @@ class BlankFragment : Fragment() {
             Date = calendar.get(Calendar.DAY_OF_MONTH)
             Month = calendar.get(Calendar.MONTH) + 1
             Year = calendar.get(Calendar.YEAR)
-            val monthconverted = when (Month) {
+            val monthConverted = when (Month) {
                 1 -> "января"
                 2 -> "февраля"
                 3 -> "марта"
@@ -107,17 +106,20 @@ class BlankFragment : Fragment() {
                 12 -> "декабря"
                 else -> ""
             }
-            val monthandday = "$Date $monthconverted"
+            val monthAndDay = "$Date $monthConverted"
             val textSwitcher = fragmentLayout.findViewById<TextSwitcher>(R.id.goodmorning)
             val textSwitcher2 = fragmentLayout.findViewById<TextSwitcher>(R.id.goodforpeople)
-            val name = editData(contextCompats, "NameofPeople","NamePeople","0", "getString")
-            val allname = "Добрый день, ${name}!"
-
+            val name = editData(contextCompats, "NameOfPeople", "NamePeople", "0", "getString")
+            var allName = "Добрый день!"
+            if(name != "0") {
+                allName = "Добрый день, $name!"
+            }
             if (textSwitcher != null) {
                 textSwitcher.setFactory {
                     val textView = TextView(contextCompats)
                     textView.textSize = 22f
-                    textView.typeface = Typeface.createFromAsset(contextCompats.assets, "mainfont.ttf")
+                    textView.typeface =
+                        Typeface.createFromAsset(contextCompats.assets, "mainfont.ttf")
                     textView.gravity = Gravity.TOP
                     textView.setTextColor(Color.parseColor("#2B2C2D"))
                     textView
@@ -126,22 +128,24 @@ class BlankFragment : Fragment() {
                     val textView = TextView(contextCompats)
                     textView.gravity = Gravity.TOP
                     textView.textSize = 22f
-                    textView.typeface = Typeface.createFromAsset(contextCompats.assets, "mainfont.ttf")
+                    textView.typeface =
+                        Typeface.createFromAsset(contextCompats.assets, "mainfont.ttf")
                     textView.setTextColor(Color.parseColor("#2B2C2D"))
                     textView
                 }
-                val `in`: Animation = AnimationUtils.loadAnimation(contextCompats, R.anim.slide_in_up)
+                val `in`: Animation =
+                    AnimationUtils.loadAnimation(contextCompats, R.anim.slide_in_up)
                 Handler().postDelayed(
                     {
                         textSwitcher.inAnimation = `in`
-                        textSwitcher.setText(monthandday)
+                        textSwitcher.setText(monthAndDay)
                     },
                     500 // value in milliseconds
                 )
                 Handler().postDelayed(
                     {
                         textSwitcher2.inAnimation = `in`
-                        textSwitcher2.setText(allname)
+                        textSwitcher2.setText(allName)
                     },
                     1000 // value in milliseconds
                 )
@@ -150,5 +154,21 @@ class BlankFragment : Fragment() {
         }
         // возвращаем макет фрагмента
         return fragmentLayout
+    }
+
+    private fun encoder(filePath: String): String {
+        val bytes = File(filePath).readBytes()
+        return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            getEncoder().encodeToString(bytes)
+        } else {
+            TODO("VERSION.SDK_INT < O")
+        }
+    }
+
+    private fun pickImageFromGallery() {
+        //Intent to pick image
+        val intent = Intent(Intent.ACTION_PICK)
+        intent.type = "image/*"
+        startActivityForResult(intent, 1000)
     }
 }

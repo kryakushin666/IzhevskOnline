@@ -9,6 +9,7 @@ import javax.xml.bind.DatatypeConverter
 
 object AES {
     private val iv = "0000000000000000".toByteArray()
+
     @Throws(Exception::class)
     private fun decrypt(encrypted: String, seed: String): String {
         val keyb = seed.toByteArray(charset("utf-8"))

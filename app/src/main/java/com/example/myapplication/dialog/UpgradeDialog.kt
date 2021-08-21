@@ -26,12 +26,16 @@ class UpgradeDialog : DialogFragment() {
         }
         view.findViewById<ImageView>(R.id.returnaction).setOnClickListener {
             val intent: Intent = Intent(Intent.ACTION_VIEW)
-            intent.setDataAndType(Uri.parse("http://83.220.168.173/izhevskonline/izhevskonline.apk"), "application/vnd.android.package-archive")
+            intent.setDataAndType(
+                Uri.parse("https://nativeonline.fvds.ru:8443/izhevskonline/izhevskonline.apk"),
+                "application/vnd.android.package-archive"
+            )
             startActivity(intent)
         }
         view.findViewById<TextView>(R.id.maintext).text = "Вышло обновление приложения"
         view.findViewById<TextView>(R.id.returntext).text = "Обновить"
-        view.findViewById<TextView>(R.id.helpourproject).text = "Без обновления приложение может работать не стабильно!"
+        view.findViewById<TextView>(R.id.helpourproject).text =
+            "Без обновления приложение может работать не стабильно!"
         return view
     }
 

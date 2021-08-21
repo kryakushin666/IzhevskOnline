@@ -30,90 +30,80 @@
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/ic_security" />
 
-    <View
+    <androidx.cardview.widget.CardView
         android:id="@+id/rectangle_3"
         android:layout_width="345dp"
         android:layout_height="48dp"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
         android:layout_marginTop="55dp"
-        android:background="@drawable/shape_auth"
+        app:cardCornerRadius="20dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView5" />
+        app:layout_constraintTop_toBottomOf="@+id/imageView5">
+
+        <EditText
+            android:id="@+id/email"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@null"
+            android:paddingStart="19dp"
+            android:hint="Номер телефона / эл. почта"
+            android:inputType="textEmailAddress"
+            android:textColor="#818181"
+            android:textSize="19sp" />
+
+    </androidx.cardview.widget.CardView>
 
 
-    <EditText
-        android:id="@+id/email"
-        android:layout_width="268dp"
-        android:layout_height="26dp"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginTop="66dp"
-        android:layout_marginEnd="76dp"
-        android:background="@null"
-        android:gravity="top"
-        android:inputType="textEmailAddress"
-        android:hint="Номер телефона / эл. почта"
-        android:textColor="#818181"
-        android:textSize="19sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView5" />
-
-    <View
+    <androidx.cardview.widget.CardView
         android:id="@+id/rectangle_"
         android:layout_width="345dp"
         android:layout_height="48dp"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
         android:layout_marginTop="20dp"
-        android:background="@drawable/shape_auth"
+        app:cardCornerRadius="20dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/rectangle_3" />
+        app:layout_constraintTop_toBottomOf="@+id/rectangle_3">
 
-    <EditText
-        android:id="@+id/password"
-        android:layout_width="268dp"
-        android:layout_height="26dp"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginTop="132dp"
-        android:layout_marginEnd="76dp"
-        android:background="@null"
-        android:gravity="top"
-        android:hint="Пароль"
-        android:inputType="textVisiblePassword"
-        android:textColor="#818181"
-        android:textSize="19sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView5" />
+        <EditText
+            android:id="@+id/password"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@null"
+            android:hint="Пароль"
+            android:inputType="textVisiblePassword"
+            android:paddingStart="19dp"
+            android:textColor="#818181"
+            android:textSize="19sp" />
 
-    <ImageView
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
         android:id="@+id/loginbutton"
         android:layout_width="345dp"
         android:layout_height="48dp"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
         android:layout_marginTop="45dp"
-        android:background="@drawable/shape_auth_inter"
+        app:cardCornerRadius="20dp"
+        app:cardBackgroundColor="#89AFFA"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/rectangle_" />
+        app:layout_constraintTop_toBottomOf="@+id/rectangle_">
 
-    <TextView
-        android:layout_width="47dp"
-        android:layout_height="26dp"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginTop="56dp"
-        android:gravity="center_horizontal|top"
-        android:text="Вход"
-        android:textColor="#F4F4F4"
-        android:textSize="19sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/rectangle_" />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="Вход"
+            android:gravity="center"
+            android:textColor="#F4F4F4"
+            android:textSize="19sp" />
+
+    </androidx.cardview.widget.CardView>
+
 
     <TextView
         android:id="@+id/regAct"

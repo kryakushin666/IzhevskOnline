@@ -12,12 +12,24 @@ android {
 
     defaultConfig {
         applicationId "com.example.myapplication"
-        minSdkVersion 23
+        minSdkVersion 22
         targetSdkVersion 30
         versionCode 12
         versionName "1.2"
-
+        vectorDrawables.useSupportLibrary = true
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    packagingOptions {
+        exclude 'META-INF/DEPENDENCIES'
+        exclude 'META-INF/LICENSE'
+        exclude 'META-INF/LICENSE.txt'
+        exclude 'META-INF/license.txt'
+        exclude 'META-INF/NOTICE'
+        exclude 'META-INF/NOTICE.txt'
+        exclude 'META-INF/notice.txt'
+        exclude 'META-INF/ASL2.0'
+        exclude("META-INF/*.kotlin_module")
     }
 
     buildTypes {
@@ -41,17 +53,17 @@ repositories {
     mavenCentral()
 }
 dependencies {
-    implementation "org.jetbrains.kotlin:kotlin-stdlib:1.4.31"
+    implementation "org.jetbrains.kotlin:kotlin-stdlib:1.5.10"
     implementation 'androidx.core:core-ktx:1.6.0'
-    implementation 'androidx.appcompat:appcompat:1.3.0'
+    implementation 'androidx.appcompat:appcompat:1.3.1'
     implementation 'com.google.android.gms:play-services-maps:17.0.1'
-    implementation 'androidx.constraintlayout:constraintlayout:2.0.4'
+    implementation 'androidx.constraintlayout:constraintlayout:2.1.0'
     implementation 'androidx.navigation:navigation-fragment-ktx:2.3.5'
     implementation 'androidx.navigation:navigation-ui-ktx:2.3.5'
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
     implementation 'androidx.recyclerview:recyclerview:1.2.1'
-    implementation 'com.google.firebase:firebase-database:20.0.0'
-    implementation 'com.google.firebase:firebase-database-ktx:20.0.0'
+    implementation 'com.google.firebase:firebase-database:20.0.1'
+    implementation 'com.google.firebase:firebase-database-ktx:20.0.1'
     implementation 'com.google.firebase:firebase-auth:21.0.1'
     implementation 'com.google.firebase:firebase-storage:20.0.0'
     implementation 'androidx.palette:palette-ktx:1.0.0'
@@ -70,7 +82,7 @@ dependencies {
     implementation 'com.airbnb.android:lottie:3.7.0'
     implementation 'com.splunk:mint-android-sdk:5.2.5'
     implementation "androidx.transition:transition-ktx:1.4.1"
-    implementation 'com.google.android.material:material:1.5.0-alpha01'
+    implementation 'com.google.android.material:material:1.5.0-alpha02'
     //RETROFIT ...  NETWORK LIBRARY
     implementation 'com.squareup.retrofit2:retrofit:2.9.0'
     // RETROFIT .. CONVERTER & ADAPTER
@@ -81,6 +93,8 @@ dependencies {
     implementation 'com.beust:klaxon:5.5'
     implementation platform('com.google.firebase:firebase-bom:28.0.1')
     implementation 'com.google.firebase:firebase-analytics-ktx'
+    implementation 'com.google.android.gms:play-services-vision:20.1.3'
+    implementation 'com.google.android.gms:play-services-vision-common:19.1.3'
     implementation 'com.vk:androidsdk:2.7.0'
     implementation "io.ktor:ktor-client-cio:1.4.0"
     implementation 'com.firebaseui:firebase-ui-database:7.1.1'
@@ -92,5 +106,16 @@ dependencies {
     // databaseCrypt
     implementation 'javax.xml.bind:jaxb-api:2.3.1'
     implementation group: 'xerces', name: 'xercesImpl', version: '2.12.0'
-    implementation "androidx.viewpager2:viewpager2:1.1.0-alpha01"
+    implementation "androidx.viewpager2:viewpager2:1.1.0-beta01"
+    implementation 'com.github.dhaval2404:imagepicker:2.1'
+    implementation 'com.github.mklimek:ssl-utils-android:1.0.1'
+    implementation 'com.google.code.gson:gson:2.8.7'
+    // Cloud Functions for Firebase (Java)
+    implementation 'com.google.firebase:firebase-functions'
+    // Cloud Functions for Firebase (Kotlin)
+    implementation 'com.google.firebase:firebase-functions-ktx'
+    implementation 'com.github.bumptech.glide:glide:4.12.0'
+    annotationProcessor 'com.github.bumptech.glide:compiler:4.12.0'
+    implementation 'com.google.firebase:firebase-ml-vision:19.0.2'
+    implementation 'com.ibm.icu:icu4j:61.1'
 }

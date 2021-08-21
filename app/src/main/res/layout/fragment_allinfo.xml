@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -9,143 +9,183 @@
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
         tools:ignore="HardcodedText,UselessParent"
         >
 
-        <FrameLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            >
-
-            <FrameLayout
+            <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
 
                 <ImageView
-                    android:id="@+id/buttons"
+                    android:id="@+id/buttonback"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="11dp"
-                    android:layout_marginTop="34dp"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="24dp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
                     app:srcCompat="@drawable/ic_backbutton"
                     tools:ignore="ContentDescription" />
 
-                <ImageView
-                    android:id="@+id/some_id"
-                    android:layout_width="175dp"
-                    android:layout_height="50.48dp"
-                    android:layout_marginStart="117dp"
-                    android:layout_marginTop="158dp"
-                    android:background="@drawable/ic_buttonlisten"
-                    tools:ignore="ContentDescription" />
-
                 <TextView
-                    android:id="@+id/maintexts"
-                    android:layout_width="263dp"
-                    android:layout_height="97dp"
-                    android:layout_marginStart="73dp"
-                    android:layout_marginTop="20dp"
-                    android:fontFamily="@font/mainfont"
+                    android:id="@+id/mainText"
+                    android:layout_width="272dp"
+                    android:layout_height="84dp"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentTop="true"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="24dp"
                     android:gravity="center_horizontal|top"
-                    android:text="HELLO WORLD"
-                    android:textColor="#2B2C2D"
-                    android:textSize="24sp" />
+                    android:text="Дружба народов"
+                    android:textColor="#313131"
+                    android:textSize="26sp"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toEndOf="@+id/buttonback"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <ImageView
+                    android:id="@+id/listenButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="116dp"
+                    android:layout_marginTop="40dp"
+                    android:src="@drawable/ic_buttonlisten"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/mainText" />
 
                 <TextView
-                    android:layout_width="117dp"
-                    android:layout_height="25dp"
-                    android:layout_marginStart="160dp"
-                    android:layout_marginTop="258dp"
-                    android:fontFamily="@font/mainfont"
+                    android:id="@+id/description"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentTop="true"
+                    android:layout_marginTop="24dp"
                     android:gravity="center_horizontal|top"
                     android:text="Описание"
                     android:textColor="#2B2C2D"
-                    android:textSize="18sp" />
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/listenButton" />
 
                 <TextView
-                    android:id="@+id/opisanieobj"
+                    android:id="@+id/describeText"
                     android:layout_width="362dp"
-                    android:layout_height="810dp"
-                    android:layout_marginStart="27dp"
-                    android:layout_marginTop="299dp"
-                    android:fontFamily="@font/mainfont"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentTop="true"
+                    android:layout_marginTop="14dp"
                     android:gravity="top"
                     android:text="@string/opisanieinfo"
                     android:textColor="#2B2C2D"
-                    android:textSize="13sp" />
+                    android:textSize="13sp"
+                    android:textStyle="bold"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/description" />
 
                 <TextView
-                    android:layout_width="134dp"
-                    android:layout_height="25dp"
-                    android:layout_marginStart="138dp"
-                    android:layout_marginTop="1144dp"
-                    android:fontFamily="@font/mainfont"
+                    android:id="@+id/location"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentTop="true"
+                    android:layout_marginTop="35dp"
                     android:gravity="center_horizontal|top"
                     android:text="Расположение"
                     android:textColor="#2B2C2D"
-                    android:textSize="18sp" />
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/describeText" />
 
                 <TextView
-                    android:id="@+id/raspolozhenieobj"
+                    android:id="@+id/locationText"
                     android:layout_width="362dp"
-                    android:layout_height="126dp"
-                    android:layout_marginStart="27dp"
-                    android:layout_marginTop="1183dp"
-                    android:fontFamily="@font/mainfont"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentTop="true"
+                    android:layout_marginTop="14dp"
                     android:gravity="top"
                     android:text="@string/raspolozhenieinfo"
                     android:textColor="#2B2C2D"
-                    android:textSize="13sp" />
+                    android:textSize="13sp"
+                    android:textStyle="bold"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/location" />
 
                 <TextView
-                    android:layout_width="198dp"
-                    android:layout_height="38dp"
-                    android:layout_marginStart="114dp"
-                    android:layout_marginTop="1344dp"
-                    android:fontFamily="@font/mainfont"
+                    android:id="@+id/history"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentTop="true"
+                    android:layout_marginTop="35dp"
                     android:gravity="center_horizontal|top"
                     android:text="История создания"
                     android:textColor="#2B2C2D"
-                    android:textSize="18sp" />
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/locationText" />
 
                 <TextView
-                    android:id="@+id/istoriofcreate"
-                    android:layout_width="366dp"
-                    android:layout_height="688dp"
-                    android:layout_marginStart="27dp"
-                    android:layout_marginTop="1400dp"
-                    android:fontFamily="@font/mainfont"
+                    android:id="@+id/historyText"
+                    android:layout_width="362dp"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentTop="true"
+                    android:layout_marginTop="14dp"
                     android:gravity="top"
                     android:text="@string/istoriasozdaniainfo"
                     android:textColor="#2B2C2D"
-                    android:textSize="13sp" />
+                    android:textSize="13sp"
+                    android:textStyle="bold"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/history" />
 
                 <TextView
-                    android:layout_width="219dp"
-                    android:layout_height="26dp"
-                    android:layout_marginStart="117dp"
-                    android:layout_marginTop="2130dp"
-                    android:fontFamily="@font/mainfont"
+                    android:id="@+id/interestingFacts"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentTop="true"
+                    android:layout_marginTop="32dp"
                     android:gravity="center_horizontal|top"
                     android:text="Интересные факты"
                     android:textColor="#2B2C2D"
-                    android:textSize="18sp" />
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/historyText" />
 
                 <TextView
-                    android:id="@+id/ineresniemesta"
-                    android:layout_width="348dp"
-                    android:layout_height="492dp"
-                    android:layout_marginStart="42dp"
-                    android:layout_marginTop="2169dp"
-                    android:fontFamily="@font/mainfont"
+                    android:id="@+id/interestingFactsText"
+                    android:layout_width="362dp"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentTop="true"
+                    android:layout_marginTop="14dp"
+                    android:layout_marginBottom="20dp"
                     android:gravity="top"
                     android:text="@string/interesniefacts"
                     android:textColor="#2B2C2D"
-                    android:textSize="13sp" />
+                    android:textSize="13sp"
+                    android:textStyle="bold"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/interestingFacts" />
 
-            </FrameLayout>
-        </FrameLayout>
+            </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
-</RelativeLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

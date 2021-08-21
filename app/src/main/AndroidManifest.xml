@@ -11,6 +11,9 @@
     <uses-permission
         android:name="android.permission.BIND_NOTIFICATION_LISTENER_SERVICE"
         tools:ignore="ProtectedPermissions" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.CAMERA"/>
     <uses-permission android:name="android.permission.REQUEST_INSTALL_PACKAGES" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
@@ -23,8 +26,11 @@
         android:roundIcon="@mipmap/ic_all_logo_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.MyApplication"
-        android:usesCleartextTraffic="true">
-        <activity android:name=".activities.SplashActivity"
+        android:usesCleartextTraffic="true"
+        android:requestLegacyExternalStorage="true"
+        tools:targetApi="n">
+        <activity
+            android:name=".activities.SplashActivity"
             android:theme="@style/SplashTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -44,8 +50,8 @@
         <activity android:name=".activities.SettingsActivity" />
         <activity android:name=".activities.FAQActivity" />
         <activity android:name=".activities.AdActivity" />
-        <activity android:name=".activities.MapsActivity"
-            android:launchMode="singleTask" />
+        <activity
+            android:name=".activities.MapsActivity"/>
         <activity android:name=".activities.AuthActivity" />
     </application>
 

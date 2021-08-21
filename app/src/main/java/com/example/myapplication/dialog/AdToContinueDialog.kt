@@ -11,7 +11,11 @@ import com.example.myapplication.R
 
 class AdToContinueDialog : DialogFragment() {
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
         dialog!!.window?.setBackgroundDrawableResource(R.drawable.shapealert);
         val view = inflater.inflate(R.layout.dialog_ad_to_continue, container, false)
         view.findViewById<ImageView>(R.id.returnaction).setOnClickListener {

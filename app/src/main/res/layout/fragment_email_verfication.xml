@@ -41,11 +41,12 @@
 
     <androidx.cardview.widget.CardView
         android:id="@+id/cardView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="188dp"
+        android:layout_height="50dp"
         android:layout_marginStart="112dp"
         android:layout_marginEnd="111dp"
         android:layout_gravity="center"
+        app:cardBackgroundColor="#D9E5FC"
         android:layout_marginTop="47dp"
         app:cardCornerRadius="20dp">
 
@@ -55,7 +56,7 @@
             android:layout_height="match_parent"
             android:scaleType="centerCrop"
             android:backgroundTint="#D9E5FC"
-            android:background="@drawable/main_box" />
+            />
 
         <EditText
             android:id="@+id/codeInput"
@@ -73,18 +74,13 @@
 
     <androidx.cardview.widget.CardView
         android:id="@+id/cardView1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="188dp"
+        android:layout_height="50dp"
         android:layout_gravity="center"
         android:layout_marginTop="100dp"
+        app:cardBackgroundColor="#D9E5FC"
         app:cardCornerRadius="20dp">
 
-        <ImageView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:scaleType="centerCrop"
-            android:backgroundTint="#D9E5FC"
-            android:background="@drawable/main_box" />
 
         <TextView
             android:id="@+id/continue_next"

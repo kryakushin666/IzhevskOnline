@@ -1,6 +1,7 @@
 package com.example.myapplication.`interface`
 
 import android.annotation.SuppressLint
+import android.app.Activity
 import android.graphics.Color
 import android.os.AsyncTask
 import android.util.Log
@@ -16,10 +17,12 @@ import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.gson.Gson
 import okhttp3.OkHttpClient
 import okhttp3.Request
+import javax.net.ssl.*
+
 
 interface Directions {
     // Функция дешифровки URL
-    class GetDirection(private val url: String, private val fragmentManager: FragmentManager) : AsyncTask<String, Void, String>() {
+    class GetDirection(private val url: String, private val fragmentManager: FragmentManager, private val activity: Activity) : AsyncTask<String, Void, String>() {
         @SuppressLint("WrongThread")
         override fun doInBackground(vararg params: String?): String {
             val client = OkHttpClient()
@@ -39,11 +42,11 @@ interface Directions {
 
                     dirtext = duration
                     disttext = distance
-                    val duration2 = respObj.routes[1].legs[0].duration.text
+                   /* val duration2 = respObj.routes[1].legs[0].duration.text
                     val distance2 = respObj.routes[1].legs[0].distance.text
                     val duration3 = respObj.routes[2].legs[0].duration.text
-                    val distance3 = respObj.routes[2].legs[0].distance.text
-                    minut1.text = duration
+                    val distance3 = respObj.routes[2].legs[0].distance.text*/
+                    /*minut1.text = duration
                     minut2.text = duration2
                     minut3.text = duration3
                     km1.text = distance
@@ -60,8 +63,11 @@ interface Directions {
                             path.addAll(decodePolyline(respObj.routes[1].legs[0].steps[i].polyline.points))
                         }
                     }
-                    mBottomSheetRoute.state = BottomSheetBehavior.STATE_EXPANDED
-                    bottomNavigationView.visibility = View.INVISIBLE
+
+                    mBottomSheetRoute.state = BottomSheetBehavior.STATE_EXPANDED*/
+                    for (i in 0 until respObj.routes[0].legs[0].steps.size) {
+                        path.addAll(decodePolyline(respObj.routes[0].legs[0].steps[i].polyline.points))
+                    }
 
                     result.add(path)
                     createPolyline(result)
@@ -73,10 +79,7 @@ interface Directions {
             }
             return "result"
         }
-
         private fun decodePolyline(encoded: String): List<LatLng> {
-
-
             val poly = ArrayList<LatLng>()
             var index = 0
             val len = encoded.length
@@ -108,30 +111,33 @@ interface Directions {
                 val latLng = LatLng((lat.toDouble() / 1E5), (lng.toDouble() / 1E5))
                 poly.add(latLng)
             }
-
             return poly
         }
 
-        fun createPolyline(result: List<List<LatLng>>) {
-            polylineFinal?.remove()
-            val lineoption = PolylineOptions()
-            for (i in result.indices) {
-                lineoption.addAll(result[i])
-                lineoption.width(10f)
-                lineoption.color(Color.BLUE)
-                lineoption.geodesic(true)
+        private fun createPolyline(result: List<List<LatLng>>) {
+            activity.runOnUiThread {
+                polylineFinal?.remove()
+                val lineoption = PolylineOptions()
+                for (i in result.indices) {
+                    lineoption.addAll(result[i])
+                    lineoption.width(10f)
+                    lineoption.color(Color.BLUE)
+                    lineoption.geodesic(true)
+                }
+                polylineFinal = map.addPolyline(lineoption)
+                /*lotties.playAnimation()
+                val invis = lotties.isInvisible
+                Log.d("dd", "invi: $invis")
+                IsCheckedDone = true*/
+                //val alltext = dirtext
+                //textdistance.text = alltext
+                //mBottomSheetTimeRoute.visibility = View.VISIBLE
             }
-            polylineFinal = map.addPolyline(lineoption)
-            /*lotties.playAnimation()
-            val invis = lotties.isInvisible
-            Log.d("dd", "invi: $invis")
-            IsCheckedDone = true*/
-            val alltext = dirtext
-            textdistance.text = alltext
-            mBottomSheetTimeRoute.visibility = View.VISIBLE
         }
         // Отрисовка линий маршрута на карте
         override fun onPostExecute(result: String?) {
         }
     }
+
+
 }

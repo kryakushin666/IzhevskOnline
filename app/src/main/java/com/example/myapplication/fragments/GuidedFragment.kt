@@ -1,40 +1,32 @@
 package com.example.myapplication.fragments
 
-import android.content.Intent
-import android.graphics.Color
-import android.graphics.drawable.Drawable
 import android.os.Bundle
-import android.util.Log
+import android.os.Handler
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
-import androidx.core.app.ActivityCompat.finishAffinity
-import androidx.core.content.ContextCompat
-import androidx.core.graphics.drawable.DrawableCompat
+import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
+import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.example.myapplication.R
-import com.example.myapplication.activities.MapsActivity
+import com.example.myapplication.`interface`.respObjDatabase
 import com.example.myapplication.activities.bottomNavigationView
-import com.example.myapplication.models.CommonModel
-import com.example.myapplication.utilits.NODE_EXCURSION
-import com.example.myapplication.utilits.REF_DATABASE_ROOT
-import com.firebase.ui.database.FirebaseRecyclerAdapter
-import com.firebase.ui.database.FirebaseRecyclerOptions
-import com.google.android.material.bottomsheet.BottomSheetBehavior
-import com.google.firebase.database.DatabaseReference
+import com.example.myapplication.database.DatabaseHelper
 
-lateinit var mBottomSheetGun: BottomSheetBehavior<*>
+
+var guidedFragment_allCounterName: ArrayList<String> = ArrayList()
+var guidedFragment_alLCounterId: ArrayList<Int> = ArrayList()
+var guidedFragment_allCounterAuthor: ArrayList<String> = ArrayList()
+var guidedFragment_allCounterType: ArrayList<String> = ArrayList()
 
 class GuidedFragment : Fragment() {
 
-    private lateinit var mRecyclerView: RecyclerView
-    private lateinit var mAdapter: FirebaseRecyclerAdapter<CommonModel, MyAdapter>
-    private lateinit var mRefContacts: DatabaseReference
-    private lateinit var mRef: DatabaseReference
+    var itemCounter: Int = 0
+    private var viewAdapter: MyAdapter? = null
 
     override fun onCreateView(
             inflater: LayoutInflater, container: ViewGroup?,
@@ -45,67 +37,90 @@ class GuidedFragment : Fragment() {
         /*fragmentLayout.findViewById<ImageView>(R.id.guncenter).setOnClickListener {
             findNavController().navigate(R.id.action_guided_screen_to_gunFragment)
         }*/
+        val recyclerView = fragmentLayout.findViewById<RecyclerView>(R.id.list_excursion)
+        val notFound = fragmentLayout.findViewById<TextView>(R.id.notFound)
+        guidedFragment_allCounterName.clear()
+        guidedFragment_alLCounterId.clear()
+        guidedFragment_allCounterType.clear()
+        guidedFragment_allCounterAuthor.clear()
         fragmentLayout.findViewById<ImageView>(R.id.buttonback).setOnClickListener {
             findNavController().popBackStack()
         }
         bottomNavigationView.visibility = View.INVISIBLE
-        mBottomSheetGun =
-            BottomSheetBehavior.from(fragmentLayout.findViewById(R.id.bottom_sheet_gun))
 
-        initRecyclerView(fragmentLayout)
+        DatabaseHelper(requireFragmentManager()) {
+            itemCounter = respObjDatabase.response.size
+            for (i in 0 until respObjDatabase.response.size) {
+                guidedFragment_allCounterName.add(respObjDatabase.response[i].name)
+                guidedFragment_alLCounterId.add(respObjDatabase.response[i].id)
+                guidedFragment_allCounterType.add(respObjDatabase.response[i].type)
+                guidedFragment_allCounterAuthor.add(respObjDatabase.response[i].author)
+
+            }
+            viewAdapter = MyAdapter(Array(itemCounter) { guidedFragment_allCounterName[it % guidedFragment_allCounterName.size] })
+            activity?.runOnUiThread {
+                recyclerView.run {
+                // use this setting to improve performance if you know that changes
+                // in content do not change the layout size of the RecyclerView
+                setHasFixedSize(true)
+
+                // specify an viewAdapter (see also next example) Person ${it + 1}
+                adapter = viewAdapter
+            }
+                if(viewAdapter!!.itemCount != 0) {
+                    recyclerView.visibility = View.VISIBLE
+                    notFound.visibility = View.INVISIBLE
+                }
+            }
+        }.getTwoData("SELECT * FROM `excursions`")
         // возвращаем макет фрагмента
         return fragmentLayout
     }
+    class MyAdapter(private val myDataset: Array<String>) :
+        RecyclerView.Adapter<MyAdapter.ViewHolder>() {
 
-    private fun initRecyclerView(view: View) {
-        mRecyclerView = view.findViewById(R.id.list_excursion)
-        mRefContacts = REF_DATABASE_ROOT.child(NODE_EXCURSION)
-        val options = FirebaseRecyclerOptions.Builder<CommonModel>()
-                .setQuery(mRefContacts, CommonModel::class.java)
-                .build()
+        // Provide a reference to the views for each data item
+        // Complex data items may need more than one view per item, and
+        // you provide access to all the views for a data item in a view holder.
+        // Each data item is just a string in this case that is shown in a TextView.
+        class ViewHolder(val item: View) : RecyclerView.ViewHolder(item)
 
-        mAdapter = object : FirebaseRecyclerAdapter<CommonModel, MyAdapter>(options) {
-            override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyAdapter {
-                val view = LayoutInflater.from(parent.context).inflate(R.layout.list_view_excursion, parent, false)
-                return MyAdapter(view)
-            }
 
-            override fun onBindViewHolder(holder: MyAdapter, position: Int, model: CommonModel) {
-                //holder.user_name_text.text = model.name
-                //holder.itemView.excname.text = model.name
-                holder.itemView.findViewById<TextView>(R.id.excname).text = model.name
+        // Create new views (invoked by the layout manager)
+        override fun onCreateViewHolder(parent: ViewGroup,
+                                        viewType: Int): ViewHolder {
+            // create a new view
+            val itemView = LayoutInflater.from(parent.context)
+                .inflate(R.layout.list_view_excursion, parent, false)
 
-                //mRef = REF_DATABASE_ROOT.child(NODE_SECONDARY).child(CHILD_TYPE)
-                holder.itemView.setOnClickListener {
-                    val contextCompats = requireContext().applicationContext
-                    view.findViewById<TextView>(R.id.mainname).text = model.name
-                    val bm = view.findViewById<ImageView>(R.id.user_avatar_image)
-                    val wrappedDrawable: Drawable = DrawableCompat.wrap(ContextCompat.getDrawable(requireContext(), R.drawable.rectbutton)!!)
-                    DrawableCompat.setTint(wrappedDrawable, Color.parseColor("#5D8EEF"))
-                    DrawableCompat.setTint(DrawableCompat.wrap(ContextCompat.getDrawable(requireContext(), R.drawable.box_route)!!),  Color.parseColor("#5D8EEF"))
-                    DrawableCompat.setTint(DrawableCompat.wrap(ContextCompat.getDrawable(requireContext(), R.drawable.ic_car)!!),  Color.parseColor("#5D8EEF"))
-                    DrawableCompat.setTint(DrawableCompat.wrap(ContextCompat.getDrawable(requireContext(), R.drawable.main_box)!!),  Color.parseColor("#5D8EEF"))
-                    //bm?.background = wrappedDrawable
-                    finishAffinity(activity as MapsActivity)
-                    val intent = Intent(contextCompats, MapsActivity::class.java)
-                    startActivity(intent)
-                    //bm.setBackgroundColor(ContextCompat.getColor(requireContext(), R.color.colorGreen))
-                    Log.d("Shiza", "da-da")
-                    //mBottomSheetGun.state = BottomSheetBehavior.STATE_EXPANDED
-                }
+
+            return ViewHolder(itemView)
+        }
+
+        // Replace the contents of a view (invoked by the layout manager)
+        override fun onBindViewHolder(holder: ViewHolder, position: Int) {
+            // - get element from your dataset at this position
+            // - replace the contents of the view with that element
+            holder.item.findViewById<TextView>(R.id.excname).text = myDataset[position]
+
+            /*holder.item.findViewById<ImageView>(R.id.user_avatar_image)
+                .downloadAndInto(allcounterimage[position % allcountername.size])*/
+
+            holder.item.setOnClickListener {
+                val bundle = bundleOf(EXCURSION_NAME to myDataset[position], EXCURSION_ID to guidedFragment_alLCounterId[position % guidedFragment_alLCounterId.size], EXCURSION_AUTHOR to guidedFragment_allCounterAuthor[position % guidedFragment_allCounterAuthor.size])
+                holder.item.findNavController().navigate(
+                    R.id.action_guided_screen_to_gunFragment,
+                    bundle)
             }
         }
-        mRecyclerView.adapter = mAdapter
-        mAdapter.startListening()
-    }
 
-    class MyAdapter(view: View) : RecyclerView.ViewHolder(view) {
-        //val user_name_text: TextView = view.user_name_text
-        val excname: TextView = view.findViewById(R.id.excname)
-    }
+        // Return the size of your dataset (invoked by the layout manager)
+        override fun getItemCount() = myDataset.size
 
-    override fun onPause() {
-        super.onPause()
-        mAdapter.stopListening()
+        companion object {
+            const val EXCURSION_NAME = "excursion_name"
+            const val EXCURSION_AUTHOR = "excursion_author"
+            const val EXCURSION_ID = "excursion_id"
+        }
     }
 }

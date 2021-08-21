@@ -5,7 +5,6 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.example.myapplication.R
 import com.example.myapplication.utilits.editData
-import com.example.myapplication.utilits.initFirebase
 import com.example.myapplication.utilits.initMint
 import com.getkeepsafe.taptargetview.TapTarget
 import com.getkeepsafe.taptargetview.TapTargetSequence
@@ -21,7 +20,6 @@ class SettingsActivity : AppCompatActivity() {
         setContentView(R.layout.activity_settings)
         supportActionBar?.hide()
         initMint(this.application)
-        initFirebase()
         auth = FirebaseAuth.getInstance()
         backbutton.setOnClickListener {
             finish()
@@ -37,17 +35,6 @@ class SettingsActivity : AppCompatActivity() {
             finishAffinity()
             auth.signOut()
         }
-        gototwodesign.setOnClickListener {
-            if(editData(this, "BlankTwoFragment", "TwoFragment", "0", "getInt")?.toInt() == 0) {
-                editData(this, "BlankTwoFragment", "TwoFragment", "1", "putInt")
-            } else editData(this, "BlankTwoFragment", "TwoFragment", "0", "putInt")
-            finishAffinity()
-            val intent = Intent(this, MapsActivity::class.java)
-            startActivity(intent)
-        }
-
-        // Using deprecated methods makes you look way cool
-        // Using deprecated methods makes you look way cool
         TapTargetSequence(this)
             .targets(
                 TapTarget.forView(

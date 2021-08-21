@@ -16,10 +16,24 @@
             app:exitAnim="@anim/fade_out"
             app:popEnterAnim="@anim/fade_in"
             app:popExitAnim="@anim/fade_out" />
+        <action
+            android:id="@+id/action_maps_screen_to_checkloc_screen"
+            app:destination="@id/checkloc_screen"
+            app:enterAnim="@anim/fade_in"
+            app:exitAnim="@anim/fade_out"
+            app:popEnterAnim="@anim/fade_in"
+            app:popExitAnim="@anim/fade_out" />
+        <action
+            android:id="@+id/action_maps_screen_to_checklandmark_screen"
+            app:destination="@id/landmark_screen"
+            app:enterAnim="@anim/fade_in"
+            app:exitAnim="@anim/fade_out"
+            app:popEnterAnim="@anim/fade_in"
+            app:popExitAnim="@anim/fade_out" />
     </fragment>
     <fragment
         android:id="@+id/bottom_screen"
-        android:name="com.example.myapplication.fragments.MapsFragment$DemoBottomSheetFragment"
+        android:name="com.example.myapplication.fragments.MapsFragment"
         android:label="@string/title_notifications"
         tools:layout="@layout/fragment_demo_sheet" >
         <action
@@ -56,6 +70,18 @@
             app:exitAnim="@anim/fade_out"
             app:popEnterAnim="@anim/fade_in"
             app:popExitAnim="@anim/fade_out" />
+    </fragment>
+    <fragment
+        android:id="@+id/checkloc_screen"
+        android:name="com.example.myapplication.fragments.LocationCheckFragment"
+        android:label="@string/title_notifications"
+        tools:layout="@layout/fragment_locationcheck" >
+    </fragment>
+    <fragment
+        android:id="@+id/landmark_screen"
+        android:name="com.example.myapplication.fragments.LandmarkDetectorFragment"
+        android:label="@string/title_notifications"
+        tools:layout="@layout/fragment_landmarkcheck" >
     </fragment>
     <fragment
         android:id="@+id/gunFragment"
