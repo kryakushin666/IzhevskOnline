@@ -31,6 +31,9 @@ class User {
     var type = ""
     var author = "Izhevsk Online"
     // Version App
+
+    var fingerprint = ""
+
     var lastversion = 0.0F
     var betaversion = 0.0F
 }

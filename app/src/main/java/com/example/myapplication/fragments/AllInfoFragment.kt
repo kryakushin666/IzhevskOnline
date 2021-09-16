@@ -11,12 +11,8 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.example.myapplication.R
 import com.example.myapplication.`interface`.respObjDatabase
-import com.example.myapplication.database.DatabaseHelper
-import com.example.myapplication.fragments.MapsFragment.Companion.OBJECT_ID
+import com.example.myapplication.helpers.DatabaseHelper
 import com.example.myapplication.fragments.MapsFragment.Companion.OBJECT_NAME
-import com.example.myapplication.utilits.downloadAndInto
-import java.util.regex.Matcher
-import java.util.regex.Pattern
 
 /**
  * A fragment representing a list of Items.
@@ -32,12 +28,14 @@ class AllInfoFragment : Fragment() {
         val fragmentLayout = inflater.inflate(R.layout.fragment_allinfo, container, false)
         val name = arguments?.getString(OBJECT_NAME) ?: "HELLO WORLD"
         fun changeText(name: String) {
-            DatabaseHelper(requireFragmentManager()) {
+            DatabaseHelper(requireFragmentManager(), requireContext().applicationContext) {
                 activity?.runOnUiThread {
-                    fragmentLayout.findViewById<TextView>(R.id.describeText).text = respObjDatabase.response[0].opisanie
-                    fragmentLayout.findViewById<TextView>(R.id.locationText).text = respObjDatabase.response[0].raspolozhenie
-                    fragmentLayout.findViewById<TextView>(R.id.historyText).text = respObjDatabase.response[0].historycreate
-                    fragmentLayout.findViewById<TextView>(R.id.interestingFactsText).text = respObjDatabase.response[0].interestplace
+                    if(respObjDatabase.response.size != 0) {
+                        fragmentLayout.findViewById<TextView>(R.id.describeText).text = respObjDatabase.response[0].opisanie
+                        fragmentLayout.findViewById<TextView>(R.id.locationText).text = respObjDatabase.response[0].raspolozhenie
+                        fragmentLayout.findViewById<TextView>(R.id.historyText).text = respObjDatabase.response[0].historycreate
+                        fragmentLayout.findViewById<TextView>(R.id.interestingFactsText).text = respObjDatabase.response[0].interestplace
+                    }
                 }
             }.getTwoData("SELECT * FROM `excursionsObjects` WHERE `name` = '$name'")
         }

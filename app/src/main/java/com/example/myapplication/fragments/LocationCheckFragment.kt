@@ -13,9 +13,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.myapplication.R
 import com.example.myapplication.`interface`.respObjPlace
 import com.example.myapplication.activities.bottomNavigationView
-import com.example.myapplication.place.PlaceHelper
+import com.example.myapplication.helpers.PlaceHelper
 import com.example.myapplication.utilits.downloadAndInto
-import org.w3c.dom.Text
 
 
 var LocationCheckFragment_allCounterName: ArrayList<String> = ArrayList()
@@ -46,7 +45,7 @@ class LocationCheckFragment : Fragment() {
         }
         bottomNavigationView.visibility = View.INVISIBLE
 
-        PlaceHelper(requireFragmentManager()) {
+        PlaceHelper(requireFragmentManager(), {
             itemCounter = respObjPlace.results.size
             if(itemCounter != 0) {
                 for (i in 0 until itemCounter) {
@@ -72,7 +71,7 @@ class LocationCheckFragment : Fragment() {
                     }
                 }
             }
-        }.getPlace(arguments?.getString("UserLocation", "0")!!)
+        }, requireActivity(), fragmentLayout).getPlace(arguments?.getString("UserLocation", "0")!!)
             // возвращаем макет фрагмента
             return fragmentLayout
         }

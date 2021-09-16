@@ -26,8 +26,8 @@ import com.example.myapplication.R
 import com.example.myapplication.`interface`.respObjDatabase
 import com.example.myapplication.activities.AuthActivity
 import com.example.myapplication.activities.MapsActivity
-import com.example.myapplication.database.DatabaseHelper
-import com.example.myapplication.email.EmailHelper
+import com.example.myapplication.helpers.DatabaseHelper
+import com.example.myapplication.helpers.EmailHelper
 import com.example.myapplication.utilits.editData
 
 
@@ -76,7 +76,7 @@ class EmailVerificationFragment : Fragment() {
             editData(contextCompats, "USERNAME", "USERNAME_EMAIL", email, "putString")
             editData(contextCompats, "NameOfPeople", "NamePeople", name, "putString")
             editData(contextCompats, "AuthSuccessful", "AuthComp", "1", "putInt")
-            DatabaseHelper(requireFragmentManager()) {
+            DatabaseHelper(requireFragmentManager(), contextCompats) {
                 Log.d(TAG, respObjDatabase.response[0].email)
             }.getTwoData("INSERT INTO `accounts`(`name`, `lastname`, `email`, `password`) VALUES ('$name','$lastname','$email','$password')")
             Handler().postDelayed(

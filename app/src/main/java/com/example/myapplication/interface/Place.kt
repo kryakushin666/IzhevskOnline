@@ -6,7 +6,9 @@ import android.graphics.Color
 import android.os.AsyncTask
 import android.util.Log
 import android.view.View
+import android.widget.TextView
 import androidx.fragment.app.FragmentManager
+import com.example.myapplication.R
 import com.example.myapplication.activities.bottomNavigationView
 import com.example.myapplication.dialog.ErrRouteDialog
 import com.example.myapplication.fragments.*
@@ -28,7 +30,7 @@ var respObjPlace: PlaceDTO = PlaceDTO()
 
 interface Place {
     // Функция дешифровки URL
-    class GetPlace(private val url: String, private val fragmentManager: FragmentManager, private val value: () -> Unit) : AsyncTask<String, Void, String>() {
+    class GetPlace(private val url: String, private val fragmentManager: FragmentManager, private val value: () -> Unit, private val activity: Activity, private val view: View) : AsyncTask<String, Void, String>() {
         @SuppressLint("WrongThread")
         override fun doInBackground(vararg params: String?): String {
             val client = OkHttpClient()
@@ -39,10 +41,19 @@ interface Place {
             Log.d("GooglePlace", " data : $data")
             try {
                 respObjPlace = Gson().fromJson(data, PlaceDTO::class.java)
-                if (respObjPlace.status == "OK") {
-                    value()
-                } else {
-                    ErrRouteDialog().show(fragmentManager, "MyCustomFragment")
+                when (respObjPlace.status) {
+                    "ZERO_RESULTS" -> {
+                        activity.runOnUiThread {
+                            view.findViewById<TextView>(R.id.notExist).visibility = View.VISIBLE
+                            view.findViewById<TextView>(R.id.notFound).visibility = View.INVISIBLE
+                        }
+                    }
+                    "OK" -> {
+                        value()
+                    }
+                    else -> {
+                        ErrRouteDialog {}.show(fragmentManager, "MyCustomFragment")
+                    }
                 }
             } catch (e: Exception) {
                 e.printStackTrace()

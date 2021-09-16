@@ -1,22 +1,17 @@
 package com.example.myapplication.fragments
 
-import android.content.Context
 import android.content.Intent
-import android.database.Cursor
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.net.Uri
 import android.os.Build
 import android.os.Bundle
 import android.os.Environment
-import android.provider.MediaStore
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
 import android.widget.ImageView
-import android.widget.Toast
 import androidx.cardview.widget.CardView
 import androidx.core.net.toUri
 import androidx.fragment.app.Fragment
@@ -25,7 +20,6 @@ import com.bumptech.glide.Glide
 import com.example.myapplication.R
 import com.example.myapplication.utilits.LandmarkRecognitionModel
 import com.github.dhaval2404.imagepicker.ImagePicker
-import com.google.android.gms.tasks.Task
 import com.google.firebase.functions.FirebaseFunctions
 import com.google.firebase.functions.ktx.functions
 import com.google.firebase.ktx.Firebase
@@ -36,6 +30,7 @@ import com.google.firebase.ml.vision.common.FirebaseVisionImage
 import com.google.gson.*
 import com.ibm.icu.text.Transliterator
 import kotlinx.android.synthetic.main.fragment_landmarkcheck.*
+import java.io.File
 import java.io.InputStream
 
 
@@ -66,40 +61,43 @@ class LandmarkDetectorFragment : Fragment() {
         // The last parameter value of shouldHandleResult() is the value we pass to setRequestCode().
         // If we do not call setRequestCode(), we can ignore the last parameter.
         if (requestCode == 2404) {
-            val uri: Uri = data?.data!!
-            // Do stuff with image's path or id. For example:
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+            Log.d("ResultCode", resultCode.toString())
+            if(resultCode == -1) {
+                val uri: Uri = data?.data!!
+                // Do stuff with image's path or id. For example:
+                   // if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+                Log.d("LandMark", "Method 1")
+                Glide.with(requireContext())
+                    .load(uri)
+                    .into(inputImage)
 
-                    Glide.with(requireContext())
-                        .load(uri)
-                        .into(inputImage)
+                val inputStream: InputStream? =
+                    context?.applicationContext?.contentResolver?.openInputStream(uri)
+                val bitmap = BitmapFactory.decodeStream(inputStream)
+                inputStream?.close()
 
-                    val inputStream: InputStream =
-                        context?.contentResolver?.openInputStream(uri)!!
-                    val bitmap = BitmapFactory.decodeStream(inputStream)
-                    inputStream.close()
+                val firebaseVisionImage = FirebaseVisionImage.fromBitmap(bitmap)
 
-                    val firebaseVisionImage = FirebaseVisionImage.fromBitmap(bitmap)
+                val options = FirebaseVisionCloudDetectorOptions.Builder()
+                    .setModelType(FirebaseVisionCloudDetectorOptions.STABLE_MODEL)
+                    .setMaxResults(5)
+                    .build()
 
-                    val options = FirebaseVisionCloudDetectorOptions.Builder()
-                        .setModelType(FirebaseVisionCloudDetectorOptions.LATEST_MODEL)
-                        .setMaxResults(5)
-                        .build()
-
-                    val detector =
-                        FirebaseVision.getInstance().getVisionCloudLandmarkDetector(options)
+                val detector =
+                    FirebaseVision.getInstance().getVisionCloudLandmarkDetector(options)
 
 
-                    detector.detectInImage(firebaseVisionImage)
-                        .addOnSuccessListener {
-                            val mutableImage = bitmap.copy(Bitmap.Config.ARGB_8888, true)
-                            recognizeLandmarks(it, mutableImage)
-                        }
-                        .addOnFailureListener {
-                            // Task failed with an exception
-                        }
-                } else {
-
+                detector.detectInImage(firebaseVisionImage)
+                    .addOnSuccessListener {
+                        val mutableImage = bitmap.copy(Bitmap.Config.ARGB_8888, true)
+                        recognizeLandmarks(it, mutableImage)
+                    }
+                    .addOnFailureListener {
+                        // Task failed with an exception
+                    }
+                    //}
+                /*else {
+                    Log.d("LandMark", "Method 2")
                     Glide.with(requireContext())
                         .load(data.data!!.path?.toUri()!!)
                         .into(inputImage)
@@ -128,16 +126,18 @@ class LandmarkDetectorFragment : Fragment() {
                         .addOnFailureListener {
                             // Task failed with an exception
                         }
-                }
+                }*/
+            }
         }
         super.onActivityResult(requestCode, resultCode, data)   // This line is REQUIRED in fragment mode
     }
+
     private fun recognizeLandmarks(landmarks: List<FirebaseVisionCloudLandmark>?, image: Bitmap?) {
         if (landmarks == null || image == null) {
             nameOfObject.text = "Произошла ошибка"
             return
         }
-
+        landmarkRecognitionModels.clear()
         for (landmark in landmarks) {
             landmarkRecognitionModels.add(LandmarkRecognitionModel(landmark.landmark, landmark.confidence, landmark.locations))
             val nameObject = landmarkRecognitionModels[0].text

@@ -8,129 +8,148 @@
     tools:context=".fragments.BlankFragment"
     tools:ignore="ObsoleteLayoutParam, HardcodedText">
 
-    <ImageView
-        android:id="@+id/settingb"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginTop="28dp"
-        android:background="@drawable/ic_settings"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.813"
-        app:layout_constraintStart_toEndOf="@+id/goodmorning"
-        app:layout_constraintTop_toTopOf="parent" />
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        tools:ignore="HardcodedText,UselessParent"
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="0dp">
 
-    <TextSwitcher
-        android:id="@+id/goodmorning"
-        android:layout_width="235dp"
-        android:layout_height="37dp"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginStart="44dp"
-        android:layout_marginTop="16dp"
-        android:fontFamily="@font/mainfont"
-        android:gravity="top"
-        android:lineSpacingExtra="5sp"
-        android:text="28 апреля"
-        android:textSize="22sp"
-        android:translationY="-2.52sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"/>
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
 
-    <TextSwitcher
-        android:id="@+id/goodforpeople"
-        android:layout_width="235dp"
-        android:layout_height="67dp"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginStart="44dp"
-        android:layout_marginTop="52dp"
-        android:gravity="top"
-        android:lineSpacingExtra="5sp"
-        android:text="Доброго дня!"
-        android:textSize="22sp"
-        android:translationY="-2.52sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"/>
+            <ImageView
+                android:id="@+id/settingb"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"
+                android:layout_marginTop="28dp"
+                android:background="@drawable/ic_settings"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.813"
+                app:layout_constraintStart_toEndOf="@+id/goodmorning"
+                app:layout_constraintTop_toTopOf="parent" />
 
-    <ImageView
-        android:id="@+id/Button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginStart="44dp"
-        android:layout_marginTop="44dp"
-        android:src="@drawable/ic_museum"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/rectangle_3"
-        tools:ignore="ContentDescription" />
+            <TextSwitcher
+                android:id="@+id/goodmorning"
+                android:layout_width="235dp"
+                android:layout_height="37dp"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentTop="true"
+                android:layout_marginStart="44dp"
+                android:layout_marginTop="16dp"
+                android:fontFamily="@font/mainfont"
+                android:gravity="top"
+                android:lineSpacingExtra="5sp"
+                android:text="28 апреля"
+                android:textSize="22sp"
+                android:translationY="-2.52sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
-    <ImageView
-        android:id="@+id/rectangle_3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginStart="44dp"
-        android:layout_marginTop="28dp"
-        android:background="@drawable/ic_searchbutton"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/goodforpeople" />
+            <TextSwitcher
+                android:id="@+id/goodforpeople"
+                android:layout_width="235dp"
+                android:layout_height="67dp"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentTop="true"
+                android:layout_marginStart="44dp"
+                android:layout_marginTop="52dp"
+                android:gravity="top"
+                android:lineSpacingExtra="5sp"
+                android:text="Доброго дня!"
+                android:textSize="22sp"
+                android:translationY="-2.52sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
-        android:id="@+id/search_text"
-        android:layout_width="274dp"
-        android:layout_height="21dp"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginStart="14dp"
-        android:fontFamily="@font/mainfont"
-        android:gravity="top"
-        android:background="#E8E8E8"
-        android:text="Найдите что-нибудь..."
-        android:textColor="#706F6F"
-        android:textSize="16sp"
-        app:layout_constraintBottom_toBottomOf="@+id/rectangle_3"
-        app:layout_constraintStart_toStartOf="@+id/rectangle_3"
-        app:layout_constraintTop_toTopOf="@+id/rectangle_3" />
+            <ImageView
+                android:id="@+id/Button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentTop="true"
+                android:layout_marginStart="44dp"
+                android:layout_marginTop="44dp"
+                android:src="@drawable/ic_museum"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/rectangle_3"
+                tools:ignore="ContentDescription" />
 
-    <ImageView
-        android:id="@+id/button1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginTop="44dp"
-        android:layout_marginEnd="44dp"
-        android:src="@drawable/ic_parks"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/rectangle_3"
-        tools:ignore="ContentDescription" />
+            <ImageView
+                android:id="@+id/rectangle_3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"
+                android:layout_marginStart="44dp"
+                android:layout_marginTop="28dp"
+                android:background="@drawable/ic_searchbutton"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/goodforpeople" />
 
-    <ImageView
-        android:id="@+id/button3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="44dp"
-        android:layout_marginTop="40dp"
-        android:src="@drawable/ic_cafe"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/Button"
-        tools:ignore="ContentDescription" />
+            <TextView
+                android:id="@+id/search_text"
+                android:layout_width="274dp"
+                android:layout_height="21dp"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"
+                android:layout_marginStart="14dp"
+                android:background="#E8E8E8"
+                android:fontFamily="@font/mainfont"
+                android:gravity="top"
+                android:text="Найдите что-нибудь..."
+                android:textColor="#706F6F"
+                android:textSize="16sp"
+                app:layout_constraintBottom_toBottomOf="@+id/rectangle_3"
+                app:layout_constraintStart_toStartOf="@+id/rectangle_3"
+                app:layout_constraintTop_toTopOf="@+id/rectangle_3" />
 
-    <ImageView
-        android:id="@+id/button2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
-        android:layout_marginEnd="44dp"
-        android:src="@drawable/ic_hotels"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button1"
-        tools:ignore="ContentDescription" />
+            <ImageView
+                android:id="@+id/button1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"
+                android:layout_marginTop="44dp"
+                android:layout_marginEnd="44dp"
+                android:src="@drawable/ic_parks"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/rectangle_3"
+                tools:ignore="ContentDescription" />
 
+            <ImageView
+                android:id="@+id/button3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="44dp"
+                android:layout_marginTop="40dp"
+                android:layout_marginBottom="80dp"
+                android:src="@drawable/ic_cafe"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/Button"
+                tools:ignore="ContentDescription" />
+
+            <ImageView
+                android:id="@+id/button2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="40dp"
+                android:layout_marginEnd="44dp"
+                android:layout_marginBottom="80dp"
+                android:src="@drawable/ic_hotels"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/button1"
+                tools:ignore="ContentDescription" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
 </androidx.constraintlayout.widget.ConstraintLayout>

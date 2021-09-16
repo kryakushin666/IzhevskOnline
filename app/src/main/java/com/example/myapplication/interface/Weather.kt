@@ -4,8 +4,8 @@ import android.content.Context
 import android.os.AsyncTask
 import android.util.Log
 import com.example.myapplication.modulesDTO.WeatherDTO
-import com.example.myapplication.notification.NotificationHelper
-import com.example.myapplication.weather.WeatherHelper
+import com.example.myapplication.helpers.NotificationHelper
+import com.example.myapplication.helpers.WeatherHelper
 import com.google.gson.Gson
 import okhttp3.OkHttpClient
 import okhttp3.Request

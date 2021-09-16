@@ -7,153 +7,167 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        tools:ignore="HardcodedText,UselessParent"
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="0dp">
 
-    <ImageView
-        android:id="@+id/exitbutton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/ic_exitbutton" />
-
-    <ImageView
-        android:id="@+id/imageView5"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="140dp"
-        android:layout_marginTop="142dp"
-        android:layout_marginEnd="138dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/ic_security" />
-
-
-
-    <androidx.cardview.widget.CardView
-        android:id="@+id/nomer"
-        android:layout_width="345dp"
-        android:layout_height="48dp"
-        android:layout_marginTop="42dp"
-        android:backgroundTint="#D9E5FC"
-        app:cardCornerRadius="20dp"
-        app:layout_constraintEnd_toEndOf="@+id/imageView5"
-        app:layout_constraintStart_toStartOf="@+id/imageView5"
-        app:layout_constraintTop_toBottomOf="@+id/imageView5">
-
-        <EditText
-            android:id="@+id/name"
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="@null"
-            android:gravity="fill"
-            android:hint="Имя"
-            android:inputType="text"
-            android:paddingStart="19dp"
-            android:textColor="#818181"
-            android:textSize="19sp" />
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
 
-    </androidx.cardview.widget.CardView>
+            <ImageView
+                android:id="@+id/exitbutton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/ic_exitbutton" />
 
-    <androidx.cardview.widget.CardView
-        android:id="@+id/nameCards"
-        android:layout_width="345dp"
-        android:layout_height="48dp"
-        android:backgroundTint="#D9E5FC"
-        android:layout_marginTop="12dp"
-        app:cardCornerRadius="20dp"
-        app:layout_constraintEnd_toEndOf="@+id/imageView5"
-        app:layout_constraintStart_toStartOf="@+id/imageView5"
-        app:layout_constraintTop_toBottomOf="@+id/nomer">
-
-        <EditText
-            android:id="@+id/lastname"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="@null"
-            android:gravity="fill"
-            android:hint="Фамилия"
-            android:inputType="text"
-            android:paddingStart="19dp"
-            android:textColor="#818181"
-            android:textSize="19sp" />
-
-    </androidx.cardview.widget.CardView>
-
-    <androidx.cardview.widget.CardView
-        android:id="@+id/nameCard"
-        android:layout_width="345dp"
-        android:layout_height="48dp"
-        android:backgroundTint="#D9E5FC"
-        android:layout_marginTop="12dp"
-        app:cardCornerRadius="20dp"
-        app:layout_constraintEnd_toEndOf="@+id/imageView5"
-        app:layout_constraintStart_toStartOf="@+id/imageView5"
-        app:layout_constraintTop_toBottomOf="@+id/nameCards">
-
-        <EditText
-            android:id="@+id/email"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="@null"
-            android:gravity="fill"
-            android:hint="Номер телефона / эл. почта"
-            android:inputType="text"
-            android:paddingStart="19dp"
-            android:textColor="#818181"
-            android:textSize="19sp" />
-
-    </androidx.cardview.widget.CardView>
-
-    <androidx.cardview.widget.CardView
-        android:id="@+id/nameCardss"
-        android:layout_width="345dp"
-        android:layout_height="48dp"
-        android:backgroundTint="#D9E5FC"
-        android:layout_marginTop="12dp"
-        app:cardCornerRadius="20dp"
-        app:layout_constraintEnd_toEndOf="@+id/imageView5"
-        app:layout_constraintStart_toStartOf="@+id/imageView5"
-        app:layout_constraintTop_toBottomOf="@+id/nameCard">
-
-        <EditText
-            android:id="@+id/password"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="@null"
-            android:gravity="fill"
-            android:hint="Пароль "
-            android:inputType="textVisiblePassword"
-            android:paddingStart="19dp"
-            android:textColor="#818181"
-            android:textSize="19sp" />
-
-    </androidx.cardview.widget.CardView>
-
-    <androidx.cardview.widget.CardView
-        android:id="@+id/loginbutton"
-        android:layout_width="345dp"
-        android:layout_height="48dp"
-        android:layout_marginTop="42dp"
-        app:cardCornerRadius="20dp"
-        app:cardBackgroundColor="#89AFFA"
-        app:layout_constraintEnd_toEndOf="@+id/imageView5"
-        app:layout_constraintStart_toStartOf="@+id/imageView5"
-        app:layout_constraintTop_toBottomOf="@+id/nameCardss">
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:text="Регистрация"
-            android:gravity="center"
-            android:textColor="#F0F0F0"
-            android:textSize="19sp" />
+            <ImageView
+                android:id="@+id/imageView5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="60dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/ic_security" />
 
 
-    </androidx.cardview.widget.CardView>
 
+            <androidx.cardview.widget.CardView
+                android:id="@+id/nomer"
+                android:layout_width="345dp"
+                android:layout_height="48dp"
+                android:layout_marginTop="42dp"
+                android:backgroundTint="#D9E5FC"
+                app:cardCornerRadius="20dp"
+                app:layout_constraintEnd_toEndOf="@+id/imageView5"
+                app:layout_constraintStart_toStartOf="@+id/imageView5"
+                app:layout_constraintTop_toBottomOf="@+id/imageView5">
+
+                <EditText
+                    android:id="@+id/name"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@null"
+                    android:gravity="fill"
+                    android:hint="Имя"
+                    android:inputType="text"
+                    android:paddingStart="19dp"
+                    android:textColor="#818181"
+                    android:textSize="19sp" />
+
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/nameCards"
+                android:layout_width="345dp"
+                android:layout_height="48dp"
+                android:backgroundTint="#D9E5FC"
+                android:layout_marginTop="12dp"
+                app:cardCornerRadius="20dp"
+                app:layout_constraintEnd_toEndOf="@+id/imageView5"
+                app:layout_constraintStart_toStartOf="@+id/imageView5"
+                app:layout_constraintTop_toBottomOf="@+id/nomer">
+
+                <EditText
+                    android:id="@+id/lastname"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@null"
+                    android:gravity="fill"
+                    android:hint="Фамилия"
+                    android:inputType="text"
+                    android:paddingStart="19dp"
+                    android:textColor="#818181"
+                    android:textSize="19sp" />
+
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/nameCard"
+                android:layout_width="345dp"
+                android:layout_height="48dp"
+                android:backgroundTint="#D9E5FC"
+                android:layout_marginTop="12dp"
+                app:cardCornerRadius="20dp"
+                app:layout_constraintEnd_toEndOf="@+id/imageView5"
+                app:layout_constraintStart_toStartOf="@+id/imageView5"
+                app:layout_constraintTop_toBottomOf="@+id/nameCards">
+
+                <EditText
+                    android:id="@+id/email"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@null"
+                    android:gravity="fill"
+                    android:hint="Эл. почта"
+                    android:inputType="text"
+                    android:paddingStart="19dp"
+                    android:textColor="#818181"
+                    android:textSize="19sp" />
+
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/nameCardss"
+                android:layout_width="345dp"
+                android:layout_height="48dp"
+                android:backgroundTint="#D9E5FC"
+                android:layout_marginTop="12dp"
+                app:cardCornerRadius="20dp"
+                app:layout_constraintEnd_toEndOf="@+id/imageView5"
+                app:layout_constraintStart_toStartOf="@+id/imageView5"
+                app:layout_constraintTop_toBottomOf="@+id/nameCard">
+
+                <EditText
+                    android:id="@+id/password"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@null"
+                    android:gravity="fill"
+                    android:hint="Пароль "
+                    android:inputType="textVisiblePassword"
+                    android:paddingStart="19dp"
+                    android:textColor="#818181"
+                    android:textSize="19sp" />
+
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/loginbutton"
+                android:layout_width="345dp"
+                android:layout_height="48dp"
+                android:layout_marginTop="42dp"
+                android:layout_marginBottom="30dp"
+
+                app:cardBackgroundColor="#89AFFA"
+                app:cardCornerRadius="20dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="@+id/imageView5"
+                app:layout_constraintStart_toStartOf="@+id/imageView5"
+                app:layout_constraintTop_toBottomOf="@+id/nameCardss">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:text="Регистрация"
+                    android:textColor="#F0F0F0"
+                    android:textSize="19sp" />
+
+
+            </androidx.cardview.widget.CardView>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
 

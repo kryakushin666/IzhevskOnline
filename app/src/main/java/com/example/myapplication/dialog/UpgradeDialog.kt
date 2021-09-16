@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.cardview.widget.CardView
 import androidx.fragment.app.DialogFragment
 import com.example.myapplication.R
 
@@ -24,7 +25,7 @@ class UpgradeDialog : DialogFragment() {
         view.findViewById<TextView>(R.id.skip).setOnClickListener {
             dialog!!.hide()
         }
-        view.findViewById<ImageView>(R.id.returnaction).setOnClickListener {
+        view.findViewById<CardView>(R.id.returnaction).setOnClickListener {
             val intent: Intent = Intent(Intent.ACTION_VIEW)
             intent.setDataAndType(
                 Uri.parse("https://nativeonline.fvds.ru:8443/izhevskonline/izhevskonline.apk"),

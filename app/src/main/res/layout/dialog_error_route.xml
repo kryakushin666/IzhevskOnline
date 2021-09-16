@@ -11,9 +11,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
-        android:layout_marginStart="49dp"
         android:layout_marginTop="28dp"
-        android:layout_marginEnd="49dp"
         android:gravity="center_horizontal|top"
         android:lineSpacingExtra="0sp"
         android:text="Что-то пошло не так"
@@ -30,9 +28,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
-        android:layout_marginStart="61dp"
         android:layout_marginTop="17dp"
-        android:layout_marginEnd="61dp"
         android:gravity="center_horizontal|top"
         android:text="Попробуйте ещё раз"
         android:textColor="#545454"
@@ -61,43 +57,40 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/returnaction" />
 
-    <ImageView
+    <androidx.cardview.widget.CardView
         android:id="@+id/returnaction"
-        android:layout_width="178dp"
-        android:layout_height="45dp"
-        android:layout_marginStart="55dp"
-        android:layout_marginTop="44dp"
-        android:layout_marginEnd="55dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.495"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/helpourproject"
-        app:srcCompat="@drawable/main_box" />
-
-    <TextView
-        android:id="@+id/returntext"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginStart="90dp"
-        android:layout_marginTop="52dp"
-        android:layout_marginEnd="90dp"
-        android:gravity="center_horizontal|top"
-        android:text="Повторить"
-        android:textColor="#EAEAEA"
-        android:textSize="20sp"
+        android:layout_gravity="center_vertical|center_horizontal"
+        android:layout_marginTop="28dp"
+        app:cardCornerRadius="20dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/helpourproject" />
+        app:layout_constraintTop_toBottomOf="@+id/helpourproject">
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scaleType="centerCrop"
+                android:src="@drawable/main_box" />
+
+            <TextView
+                android:id="@+id/returntext"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:text="Повторить"
+                android:textColor="#F4F4F4"
+                android:textSize="25sp"
+                android:textStyle="normal" />
+
+    </androidx.cardview.widget.CardView>
 
     <ImageView
         android:id="@+id/imageView6"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="31dp"
-        android:layout_marginStart="70dp"
-        android:layout_marginEnd="70dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"

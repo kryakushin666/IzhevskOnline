@@ -31,11 +31,11 @@
 
             <TextView
                 android:id="@+id/mainname"
-                android:layout_width="wrap_content"
+                android:layout_width="267dp"
                 android:layout_height="wrap_content"
                 android:layout_alignParentStart="true"
                 android:layout_alignParentTop="true"
-                android:layout_marginTop="28dp"
+                android:layout_marginTop="80dp"
                 android:gravity="center_horizontal|top"
                 android:text="Оружейная столица"
                 android:textColor="#313131"
@@ -48,8 +48,8 @@
 
             <androidx.cardview.widget.CardView
                 android:id="@+id/routeButton"
-                android:layout_width="175dp"
-                android:layout_height="50.48dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginTop="51dp"
                 app:cardCornerRadius="20dp"

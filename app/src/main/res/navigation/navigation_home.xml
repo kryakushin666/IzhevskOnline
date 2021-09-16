@@ -16,6 +16,13 @@
             app:exitAnim="@anim/fade_out"
             app:popEnterAnim="@anim/fade_in"
             app:popExitAnim="@anim/fade_out" />
+        <action
+            android:id="@+id/action_navigation_home_to_newitemFragment"
+            app:destination="@id/newitemFragment"
+            app:enterAnim="@anim/fade_in"
+            app:exitAnim="@anim/fade_out"
+            app:popEnterAnim="@anim/fade_in"
+            app:popExitAnim="@anim/fade_out" />
     </fragment>
 
     <fragment
@@ -25,6 +32,20 @@
         tools:layout="@layout/activity_item" >
         <action
             android:id="@+id/action_itemFragment_to_Museumuser"
+            app:destination="@id/Museumuser"
+            app:enterAnim="@anim/fade_in"
+            app:exitAnim="@anim/fade_out"
+            app:popEnterAnim="@anim/fade_in"
+            app:popExitAnim="@anim/fade_out" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/newitemFragment"
+        android:name="com.example.myapplication.fragments.NewItemFragment"
+        android:label="@string/title_profile"
+        tools:layout="@layout/activity_item" >
+        <action
+            android:id="@+id/action_newitemFragment_to_Museumuser"
             app:destination="@id/Museumuser"
             app:enterAnim="@anim/fade_in"
             app:exitAnim="@anim/fade_out"

@@ -17,6 +17,7 @@
     <uses-permission android:name="android.permission.REQUEST_INSTALL_PACKAGES" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.READ_LOGS" />
 
     <application
         android:allowBackup="true"
@@ -51,7 +52,8 @@
         <activity android:name=".activities.FAQActivity" />
         <activity android:name=".activities.AdActivity" />
         <activity
-            android:name=".activities.MapsActivity"/>
+            android:name=".activities.MapsActivity"
+            />
         <activity android:name=".activities.AuthActivity" />
     </application>
 

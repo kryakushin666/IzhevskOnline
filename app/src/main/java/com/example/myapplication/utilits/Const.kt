@@ -4,6 +4,9 @@ package com.example.myapplication.utilits
 import android.app.Application
 import android.content.Context
 import android.graphics.Color
+import android.net.ConnectivityManager
+import android.net.NetworkCapabilities
+import android.os.Build
 import android.view.View
 import android.widget.ImageView
 import androidx.core.content.ContextCompat
@@ -43,16 +46,22 @@ fun initMint(app: Application) {
     Mint.initAndStartSession(app, "e35d8a22")
     Mint.enableLogging(true)
 }
-fun displayError(message: String, view: View) {
-    val snackBar = Snackbar.make(view.findViewById(android.R.id.content), message, Snackbar.LENGTH_SHORT)
-    snackBar.view.setBackgroundResource(R.drawable.curved_bg_error)
-    snackBar.show()
-}
 
-fun displayMessage(message: String, view: View) {
-    val snackBar = Snackbar.make(view.findViewById(android.R.id.content), message, Snackbar.LENGTH_SHORT)
-    snackBar.view.setBackgroundResource(R.drawable.curved_bg_successful)
-    snackBar.show()
+fun isNetworkAvailable(context: Context?): Boolean {
+    val cm = context!!.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
+
+    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+        val n = cm.activeNetwork
+        if (n != null) {
+            val nc = cm.getNetworkCapabilities(n)
+            //It will check for both wifi and cellular network
+            return nc!!.hasTransport(NetworkCapabilities.TRANSPORT_CELLULAR) || nc.hasTransport(NetworkCapabilities.TRANSPORT_WIFI)
+        }
+        return false
+    } else {
+        val netInfo = cm.activeNetworkInfo
+        return netInfo != null && netInfo.isConnectedOrConnecting
+    }
 }
 
 fun editData(contextCompats: Context, nameSharedPreferences: String, nameToData: String, defoult: String, action: String): String? {

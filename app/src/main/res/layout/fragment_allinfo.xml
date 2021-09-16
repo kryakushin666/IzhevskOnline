@@ -33,7 +33,7 @@
                 <TextView
                     android:id="@+id/mainText"
                     android:layout_width="272dp"
-                    android:layout_height="84dp"
+                    android:layout_height="wrap_content"
                     android:layout_alignParentStart="true"
                     android:layout_alignParentTop="true"
                     android:layout_marginStart="20dp"
@@ -45,16 +45,6 @@
                     android:textStyle="bold"
                     app:layout_constraintStart_toEndOf="@+id/buttonback"
                     app:layout_constraintTop_toTopOf="parent" />
-
-                <ImageView
-                    android:id="@+id/listenButton"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="116dp"
-                    android:layout_marginTop="40dp"
-                    android:src="@drawable/ic_buttonlisten"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/mainText" />
 
                 <TextView
                     android:id="@+id/description"
@@ -70,17 +60,17 @@
                     android:textStyle="bold"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/listenButton" />
+                    app:layout_constraintTop_toBottomOf="@+id/historyText" />
 
                 <TextView
                     android:id="@+id/describeText"
-                    android:layout_width="362dp"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentLeft="true"
                     android:layout_alignParentTop="true"
                     android:layout_marginTop="14dp"
-                    android:gravity="top"
-                    android:text="@string/opisanieinfo"
+                    android:gravity="center"
+                    android:text="@string/notexc"
                     android:textColor="#2B2C2D"
                     android:textSize="13sp"
                     android:textStyle="bold"
@@ -106,13 +96,13 @@
 
                 <TextView
                     android:id="@+id/locationText"
-                    android:layout_width="362dp"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentLeft="true"
                     android:layout_alignParentTop="true"
                     android:layout_marginTop="14dp"
-                    android:gravity="top"
-                    android:text="@string/raspolozhenieinfo"
+                    android:gravity="center"
+                    android:text="@string/notexc"
                     android:textColor="#2B2C2D"
                     android:textSize="13sp"
                     android:textStyle="bold"
@@ -134,17 +124,17 @@
                     android:textStyle="bold"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/locationText" />
+                    app:layout_constraintTop_toBottomOf="@+id/interestingFactsText" />
 
                 <TextView
                     android:id="@+id/historyText"
-                    android:layout_width="362dp"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentLeft="true"
                     android:layout_alignParentTop="true"
                     android:layout_marginTop="14dp"
-                    android:gravity="top"
-                    android:text="@string/istoriasozdaniainfo"
+                    android:gravity="center"
+                    android:text="@string/notexc"
                     android:textColor="#2B2C2D"
                     android:textSize="13sp"
                     android:textStyle="bold"
@@ -158,7 +148,7 @@
                     android:layout_height="wrap_content"
                     android:layout_alignParentStart="true"
                     android:layout_alignParentTop="true"
-                    android:layout_marginTop="32dp"
+                    android:layout_marginTop="24dp"
                     android:gravity="center_horizontal|top"
                     android:text="Интересные факты"
                     android:textColor="#2B2C2D"
@@ -166,23 +156,21 @@
                     android:textStyle="bold"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/historyText" />
+                    app:layout_constraintTop_toBottomOf="@+id/mainText" />
 
                 <TextView
                     android:id="@+id/interestingFactsText"
-                    android:layout_width="362dp"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentStart="true"
                     android:layout_alignParentTop="true"
                     android:layout_marginTop="14dp"
-                    android:layout_marginBottom="20dp"
-                    android:gravity="top"
-                    android:text="@string/interesniefacts"
+                    android:gravity="center"
+                    android:text="@string/notexc"
                     android:textColor="#2B2C2D"
                     android:textSize="13sp"
                     android:textStyle="bold"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/interestingFacts" />
 

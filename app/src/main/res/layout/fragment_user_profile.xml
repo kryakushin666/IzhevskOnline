@@ -6,118 +6,151 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <ImageView
-        android:id="@+id/buttons"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="24dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/ic_backbutton"
-        tools:ignore="ContentDescription" />
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        tools:ignore="HardcodedText,UselessParent">
 
-    <ImageView
-        android:id="@+id/buttontomap"
-        android:layout_width="167dp"
-        android:layout_height="41dp"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginTop="28dp"
-        android:background="@drawable/main_box"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.501"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/pictureCard" />
-
-    <TextView
-        android:id="@+id/textView4"
-        android:layout_width="108dp"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginBottom="8dp"
-        android:fontFamily="@font/mainfont"
-        android:gravity="center_horizontal|top"
-        android:text="На карте"
-        android:textColor="#F4F4F4"
-        android:textSize="18sp"
-        app:layout_constraintBottom_toBottomOf="@+id/buttontomap"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <androidx.cardview.widget.CardView
-        android:id="@+id/pictureCard"
-        android:layout_width="205dp"
-        android:layout_height="142dp"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginTop="31dp"
-        app:cardCornerRadius="11dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/profile_user_name">
-
-        <ImageView
-            android:id="@+id/picture"
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:scaleType="centerCrop"
-            android:background="@drawable/main_box"
-            tools:ignore="ContentDescription" />
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
 
-    </androidx.cardview.widget.CardView>
+            <ImageView
+                android:id="@+id/buttons"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="24dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/ic_backbutton"
+                tools:ignore="ContentDescription" />
 
-    <TextView
-        android:id="@+id/some_id"
-        android:layout_width="227dp"
-        android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginTop="28dp"
-        android:fontFamily="@font/mainfont"
-        android:gravity="center_horizontal|top"
-        android:text="+7 (3412) 500-040"
-        android:textColor="#414141"
-        android:textSize="18sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.505"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/buttontomap" />
+            <androidx.cardview.widget.CardView
+                android:id="@+id/buttontomap"
+                android:layout_width="175dp"
+                android:layout_height="50.48dp"
+                android:layout_gravity="center_vertical|center_horizontal"
+                android:layout_marginTop="28dp"
+                app:cardCornerRadius="20dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/pictureCard">
 
-    <TextView
-        android:id="@+id/izhevsk_mam"
-        android:layout_width="227dp"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginTop="16dp"
-        android:fontFamily="@font/mainfont"
-        android:gravity="center_horizontal|top"
-        android:text="izhevsk.mama-pizza.ru"
-        android:textColor="#3C76E7"
-        android:textSize="18sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.503"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/some_id" />
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/main_box" />
 
-    <TextView
-        android:id="@+id/profile_user_name"
-        android:layout_width="168dp"
-        android:layout_height="87dp"
-        android:layout_marginTop="16dp"
-        android:fontFamily="@font/mainfont"
-        android:gravity="center_horizontal|top"
-        android:text="MAMA PIZZA"
-        android:textColor="#1D1D1D"
-        android:textSize="24sp"
-        app:layout_anchorGravity="center"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+                <TextView
+                    android:id="@+id/start"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:text="Маршрут"
+                    android:textColor="#F4F4F4"
+                    android:textSize="25sp"
+                    android:textStyle="normal" />
 
+
+            </androidx.cardview.widget.CardView>
+
+            <TextView
+                android:id="@+id/textView4"
+                android:layout_width="108dp"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentTop="true"
+                android:layout_marginBottom="8dp"
+                android:fontFamily="@font/mainfont"
+                android:gravity="center_horizontal|top"
+                android:text="На карте"
+                android:textColor="#F4F4F4"
+                android:textSize="18sp"
+                app:layout_constraintBottom_toBottomOf="@+id/buttontomap"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.498"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/pictureCard"
+                android:layout_width="205dp"
+                android:layout_height="142dp"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"
+                android:layout_marginTop="31dp"
+                app:cardCornerRadius="11dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/profile_user_name">
+
+                <ImageView
+                    android:id="@+id/picture"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:scaleType="centerCrop"
+                    android:background="@drawable/main_box"
+                    tools:ignore="ContentDescription" />
+
+            </androidx.cardview.widget.CardView>
+
+            <TextView
+                android:id="@+id/some_id"
+                android:layout_width="227dp"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"
+                android:layout_marginTop="28dp"
+                android:fontFamily="@font/mainfont"
+                android:gravity="center_horizontal|top"
+                android:text="+7 (3412) 500-040"
+                android:visibility="invisible"
+                android:textColor="#414141"
+                android:textSize="18sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.505"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/buttontomap" />
+
+            <TextView
+                android:id="@+id/izhevsk_mam"
+                android:layout_width="227dp"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentTop="true"
+                android:layout_marginTop="16dp"
+                android:layout_marginBottom="30dp"
+                android:fontFamily="@font/mainfont"
+                android:gravity="center_horizontal|top"
+                android:text="izhevsk.mama-pizza.ru"
+                android:textColor="#3C76E7"
+                android:textSize="18sp"
+                android:visibility="invisible"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.503"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/some_id" />
+
+            <TextView
+                android:id="@+id/profile_user_name"
+                android:layout_width="168dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:fontFamily="@font/mainfont"
+                android:gravity="center_horizontal|top"
+                android:text="MAMA PIZZA"
+                android:textColor="#1D1D1D"
+                android:textSize="24sp"
+                app:layout_anchorGravity="center"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
 </androidx.constraintlayout.widget.ConstraintLayout>

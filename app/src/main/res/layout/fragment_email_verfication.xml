@@ -1,101 +1,118 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#6F98E7">
 
-        <ImageView
-            android:id="@+id/exitbutton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@drawable/ic_exitbutton"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="16dp" />
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        tools:ignore="HardcodedText,UselessParent">
 
-        <TextView
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:fontFamily="@font/mainfont"
-            android:paddingStart="62dp"
-            android:paddingEnd="62dp"
-            android:layout_marginTop="145dp"
-            android:gravity="center_horizontal|top"
-            android:text="Подтвердите адрес эл. почты"
-            android:textColor="#F4F4F4"
-            android:textSize="28sp" />
+            android:orientation="vertical">
 
-        <TextView
-            android:id="@+id/textemail"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Мы отправили код на почту ********@*****.**"
-            android:textSize="18sp"
-            android:textColor="#E9E9E9"
-            android:fontFamily="@font/mainfont"
-            android:layout_marginTop="15dp"
-            android:paddingStart="75dp"
-            android:paddingEnd="79dp"
-            android:gravity="center_horizontal|top"/>
+            <ImageView
+                android:id="@+id/exitbutton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/ic_exitbutton" />
 
-    <androidx.cardview.widget.CardView
-        android:id="@+id/cardView"
-        android:layout_width="188dp"
-        android:layout_height="50dp"
-        android:layout_marginStart="112dp"
-        android:layout_marginEnd="111dp"
-        android:layout_gravity="center"
-        app:cardBackgroundColor="#D9E5FC"
-        android:layout_marginTop="47dp"
-        app:cardCornerRadius="20dp">
+            <TextView
+                android:id="@+id/confrim"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/mainfont"
+                android:layout_marginTop="145dp"
+                android:gravity="center_horizontal|top"
+                android:text="Подтвердите адрес эл. почты"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                android:textColor="#F4F4F4"
+                android:textSize="28sp" />
 
-        <ImageView
-            android:id="@+id/mainimg"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:scaleType="centerCrop"
-            android:backgroundTint="#D9E5FC"
-            />
+            <TextView
+                android:id="@+id/textemail"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Мы отправили код на почту ********@*****.**"
+                android:textSize="18sp"
+                android:textColor="#E9E9E9"
+                android:fontFamily="@font/mainfont"
+                android:layout_marginTop="33dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/confrim"
 
-        <EditText
-            android:id="@+id/codeInput"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:gravity="center"
-            android:textSize="19sp"
-            android:background="@null"
-            android:textColor="#808080"
-            android:fontFamily="@font/mainfont"
-            android:hint="Код"
-            android:inputType="text"
-            android:autofillHints="Код" />
-    </androidx.cardview.widget.CardView>
+                android:gravity="center_horizontal|top"/>
 
-    <androidx.cardview.widget.CardView
-        android:id="@+id/cardView1"
-        android:layout_width="188dp"
-        android:layout_height="50dp"
-        android:layout_gravity="center"
-        android:layout_marginTop="100dp"
-        app:cardBackgroundColor="#D9E5FC"
-        app:cardCornerRadius="20dp">
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cardView"
+                android:layout_width="188dp"
+                android:layout_height="50dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="47dp"
+                app:cardBackgroundColor="#D9E5FC"
+                app:cardCornerRadius="20dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textemail">
 
+                <ImageView
+                    android:id="@+id/mainimg"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:backgroundTint="#D9E5FC"
+                    android:scaleType="centerCrop" />
 
-        <TextView
-            android:id="@+id/continue_next"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:gravity="center"
-            android:textSize="19sp"
-            android:background="@null"
-            android:textColor="#808080"
-            android:fontFamily="@font/mainfont"
-            android:text="Продолжить"
-            />
-    </androidx.cardview.widget.CardView>
+                <EditText
+                    android:id="@+id/codeInput"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:autofillHints="Код"
+                    android:background="@null"
+                    android:fontFamily="@font/mainfont"
+                    android:gravity="center"
+                    android:hint="Код"
+                    android:inputType="text"
+                    android:textColor="#808080"
+                    android:textSize="19sp" />
+            </androidx.cardview.widget.CardView>
 
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cardView1"
+                android:layout_width="188dp"
+                android:layout_height="50dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="47dp"
+                android:layout_marginBottom="30dp"
+                app:cardBackgroundColor="#D9E5FC"
+                app:cardCornerRadius="20dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/cardView">
 
-
-
-</LinearLayout>
+                <TextView
+                    android:id="@+id/continue_next"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@null"
+                    android:fontFamily="@font/mainfont"
+                    android:gravity="center"
+                    android:text="Продолжить"
+                    android:textColor="#808080"
+                    android:textSize="19sp" />
+            </androidx.cardview.widget.CardView>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
+</androidx.constraintlayout.widget.ConstraintLayout>

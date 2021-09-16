@@ -10,29 +10,29 @@
         android:id="@+id/path"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
-        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
-        android:layout_marginStart="48dp"
+        android:layout_marginStart="16dp"
         android:background="@drawable/ic_addtoroute"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.16" />
+        app:layout_constraintVertical_bias="0.4" />
 
     <TextView
         android:id="@+id/addtoroute"
-        android:layout_width="161dp"
-        android:layout_height="27dp"
+        android:layout_width="291dp"
+        android:layout_height="38dp"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
-        android:layout_marginStart="124dp"
-        android:layout_marginTop="4dp"
+        android:layout_marginStart="60dp"
+        android:layout_marginTop="8dp"
         android:gravity="top"
         android:text="Добавить точку"
         android:textColor="#464646"
-        android:textSize="20sp"
+        android:textSize="18sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 

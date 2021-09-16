@@ -2,7 +2,6 @@ package com.example.myapplication.fragments
 
 import android.content.Context
 import android.os.Bundle
-import android.os.Handler
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -17,7 +16,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.myapplication.R
 import com.example.myapplication.`interface`.respObjDatabase
 import com.example.myapplication.activities.bottomNavigationView
-import com.example.myapplication.database.DatabaseHelper
+import com.example.myapplication.helpers.DatabaseHelper
 import com.example.myapplication.utilits.downloadAndInto
 import com.example.myapplication.utilits.editData
 import com.yalantis.phoenix.PullToRefreshView
@@ -60,7 +59,7 @@ class ItemFragment : Fragment() {
             findNavController().navigate(R.id.navigation_home)
         }
         fragmentLayout.findViewById<TextView>(R.id.nameoftitle).text = checkname(idscreen)
-        DatabaseHelper(requireFragmentManager()) {
+        DatabaseHelper(requireFragmentManager(), requireContext().applicationContext) {
             itemCounter = respObjDatabase.response.size
             for (i in 0 until respObjDatabase.response.size) {
                 allcountername.add(respObjDatabase.response[i].name)

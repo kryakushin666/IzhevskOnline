@@ -35,7 +35,7 @@ class SettingsActivity : AppCompatActivity() {
             finishAffinity()
             auth.signOut()
         }
-        TapTargetSequence(this)
+        /*TapTargetSequence(this)
             .targets(
                 TapTarget.forView(
                     findViewById(R.id.trainingbutton),
@@ -71,8 +71,6 @@ class SettingsActivity : AppCompatActivity() {
                 override fun onSequenceCanceled(lastTarget: TapTarget) {
                     // Boo
                 }
-            }).start()
+            }).start()*/
     }
-
-
 }

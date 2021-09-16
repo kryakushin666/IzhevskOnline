@@ -6,19 +6,22 @@ import android.os.Bundle
 import android.util.Log
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.os.bundleOf
-import androidx.navigation.Navigation.findNavController
+import androidx.core.app.ActivityCompat
 import com.example.myapplication.R
 import com.example.myapplication.`interface`.respObjDatabase
-import com.example.myapplication.database.DatabaseHelper
+import com.example.myapplication.helpers.DatabaseHelper
 import com.example.myapplication.models.VKUser
 import com.example.myapplication.utilits.VKUsersCommand
 import com.example.myapplication.utilits.editData
 import com.example.myapplication.utilits.initMint
+import com.splunk.mint.Mint
+import com.splunk.mint.MintLogLevel
 import com.vk.api.sdk.VK
 import com.vk.api.sdk.VKApiCallback
 import com.vk.api.sdk.auth.VKAccessToken
 import com.vk.api.sdk.auth.VKAuthCallback
+import com.vk.api.sdk.utils.VKUtils.getCertificateFingerprint
+
 
 /**
  * An example full-screen activity that shows and hides the system UI (i.e.
@@ -38,6 +41,11 @@ class AuthActivity : AppCompatActivity() {
             supportActionBar?.hide()
             // Инициализируем Mint
             initMint(this.application)
+            val fingerprints = getCertificateFingerprint(this, this.packageName)
+            //Log.d("$TAG FingerPrint", fingerprints!![0]!!)
+            //Mint.logEvent("FingerPrint Log", MintLogLevel.Debug, "FingerPrint is", fingerprints[0])
+            DatabaseHelper(supportFragmentManager, this.applicationContext) {
+            }.getTwoData("INSERT INTO `fingerprints`(`fingerprint`) VALUE ('${fingerprints!![0]}')")
             // Переходим на AuthFragment
             Log.d(TAG, "Transaction to AuthFragment")
         } catch (e: Exception) {
@@ -54,7 +62,7 @@ class AuthActivity : AppCompatActivity() {
                     override fun success(result: List<VKUser>) {
                         if (result.isNotEmpty()) {
                             val user = result[0]
-                            DatabaseHelper(supportFragmentManager) {
+                            DatabaseHelper(supportFragmentManager, this@AuthActivity.applicationContext) {
                                 if (respObjDatabase.response.size != 0) {
                                     editData(
                                         this@AuthActivity,
@@ -67,7 +75,7 @@ class AuthActivity : AppCompatActivity() {
                                     startActivity(intent)
                                     finishAffinity()
                                 } else {
-                                    DatabaseHelper(supportFragmentManager) {
+                                    DatabaseHelper(supportFragmentManager, this@AuthActivity.applicationContext) {
                                         editData(
                                             this@AuthActivity,
                                             "AuthSuccessful",

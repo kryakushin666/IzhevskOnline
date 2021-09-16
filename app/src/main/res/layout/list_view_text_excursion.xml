@@ -13,6 +13,7 @@
         android:layout_marginTop="8dp"
         android:text="Главный корпус Ижевского..."
         android:textSize="17sp"
+        android:textColor="#494949"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.492"

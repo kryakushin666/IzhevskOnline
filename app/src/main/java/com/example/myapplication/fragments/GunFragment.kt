@@ -1,7 +1,6 @@
 package com.example.myapplication.fragments
 
 import android.os.Bundle
-import android.os.Handler
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -15,9 +14,9 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.myapplication.R
 import com.example.myapplication.`interface`.respObjDatabase
 import com.example.myapplication.activities.bottomNavigationView
-import com.example.myapplication.database.DatabaseHelper
+import com.example.myapplication.helpers.DatabaseHelper
 import com.example.myapplication.fragments.GuidedFragment.MyAdapter.Companion.EXCURSION_AUTHOR
-import kotlinx.android.synthetic.main.fragment_gun.*
+import com.example.myapplication.utilits.editData
 
 var gunFragment_allCounterName: ArrayList<String> = ArrayList()
 var gunFragment_alLCounterId: ArrayList<Int> = ArrayList()
@@ -33,6 +32,7 @@ class GunFragment : Fragment() {
         savedInstanceState: Bundle?,
     ): View? {
         val fragmentLayout = inflater.inflate(R.layout.fragment_gun, container, false)
+        val contextCompats = requireContext().applicationContext
         gunFragment_allCounterName.clear()
         gunFragment_alLCounterId.clear()
         gunFragment_allCounterLatLng.clear()
@@ -44,12 +44,13 @@ class GunFragment : Fragment() {
             findNavController().popBackStack()
         }
         fragmentLayout.findViewById<CardView>(R.id.routeButton).setOnClickListener {
-            val bundle = bundleOf(EXCURSION_ID to idExc)
-            findNavController().navigate(R.id.action_gunFragment_to_maps_screen, bundle)
+            //val bundle = bundleOf(EXCURSION_ID to idExc)
+            editData(contextCompats, "EXCURSION", "EXCURSION_ID", "$idExc", "putInt")
+            findNavController().navigate(R.id.action_gunFragment_to_maps_screen)
         }
         bottomNavigationView.visibility = View.INVISIBLE
         if(idExc != -1) {
-            DatabaseHelper(requireFragmentManager()) {
+            DatabaseHelper(requireFragmentManager(), contextCompats) {
                 itemCounter = respObjDatabase.response.size
                 for (i in 0 until respObjDatabase.response.size) {
                     gunFragment_allCounterName.add(respObjDatabase.response[i].name)

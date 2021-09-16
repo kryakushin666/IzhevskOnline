@@ -6,10 +6,11 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.cardview.widget.CardView
 import androidx.fragment.app.DialogFragment
 import com.example.myapplication.R
 
-class ErrRouteDialog : DialogFragment() {
+class ErrRouteDialog(private val value: () -> Unit) : DialogFragment() {
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -21,8 +22,8 @@ class ErrRouteDialog : DialogFragment() {
         view.findViewById<TextView>(R.id.skip).setOnClickListener {
             dialog!!.hide()
         }
-        view.findViewById<ImageView>(R.id.returnaction).setOnClickListener {
-            // add ad
+        view.findViewById<CardView>(R.id.returnaction).setOnClickListener {
+            value()
         }
         return view
     }

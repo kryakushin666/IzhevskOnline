@@ -40,8 +40,8 @@ interface Directions {
                     val duration = respObj.routes[0].legs[0].duration.text
                     val distance = respObj.routes[0].legs[0].distance.text
 
-                    dirtext = duration
-                    disttext = distance
+                    //dirtext = duration
+                    //disttext = distance
                    /* val duration2 = respObj.routes[1].legs[0].duration.text
                     val distance2 = respObj.routes[1].legs[0].distance.text
                     val duration3 = respObj.routes[2].legs[0].duration.text
@@ -65,14 +65,18 @@ interface Directions {
                     }
 
                     mBottomSheetRoute.state = BottomSheetBehavior.STATE_EXPANDED*/
-                    for (i in 0 until respObj.routes[0].legs[0].steps.size) {
+                    /*for (i in 0 until respObj.routes[0].legs[0].steps.size) {
                         path.addAll(decodePolyline(respObj.routes[0].legs[0].steps[i].polyline.points))
+                    }*/
+                    for(i in 0 until respObj.routes[0].legs.size) {
+                        for (g in 0 until respObj.routes[0].legs[i].steps.size) {
+                            path.addAll(decodePolyline(respObj.routes[0].legs[i].steps[g].polyline.points))
+                        }
                     }
-
                     result.add(path)
                     createPolyline(result)
                 } else {
-                    ErrRouteDialog().show(fragmentManager, "MyCustomFragment")
+                    ErrRouteDialog {}.show(fragmentManager, "MyCustomFragment")
                 }
             } catch (e: Exception) {
                 e.printStackTrace()

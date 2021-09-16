@@ -14,10 +14,13 @@ android {
         applicationId "com.example.myapplication"
         minSdkVersion 22
         targetSdkVersion 30
-        versionCode 12
-        versionName "1.2"
+        versionCode 122
+        versionName "1.22"
         vectorDrawables.useSupportLibrary = true
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+    lintOptions {
+        checkReleaseBuilds false
     }
 
     packagingOptions {
@@ -118,4 +121,5 @@ dependencies {
     annotationProcessor 'com.github.bumptech.glide:compiler:4.12.0'
     implementation 'com.google.firebase:firebase-ml-vision:19.0.2'
     implementation 'com.ibm.icu:icu4j:61.1'
+    implementation 'com.github.GrenderG:Toasty:1.5.0'
 }

@@ -11,8 +11,10 @@ import com.example.myapplication.utilits.editData
 import com.example.myapplication.utilits.initMint
 import com.example.myapplication.utilits.setupWithNavController
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import com.google.android.material.bottomsheet.BottomSheetBehavior
 
 lateinit var bottomNavigationView: BottomNavigationView
+lateinit var bottomNavigationScreen: BottomSheetBehavior<*>
 
 class MapsActivity : AppCompatActivity() {
 
@@ -40,6 +42,7 @@ class MapsActivity : AppCompatActivity() {
         supportActionBar?.hide()
         initMint(this.application)
         bottomNavigationView = findViewById(R.id.bottom_nav)
+        bottomNavigationScreen = BottomSheetBehavior.from(findViewById(R.id.bottom_navigation))
         /*val badge = bottomNavigationView.getOrCreateBadge(R.id.navigation_home)
         badge.isVisible = true
         badge.number = 100*/

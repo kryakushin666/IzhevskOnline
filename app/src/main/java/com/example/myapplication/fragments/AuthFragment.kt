@@ -27,7 +27,7 @@ import com.example.myapplication.R
 import com.example.myapplication.`interface`.respObjDatabase
 import com.example.myapplication.activities.AuthActivity
 import com.example.myapplication.activities.MapsActivity
-import com.example.myapplication.database.DatabaseHelper
+import com.example.myapplication.helpers.DatabaseHelper
 import com.example.myapplication.utilits.editData
 import com.vk.api.sdk.VK
 import com.vk.api.sdk.auth.VKAccessToken
@@ -74,7 +74,7 @@ class AuthFragment : Fragment() {
             val email = fragmentLayout.findViewById<EditText>(R.id.email).text.toString()
             val password = fragmentLayout.findViewById<EditText>(R.id.password).text.toString()
             Log.d(TAG,"$email, $password")
-            DatabaseHelper(requireFragmentManager()) {
+            DatabaseHelper(requireFragmentManager(), contextCompats) {
                 Log.d(TAG, respObjDatabase.response[0].email + respObjDatabase.response[0].password)
                 if(respObjDatabase.response[0].email != "") {
                     editData(contextCompats, "AuthSuccessful", "AuthComp", "1", "putInt")

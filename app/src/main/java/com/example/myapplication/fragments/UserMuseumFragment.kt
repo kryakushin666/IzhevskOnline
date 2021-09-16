@@ -9,6 +9,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.cardview.widget.CardView
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.example.myapplication.R
@@ -44,7 +45,7 @@ class UserMuseumFragment : Fragment() {
         fragmentLayout.findViewById<ImageView>(R.id.picture)
             .downloadAndInto(image)
 
-        val buttonToMap = fragmentLayout.findViewById<ImageView>(R.id.buttontomap)
+        val buttonToMap = fragmentLayout.findViewById<CardView>(R.id.buttontomap)
 
         buttonToMap.setOnClickListener {
             editData(contextCompats, "RouteToMap", "RouteToMap", "1", "putInt")

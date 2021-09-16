@@ -1,7 +1,6 @@
 package com.example.myapplication.fragments
 
 import android.os.Bundle
-import android.os.Handler
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -15,7 +14,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.myapplication.R
 import com.example.myapplication.`interface`.respObjDatabase
 import com.example.myapplication.activities.bottomNavigationView
-import com.example.myapplication.database.DatabaseHelper
+import com.example.myapplication.helpers.DatabaseHelper
 
 
 var guidedFragment_allCounterName: ArrayList<String> = ArrayList()
@@ -48,7 +47,7 @@ class GuidedFragment : Fragment() {
         }
         bottomNavigationView.visibility = View.INVISIBLE
 
-        DatabaseHelper(requireFragmentManager()) {
+        DatabaseHelper(requireFragmentManager(), requireContext().applicationContext) {
             itemCounter = respObjDatabase.response.size
             for (i in 0 until respObjDatabase.response.size) {
                 guidedFragment_allCounterName.add(respObjDatabase.response[i].name)
