@@ -1,17 +1,19 @@
 package com.example.myapplication.helpers
 
+import android.app.Activity
 import android.content.Context
+import androidx.fragment.app.FragmentManager
 import com.example.myapplication.`interface`.EmailIF
 import com.example.myapplication.`interface`.Weather
 
-class EmailHelper : Weather {
+class EmailHelper(private val fragmentManager: FragmentManager, private val activity: Activity) : EmailIF {
 
     private fun random(from: Int, to: Int) = (Math.random() * (to - from) + from).toInt()
     private fun random(pair: Pair<Int, Int>) = random(pair.first, pair.second)
 
     fun setVerifyCode(contextCompats: Context, email: String): String {
         val code: String = generateCode()
-        EmailIF.EmailTask(getEmailURL(email, code)).execute()
+        EmailIF.EmailTask(getEmailURL(email, code), fragmentManager, activity).execute()
         return code
     }
 

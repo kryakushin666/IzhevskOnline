@@ -513,6 +513,7 @@ class MapsFragment : Fragment(), GoogleMap.OnMarkerClickListener {
     }
 
     private fun convertertoLatLng(coordinate: String): LatLng {
+        Log.d("Convert", coordinate)
         val latlong = coordinate.split(",")
         val latitude = latlong[0].toDouble()
         val longitude = latlong[1].toDouble()

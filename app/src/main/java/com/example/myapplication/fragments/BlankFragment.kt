@@ -23,16 +23,15 @@ import com.example.myapplication.activities.SettingsActivity
 import com.example.myapplication.activities.bottomNavigationScreen
 import com.example.myapplication.activities.bottomNavigationView
 import com.example.myapplication.database.SQLiteHelper
+import com.example.myapplication.dialog.NoConnectionDialog
 import com.example.myapplication.utilits.editData
+import com.example.myapplication.utilits.isNetworkAvailable
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.firebase.auth.FirebaseAuth
 import es.dmoral.toasty.Toasty
 import java.io.File
 import java.util.*
 import java.util.Base64.getEncoder
-
-
-var Data: String? = null
 
 class BlankFragment : Fragment() {
 
@@ -41,7 +40,6 @@ class BlankFragment : Fragment() {
     var Year = 0
     var calendar: Calendar = Calendar.getInstance()
 
-    private var mAuth: FirebaseAuth? = null
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -57,7 +55,6 @@ class BlankFragment : Fragment() {
                 UpgradeDialog().show(requireFragmentManager(), "MyCustomFragment")
             }
         }.getTwoData("SELECT * FROM `version_app`")*/
-        mAuth = FirebaseAuth.getInstance()
         SQLiteHelper(requireContext(), null)
         fragmentLayout!!.findViewById<ImageView>(R.id.settingb)?.setOnClickListener {
             val intent = Intent(contextCompats, SettingsActivity::class.java)
@@ -161,21 +158,5 @@ class BlankFragment : Fragment() {
         super.onStart()
         bottomNavigationView.visibility = View.VISIBLE
         bottomNavigationScreen.state = BottomSheetBehavior.STATE_EXPANDED
-    }
-
-    private fun encoder(filePath: String): String {
-        val bytes = File(filePath).readBytes()
-        return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            getEncoder().encodeToString(bytes)
-        } else {
-            TODO("VERSION.SDK_INT < O")
-        }
-    }
-
-    private fun pickImageFromGallery() {
-        //Intent to pick image
-        val intent = Intent(Intent.ACTION_PICK)
-        intent.type = "image/*"
-        startActivityForResult(intent, 1000)
     }
 }

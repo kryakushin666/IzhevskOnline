@@ -7,7 +7,9 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.RatingBar
 import android.widget.TextView
+import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
+import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.example.myapplication.R
@@ -115,6 +117,13 @@ class LocationCheckFragment : Fragment() {
                 holder.item.findViewById<TextView>(R.id.openOrClose).text = "Открыто"
             } else holder.item.findViewById<TextView>(R.id.openOrClose).text = "Закрыто"
 
+            holder.item.setOnClickListener {
+                val bundle = bundleOf(USERNAME_KEY to myDataset[position], USERNAME_COORDINATE to LocationCheckFragment_allCounterLatLng[position % LocationCheckFragment_allCounterLatLng.size], USERNAME_IMAGE to LocationCheckFragment_allCounterIcon[position % LocationCheckFragment_allCounterIcon.size])
+                holder.item.findNavController().navigate(
+                    R.id.action_checkloc_screen_to_Museumuser,
+                    bundle)
+            }
+
             /*holder.item.setOnClickListener {
                 val bundle = bundleOf(EXCURSION_NAME to myDataset[position])
                 holder.item.findNavController().navigate(
@@ -130,5 +139,8 @@ class LocationCheckFragment : Fragment() {
             const val EXCURSION_NAME = "excursion_name"
             const val EXCURSION_AUTHOR = "excursion_author"
             const val EXCURSION_ID = "excursion_id"
+            const val USERNAME_KEY = "userName"
+            const val USERNAME_COORDINATE = "userCoord"
+            const val USERNAME_IMAGE = "R.drawable.museum_ak"
         }
     }

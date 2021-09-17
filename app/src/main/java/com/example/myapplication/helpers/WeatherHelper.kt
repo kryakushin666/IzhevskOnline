@@ -1,13 +1,15 @@
 package com.example.myapplication.helpers
 
+import android.app.Activity
 import android.content.Context
+import androidx.fragment.app.FragmentManager
 import com.example.myapplication.`interface`.Weather
 import com.example.myapplication.utilits.APIWeather
 
-class WeatherHelper: Weather {
+class WeatherHelper(private val fragmentManager: FragmentManager, private val activity: Activity): Weather {
 
     fun getWeather(contextCompats: Context) {
-        Weather.WeatherTask(getWeatherURL(), contextCompats).execute()
+        Weather.WeatherTask(getWeatherURL(), contextCompats, fragmentManager, activity).execute()
         return
     }
 

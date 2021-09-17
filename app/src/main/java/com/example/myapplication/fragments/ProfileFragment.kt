@@ -16,6 +16,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.cardview.widget.CardView
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.myapplication.R
 import com.example.myapplication.`interface`.respObjFindPlace
@@ -137,11 +138,11 @@ class ProfileFragment : Fragment() {
         }
         cursor.close()
         return MyAdapter(Array(15) { profileFragment_AllCounterName[it % profileFragment_AllCounterName.size] }, view,
-            requireActivity()
+            requireActivity(), requireFragmentManager()
         )
     }
 
-    class MyAdapter(private val myDataset: Array<String>, private val view: View, private val activity: Activity) :
+    class MyAdapter(private val myDataset: Array<String>, private val view: View, private val activity: Activity, private val fragmentManager: FragmentManager) :
             RecyclerView.Adapter<MyAdapter.ViewHolder>() {
         private var m_Text = ""
         // Provide a reference to the views for each data item
@@ -188,7 +189,7 @@ class ProfileFragment : Fragment() {
             builder.setPositiveButton("Дальше") { _, _ ->
                 // Here you get get input text from the Edittext
                 m_Text = input.text.toString()
-                FindPlaceHelper {
+                FindPlaceHelper(fragmentManager, activity) {
                     val gps = DoubleArray(2)
                     gps[0] = respObjFindPlace.candidates[0].geometry.location.lat
                     gps[1] = respObjFindPlace.candidates[0].geometry.location.lng
@@ -229,7 +230,7 @@ class ProfileFragment : Fragment() {
             }
 
             cursor.close()
-            return MyAdapter(Array(15) { profileFragment_AllCounterName[it % profileFragment_AllCounterName.size] }, view, activity)
+            return MyAdapter(Array(15) { profileFragment_AllCounterName[it % profileFragment_AllCounterName.size] }, view, activity, fragmentManager)
         }
 
         // Return the size of your dataset (invoked by the layout manager)

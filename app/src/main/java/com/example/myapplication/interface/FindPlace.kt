@@ -14,6 +14,7 @@ import com.example.myapplication.dialog.ErrRouteDialog
 import com.example.myapplication.dialog.NoConnectionDialog
 import com.example.myapplication.fragments.*
 import com.example.myapplication.modulesDTO.DatabaseDTO
+import com.example.myapplication.modulesDTO.FindPlaceDTO
 import com.example.myapplication.modulesDTO.GoogleMapDTO
 import com.example.myapplication.modulesDTO.PlaceDTO
 import com.example.myapplication.utilits.isNetworkAvailable
@@ -28,11 +29,11 @@ import java.security.cert.CertificateException
 import java.security.cert.X509Certificate
 import javax.net.ssl.*
 
-var respObjPlace: PlaceDTO = PlaceDTO()
+var respObjFindPlace: FindPlaceDTO = FindPlaceDTO()
 
-interface Place {
+interface FindPlace {
     // Функция дешифровки URL
-    class GetPlace(private val url: String, private val fragmentManager: FragmentManager, private val value: () -> Unit, private val activity: Activity, private val view: View) : AsyncTask<String, Void, String>() {
+    class GetFindPlace(private val url: String, private val fragmentManager: FragmentManager, private val activity: Activity, private val value: () -> Unit) : AsyncTask<String, Void, String>() {
         @SuppressLint("WrongThread")
         override fun doInBackground(vararg params: String?): String {
             when(isNetworkAvailable(activity.applicationContext)) {
@@ -47,22 +48,12 @@ interface Place {
 
                     Log.d("GooglePlace", " data : $data")
                     try {
-                        respObjPlace = Gson().fromJson(data, PlaceDTO::class.java)
-                        when (respObjPlace.status) {
-                            "ZERO_RESULTS" -> {
-                                activity.runOnUiThread {
-                                    view.findViewById<TextView>(R.id.notExist).visibility =
-                                        View.VISIBLE
-                                    view.findViewById<TextView>(R.id.notFound).visibility =
-                                        View.INVISIBLE
-                                }
-                            }
-                            "OK" -> {
-                                value()
-                            }
-                            else -> {
-                                ErrRouteDialog {}.show(fragmentManager, "MyCustomFragment")
-                            }
+                        respObjFindPlace = Gson().fromJson(data, FindPlaceDTO::class.java)
+                        if (respObjFindPlace.status == "OK") {
+                            value()
+                        } else {
+                            Log.d("GetFindPlace", "Something going wrong")
+                            //ErrRouteDialog().show(fragmentManager, "MyCustomFragment")
                         }
                     } catch (e: Exception) {
                         e.printStackTrace()

@@ -1,37 +1,19 @@
 package com.example.myapplication.utilits
 
-// Firebase Database
 import android.app.Application
 import android.content.Context
-import android.graphics.Color
 import android.net.ConnectivityManager
 import android.net.NetworkCapabilities
 import android.os.Build
-import android.view.View
 import android.widget.ImageView
-import androidx.core.content.ContextCompat
-import androidx.core.graphics.drawable.DrawableCompat
 import com.example.myapplication.R
-import com.example.myapplication.models.User
-import com.google.android.material.snackbar.Snackbar
-import com.google.firebase.database.DatabaseReference
-import com.google.firebase.database.FirebaseDatabase
-import com.google.firebase.storage.FirebaseStorage
-import com.google.firebase.storage.StorageReference
 import com.splunk.mint.Mint
 import com.squareup.picasso.Picasso
 
-lateinit var REF_DATABASE_ROOT: DatabaseReference
-lateinit var REF_STORAGE_ROOT: StorageReference
-lateinit var USER: User
-
-const val CHILD_UID = "uid"
 const val CHILD_EMAIL = "email"
 const val CHILD_NAME = "name"
 const val CHILD_LASTNAME = "lastname"
 const val CHILD_PASSWORD = "password"
-
-const val NODE_EXCURSION = "excursion"
 // Picasso DI
 fun ImageView.downloadAndInto(UrlString: String) {
     Picasso.get()

@@ -22,6 +22,6 @@ class DirectionsHelper(private val fragmentManager: FragmentManager, private val
     }
 
     private fun getDirectionURLs(origin: String, dest: String, waypoints: String): String {
-        return "https://maps.googleapis.com/maps/api/directions/json?origin=${origin}&destination=${dest}&waypoints=via:${waypoints}&key=$APIMap"
+        return "https://maps.googleapis.com/maps/api/directions/json?origin=${origin}&destination=${dest}&language=ru&waypoints=via:${waypoints}&key=$APIMap"
     }
 }

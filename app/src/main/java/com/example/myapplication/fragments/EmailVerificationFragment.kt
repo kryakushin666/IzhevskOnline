@@ -63,7 +63,7 @@ class EmailVerificationFragment : Fragment() {
     private fun sendEmailVerification(email: String): String {
         Log.d(TAG, "Start Email Verification")
         val contextCompats = requireContext().applicationContext
-        return EmailHelper().setVerifyCode(contextCompats, email)
+        return EmailHelper(requireFragmentManager(), requireActivity()).setVerifyCode(contextCompats, email)
 
     }
     private fun checkCode(outputCode: String, codeInput: String) {

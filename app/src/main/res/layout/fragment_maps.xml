@@ -60,6 +60,7 @@
             android:layout_alignParentTop="true"
             android:layout_marginStart="16dp"
             android:layout_marginBottom="23dp"
+            android:tint="#ffffff"
             android:src="@drawable/ic_control_camera_24"
             app:backgroundTint="#313131"
             app:layout_constraintBottom_toTopOf="@+id/bottom_nav"
@@ -78,6 +79,7 @@
             android:visibility="invisible"
             app:backgroundTint="#313131"
             app:fabSize="mini"
+
             app:layout_constraintBottom_toTopOf="@+id/bottom_nav"
             app:layout_constraintStart_toStartOf="parent"
             tools:ignore="ContentDescription" />
@@ -181,4 +183,5 @@
     </androidx.constraintlayout.widget.ConstraintLayout> -->
 
     <include layout="@layout/fragment_demo_sheet" />
+    <include layout="@layout/fragment_bottom_sheet_inst" />
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

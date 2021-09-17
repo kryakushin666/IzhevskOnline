@@ -76,6 +76,9 @@
         android:name="com.example.myapplication.fragments.LocationCheckFragment"
         android:label="@string/title_notifications"
         tools:layout="@layout/fragment_locationcheck" >
+        <action
+            android:id="@+id/action_checkloc_screen_to_Museumuser"
+            app:destination="@id/Museumuser" />
     </fragment>
     <fragment
         android:id="@+id/landmark_screen"
@@ -93,5 +96,12 @@
             app:destination="@id/maps_screen"
             app:popUpTo="@id/maps_screen"
             app:popUpToInclusive="true" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/Museumuser"
+        android:name="com.example.myapplication.fragments.UserMuseumFragment"
+        android:label="@string/title_profile"
+        tools:layout="@layout/fragment_user_profile">
     </fragment>
 </navigation>
